@@ -5,7 +5,8 @@ en sí (no es contenido del libro — es la gestión del proyecto de escribirlo)
 formato de historias de usuario y backlog que el Módulo 9 le enseña al lector.
 
 **Última actualización:** ver el commit más reciente que toca este archivo.
-**Estado general:** 🔄 En progreso — expandiendo el Módulo 9.
+**Estado general:** ✅ Expansión del Módulo 9 completa (Fases 9A-9I). Pendiente: habilitar
+GitHub Pages (paso manual) y decidir cuándo hacer push de todo lo acumulado.
 
 ---
 
@@ -93,7 +94,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Fase 9F — Nivel 4: Proyectos 13-15 (estadística y ML) | Alta | ✅ Hecho |
 | Fase 9G — Nivel 5: Proyectos 16-18 (optimización/ETL/dominios) | Alta | ✅ Hecho |
 | Fase 9H — Proyecto 19 (Capstone) + actualización de guía de ritmo y checklist | Alta | ✅ Hecho |
-| Fase 9I — Referencias cruzadas "🚀 Pon esto en práctica" en el cierre de Módulos 1-8 + verificación final de build/enlaces | Alta | ⏳ Pendiente |
+| Fase 9I — Referencias cruzadas "🚀 Pon esto en práctica" en el cierre de Módulos 1-8 + verificación final de build/enlaces | Alta | ✅ Hecho |
 
 ## Épica 6: Higiene del repositorio
 
@@ -111,8 +112,12 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 
 ## Próximos pasos inmediatos
 
-1. Fase 9I: referencias cruzadas "🚀 Pon esto en práctica" en Módulos 1-8 + verificación final.
-2. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo).
+1. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
+   ver Épica 4).
+2. Hacer push de los commits acumulados de la Fase 9 a `origin/main` cuando el dueño del
+   repo lo indique.
+3. Revisión de lectura completa del libro (opcional, a discreción del autor) antes de
+   considerar el Módulo 9 definitivamente cerrado.
 
 ## Convención de commits de este proyecto
 

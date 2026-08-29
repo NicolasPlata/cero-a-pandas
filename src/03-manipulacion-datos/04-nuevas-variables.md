@@ -176,6 +176,11 @@ es exactamente lo que necesitas para crear una columna comparativa como
   (`groupby().transform()`) son las dos fuentes más comunes de nuevas variables con valor
   analítico real.
 
+> 🚀 **Pon esto en práctica:** ya puedes intentar
+> [Proyecto 6: Datos de clientes en mal estado](../09-proyectos/nivel-2-limpieza-eda/01-clientes-mal-estado.md)
+> y [Proyecto 7: Unificando sucursales](../09-proyectos/nivel-2-limpieza-eda/02-unificando-sucursales.md)
+> del Módulo 9. (El Proyecto 8, del mismo nivel, requiere además el Módulo 4 — llega enseguida.)
+
 Con esto cierra el **Módulo 3: Manipulación de Datos** — ya puedes llevar un dataset crudo a un
 estado limpio, bien tipado, bien formado y enriquecido con variables derivadas. El
 **Módulo 4: Análisis Exploratorio de Datos** construye directamente sobre esta base para

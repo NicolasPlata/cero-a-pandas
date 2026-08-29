@@ -314,6 +314,16 @@ def test_datos_produccion_cumplen_expectativas(engine):
   los datos de producción siguen cumpliendo las expectativas del negocio — ambos son
   necesarios en un pipeline profesional.
 
+> 🚀 **Pon esto en práctica:** con este módulo quedan desbloqueados los últimos proyectos de
+> Grano de Datos:
+> [Proyecto 15: ¿Qué le ofrecemos después?](../09-proyectos/nivel-4-ml/03-que-ofrecemos-despues.md),
+> [Proyecto 16: De la cafetería a la nube](../09-proyectos/nivel-5-produccion-dominios/01-cafeteria-a-la-nube.md)
+> y [Proyecto 18: Expandiendo el negocio](../09-proyectos/nivel-5-produccion-dominios/03-expandiendo-negocio.md).
+> Y con ellos resueltos, también estás listo para el
+> [Proyecto 19: Tu portafolio](../09-proyectos/capstone/01-tu-portafolio.md), el capstone final
+> del libro.
+
 Con esto cierra el **Módulo 8: Casos Especiales y Dominios**, y con él, todo el contenido
 temático del libro. El **Módulo 9: Proyectos Integradores** te lleva a aplicar todo lo
-aprendido —de principio a fin, sin andamiaje paso a paso— en cinco proyectos completos.
+aprendido —de principio a fin, sin andamiaje paso a paso— en 19 proyectos progresivos,
+presentados como historias de usuario y backlog.

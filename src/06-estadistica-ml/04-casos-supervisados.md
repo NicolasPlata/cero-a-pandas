@@ -293,6 +293,12 @@ for nombre, pipe in modelos_clasificacion.items():
   sobre entrenamiento, y reserva el test para una única evaluación final del modelo ya
   elegido.
 
+> 🚀 **Pon esto en práctica:** ya puedes intentar
+> [Proyecto 13: ¿La promoción funcionó?](../09-proyectos/nivel-4-ml/01-promocion-funciono.md)
+> y [Proyecto 14: Clientes que se van](../09-proyectos/nivel-4-ml/02-clientes-que-se-van.md)
+> del Módulo 9. (El Proyecto 15, del mismo nivel, requiere además el capítulo 8.3 — lo verás
+> desbloqueado al terminar el Módulo 8.)
+
 Con esto cierra el **Módulo 6: Análisis Estadístico y Machine Learning**. Ya puedes llevar un
 dataset limpio hasta un modelo predictivo evaluado correctamente. El **Módulo 7: Optimización
 y Performance** vuelve la mirada hacia la eficiencia: cómo hacer que todo lo aprendido hasta

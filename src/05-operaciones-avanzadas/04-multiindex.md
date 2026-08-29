@@ -195,6 +195,12 @@ ventas_multi.unstack("producto")   # convierte el nivel "producto" en columnas �
   resultado en una tabla ancha — elige según si necesitas seguir operando jerárquicamente o
   presentar el resultado.
 
+> 🚀 **Pon esto en práctica:** ya puedes intentar
+> [Proyecto 10: ¿Estamos creciendo?](../09-proyectos/nivel-3-avanzado/01-estamos-creciendo.md),
+> [Proyecto 11: El reporte que tardaba una hora](../09-proyectos/nivel-3-avanzado/02-reporte-tardaba-hora.md)
+> y [Proyecto 12: Un negocio, muchas dimensiones](../09-proyectos/nivel-3-avanzado/03-negocio-muchas-dimensiones.md)
+> del Módulo 9 — el Nivel 3 completo.
+
 Con esto cierra el **Módulo 5: Operaciones Avanzadas**. Ya dominas series de tiempo,
 vectorización, I/O a escala y estructuras jerárquicas — las herramientas técnicas que separan
 un uso intermedio de pandas de uno avanzado. El **Módulo 6: Análisis Estadístico y Machine

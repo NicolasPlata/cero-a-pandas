@@ -353,5 +353,11 @@ plt.show()
 - **Matplotlib** es el motor de graficación detrás de `df.plot()` — conocer `Figure` y `Axes`
   te da control total cuando necesitas personalizar un gráfico más allá de lo automático.
 
+> 🚀 **Pon esto en práctica:** con el Módulo 1 ya puedes intentar
+> [Proyecto 1: La caja registradora](../09-proyectos/nivel-0-fundamentos/01-caja-registradora.md),
+> [Proyecto 2: El cuaderno de inventario](../09-proyectos/nivel-0-fundamentos/02-cuaderno-inventario.md)
+> y [Proyecto 3: El validador de pedidos](../09-proyectos/nivel-0-fundamentos/03-validador-pedidos.md)
+> del Módulo 9 — los tres usan solo Python puro, sin pandas todavía.
+
 Con Python y su ecosistema de datos ya cubiertos, el **Módulo 2: Introducción a Pandas** te
 lleva directamente a `Series` y `DataFrame` — las estructuras centrales del resto del libro.

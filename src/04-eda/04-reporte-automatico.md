@@ -246,6 +246,11 @@ Un buen reporte de hallazgos, sea en HTML o Markdown, generalmente sigue esta es
   3-5 hallazgos clave, visualizaciones de soporte y limitaciones — no un volcado de todo lo
   explorado.
 
+> 🚀 **Pon esto en práctica:** con este módulo ya puedes intentar
+> [Proyecto 8: El reporte del gerente](../09-proyectos/nivel-2-limpieza-eda/03-reporte-gerente.md)
+> y [Proyecto 9: Tu primer EDA con datos reales](../09-proyectos/nivel-2-limpieza-eda/04-primer-eda-real.md)
+> del Módulo 9, completando así el Nivel 2 de proyectos.
+
 Con esto cierra el **Módulo 4: Análisis Exploratorio de Datos**. Ya puedes tomar un dataset
 limpio y producir, de principio a fin, un análisis estadístico, visual y documentado. El
 **Módulo 5: Operaciones Avanzadas** construye sobre esta base para series de tiempo,

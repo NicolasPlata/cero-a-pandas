@@ -95,8 +95,8 @@ libro, cada proyecto queda a tu alcance:
 | **Módulo 2** (Introducción a Pandas) | Proyectos 4-5 (Nivel 1) |
 | **Módulos 3-4** (Manipulación de Datos + EDA) | Proyectos 6-9 (Nivel 2) |
 | **Módulo 5** (Operaciones Avanzadas) | Proyectos 10-12 (Nivel 3) |
-| **Módulo 6** (Estadística y ML) | Proyectos 13-15 (Nivel 4) |
-| **Módulos 7-8** (Optimización + Dominios) | Proyectos 16-18 (Nivel 5) |
+| **Módulo 6** (Estadística y ML) | Proyectos 13-14 (Nivel 4) |
+| **Módulos 7-8** (Optimización + Dominios) | Proyectos 15-18 (Nivel 4 y 5) — el Proyecto 15 necesita, además de 6.3, el capítulo 8.3 |
 | Todo el libro (a tu elección) | Proyecto 19 (Capstone) |
 
 Cada capítulo de módulo (1 a 8) también cierra con un bloque **"🚀 Pon esto en práctica"** que

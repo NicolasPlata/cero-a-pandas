@@ -227,6 +227,11 @@ df.query("categoria in ['Agua', 'Jugo']")
   filtrado central de pandas; `.isin()` y `.query()` son alternativas más legibles para casos
   específicos.
 
+> 🚀 **Pon esto en práctica:** ya puedes intentar
+> [Proyecto 4: Del cuaderno al DataFrame](../09-proyectos/nivel-1-primeros-pasos/01-cuaderno-al-dataframe.md)
+> y [Proyecto 5: El mostrador digital](../09-proyectos/nivel-1-primeros-pasos/02-mostrador-digital.md)
+> del Módulo 9 — tus primeros proyectos con pandas de verdad.
+
 Con el Módulo 2 completo, ya puedes crear, cargar, guardar, seleccionar y filtrar datos con
 confianza. El **Módulo 3: Manipulación de Datos** te lleva al siguiente nivel: limpiar,
 transformar y reorganizar datos del mundo real, que rara vez llegan listos para el análisis.

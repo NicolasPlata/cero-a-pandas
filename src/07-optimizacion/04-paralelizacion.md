@@ -234,6 +234,11 @@ secuencial tarda ~10 segundos; la versión concurrente, ~1 segundo (limitado por
 - **`asyncio`** resuelve concurrencia de I/O (esperas de red/disco), no cómputo — no debe
   confundirse ni mezclarse innecesariamente con las herramientas de paralelismo de cómputo.
 
+> 🚀 **Pon esto en práctica:** ya puedes intentar
+> [Proyecto 17: Escalando a mil sucursales](../09-proyectos/nivel-5-produccion-dominios/02-escalando-mil-sucursales.md)
+> del Módulo 9 — y si ya resolviste el Proyecto 11 (Módulo 5), reconocerás la misma disciplina
+> de medir antes de optimizar, ahora a una escala mucho mayor.
+
 Con esto cierra el **Módulo 7: Optimización y Performance**. Ya sabes medir, optimizar
 memoria y velocidad, y escalar más allá de una sola máquina cuando hace falta. El
 **Módulo 8: Casos Especiales y Dominios** aplica todo lo aprendido en el libro a cuatro áreas
