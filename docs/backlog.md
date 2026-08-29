@@ -42,6 +42,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Historia | Prioridad | Estado |
 |----------|-----------|--------|
 | Módulo 1 — Cimientos (Python + ecosistema de datos) | Alta | ✅ Hecho |
+| Ampliación de 1.1 Fundamentos de Python: contenido nuevo (comentarios, primer programa, `input()`), explicaciones más profundas, ejercicios de calentamiento en cada sección | Alta | ✅ Hecho — pedido explícito tras feedback de que el capítulo era muy condensado para un usuario nuevo |
 | Módulo 2 — Introducción a Pandas | Alta | ✅ Hecho |
 | Módulo 3 — Manipulación de Datos | Alta | ✅ Hecho |
 | Módulo 4 — Análisis Exploratorio de Datos | Alta | ✅ Hecho |

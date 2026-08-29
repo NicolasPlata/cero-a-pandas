@@ -1,17 +1,115 @@
 # 1.1 Fundamentos de Python
 
 Este capítulo cubre lo esencial de Python: sintaxis, control de flujo, funciones,
-estructuras de datos nativas y manejo de errores. Si nunca has programado antes, tómate tu
-tiempo — cada sección se apoya en la anterior. Si ya conoces Python, úsalo como referencia
-rápida y salta directo a los ejercicios de cada sección para confirmar que no te falta nada.
+estructuras de datos nativas y manejo de errores. Está escrito asumiendo que **nunca has
+programado antes** — cada sección se apoya en la anterior, y avanzamos deliberadamente
+despacio al principio. Si ya conoces Python, úsalo como referencia rápida y salta directo a
+los ejercicios de cada sección para confirmar que no te falta nada.
+
+> 💡 **Un consejo antes de empezar:** no leas este capítulo sin escribir código. Ten un
+> intérprete de Python abierto (una terminal, un notebook de Jupyter, o un editor como VS
+> Code) y **ejecuta cada ejemplo tú mismo**, aunque parezca trivial. Programar se aprende
+> escribiendo, no leyendo — nadie se vuelve cómodo con la sintaxis solo mirándola.
+
+## Antes de empezar: ¿cómo ejecuto Python?
+
+Hay dos formas principales de ejecutar código Python, y las usarás ambas en este libro:
+
+1. **De forma interactiva (REPL):** abres una terminal, escribes `python` (o `python3`) y
+   presionas Enter. Se abre una consola donde escribes una línea de código a la vez y ves el
+   resultado inmediatamente. Ideal para probar cosas rápido, como mientras lees este capítulo.
+2. **Como un script (archivo `.py`):** escribes tu código en un archivo de texto con
+   extensión `.py` (por ejemplo, `mi_programa.py`), y lo ejecutas completo con
+   `python mi_programa.py` desde la terminal. Es lo que harás para programas más largos.
+
+En el Módulo 1.2 conocerás **Jupyter**, un tercer entorno (de celdas interactivas) que es, en
+la práctica, el que más usarás trabajando con pandas. Por ahora, cualquiera de las dos formas
+de arriba te sirve perfectamente para seguir este capítulo.
+
+## Tu primer programa y los comentarios
+
+La tradición manda empezar por aquí:
+
+```python
+print("Hola, mundo")
+```
+
+`print()` es una **función** (verás qué es eso formalmente más adelante en este capítulo) que
+muestra un valor en pantalla. Es, por lejos, la herramienta que más usarás para ver qué está
+haciendo tu código mientras aprendes.
+
+```python
+print("Hola, mundo")
+print(2 + 2)
+print("La respuesta es:", 42)   # print puede recibir varios valores separados por coma
+```
+
+Salida:
+
+```text
+Hola, mundo
+4
+La respuesta es: 42
+```
+
+Los **comentarios** son texto que Python ignora por completo al ejecutar — sirven para que tú
+(o alguien más leyendo tu código) entienda qué está pasando. En Python, todo lo que sigue a un
+`#` en una línea es un comentario:
+
+```python
+# Esto es un comentario: Python no lo ejecuta
+edad = 28  # también puedes comentar al final de una línea de código
+```
+
+> 💡 No comentes **qué** hace una línea obvia (`edad = 28  # asigna 28 a edad` no aporta
+> nada) — comenta el **por qué**, cuando no sea evidente. Volverás a este consejo constantemente
+> a lo largo del libro.
+
+**Ejercicios: Tu primer programa**
+
+1. Escribe un programa que imprima tu nombre y tu edad, cada uno en una línea separada, usando
+   dos llamadas a `print()`.
+2. Agrega un comentario arriba de cada `print()` explicando qué información muestra esa línea.
 
 ## Sintaxis Básica
 
 ### Variables y tipos de datos
 
-Una **variable** en Python es simplemente un nombre que apunta a un valor guardado en memoria.
-A diferencia de otros lenguajes, no declaras el tipo explícitamente: Python lo infiere a partir
-del valor que le asignas.
+Una **variable** es un nombre que apunta a un valor guardado en memoria — imagina una
+etiqueta pegada a una caja: la etiqueta (el nombre de la variable) te permite encontrar y usar
+lo que hay dentro de la caja (el valor) sin tener que recordar dónde está guardado
+exactamente.
+
+```python
+edad = 28
+```
+
+Esta línea crea una variable llamada `edad` y le asigna el valor `28`. El signo `=` aquí
+**no significa "igual a"** como en matemáticas — significa "asigna el valor de la derecha a la
+variable de la izquierda". Se lee "edad recibe 28", no "edad es igual a 28".
+
+**Reglas para nombrar variables** en Python:
+
+- Deben empezar con una letra o guion bajo (`_`), nunca con un número.
+- Pueden contener letras, números y guiones bajos, pero no espacios ni símbolos como `-` o `@`.
+- Distinguen mayúsculas de minúsculas: `precio` y `Precio` son variables distintas.
+- No pueden coincidir con una palabra reservada de Python (`if`, `for`, `class`, etc.).
+
+```python
+nombre_producto = "Café"   # válido
+_temporal = 10               # válido (empieza con guion bajo)
+2_productos = 5                # ¡INVÁLIDO! no puede empezar con número
+nombre-producto = "Té"           # ¡INVÁLIDO! el guion no está permitido
+```
+
+> 💡 La convención en Python para nombrar variables es **snake_case**: todo en minúsculas,
+> palabras separadas por guion bajo (`precio_unitario`, no `precioUnitario` ni
+> `PrecioUnitario`). La seguirás durante todo el libro — no es obligatoria para que el código
+> funcione, pero sí es lo que cualquier programador de Python esperará ver.
+
+A diferencia de otros lenguajes de programación, en Python no declaras el tipo de una
+variable explícitamente — Python lo **infiere** automáticamente a partir del valor que le
+asignas:
 
 ```python
 edad = 28              # int
@@ -63,9 +161,12 @@ int("abc")  # ValueError: invalid literal for int() with base 10: 'abc'
 
 **Ejercicios: Variables y tipos**
 
-1. Crea variables para representar el nombre, precio y stock de un producto, con los tipos
+1. **(Calentamiento)** Crea cuatro variables sobre ti mismo/a: tu nombre (`str`), tu edad
+   (`int`), tu estatura en metros (`float`) y si te gusta programar (`bool`). Imprime cada una
+   con `print()`.
+2. Crea variables para representar el nombre, precio y stock de un producto, con los tipos
    adecuados. Imprime el tipo de cada una usando `type()`.
-2. ¿Qué tipo resulta de `bool(0)`, `bool(1)`, `bool("")`, `bool("no vacío")`? Pruébalo y
+3. ¿Qué tipo resulta de `bool(0)`, `bool(1)`, `bool("")`, `bool("no vacío")`? Pruébalo y
    explica el patrón que observas.
 
 ### Operadores
@@ -94,6 +195,19 @@ True or False    # True
 not True         # False
 ```
 
+> ⚠️ **No confundas `=` con `==`.** `=` asigna un valor a una variable (`x = 5`); `==`
+> **compara** si dos valores son iguales y devuelve `True` o `False` (`x == 5`). Usar `=`
+> donde debías usar `==` es uno de los errores más comunes al empezar a programar.
+
+Al igual que en matemáticas, los operadores aritméticos tienen un **orden de precedencia**:
+potencia primero, luego multiplicación/división, y al final suma/resta. Los paréntesis
+siempre se evalúan primero y son la forma más clara de evitar ambigüedad:
+
+```python
+resultado = 2 + 3 * 4      # 14, no 20 — la multiplicación se evalúa antes que la suma
+resultado_claro = 2 + (3 * 4)   # también 14, pero más explícito para quien lea el código
+```
+
 El operador `%` (módulo) parece poco relevante al principio, pero es la base de patrones
 como "selecciona una de cada N filas" o "identifica años bisiestos", y reaparece en pandas al
 trabajar con índices periódicos.
@@ -105,14 +219,35 @@ presente desde ahora para que no te sorprenda más adelante.
 
 **Ejercicios: Operadores**
 
-1. Sin ejecutar el código, predice el resultado de `17 % 5` y `17 // 5`. Luego verifícalo.
-2. Escribe una expresión booleana que sea `True` solo si un número `n` es divisible por 3
+1. **(Calentamiento)** Calcula el área de un rectángulo de base `5` y altura `3`, guárdala en
+   una variable, e imprime un mensaje como `"El área es: 15"` usando `print()`.
+2. Sin ejecutar el código, predice el resultado de `17 % 5` y `17 // 5`. Luego verifícalo.
+3. Escribe una expresión booleana que sea `True` solo si un número `n` es divisible por 3
    **o** por 5, pero no por ambos a la vez.
 
 ### Strings
 
 Los strings son inmutables y ofrecen decenas de métodos útiles para limpieza de texto —
 algo que harás constantemente al preparar datos para pandas.
+
+Un string, igual que una lista (que verás más adelante en este capítulo), es una **secuencia**
+de caracteres — puedes acceder a caracteres individuales por posición (indexing) o a
+fragmentos (slicing), exactamente con la misma sintaxis que usarás con listas:
+
+```python
+palabra = "pandas"
+
+palabra[0]       # "p" — primer carácter (las posiciones empiezan en 0, no en 1)
+palabra[-1]      # "s" — último carácter
+palabra[0:3]     # "pan" — desde la posición 0 hasta la 3 (sin incluirla)
+len(palabra)     # 6 — cantidad de caracteres
+```
+
+> ⚠️ **Python cuenta desde 0, no desde 1.** El primer elemento de cualquier secuencia
+> (string, lista, etc.) está en la posición `0`. Es una de las fuentes de error ("off-by-one")
+> más comunes al empezar — tenlo siempre presente.
+
+Además de indexing y slicing, los strings tienen métodos para transformarlos y limpiarlos:
 
 ```python
 nombre = "  Ana García  "
@@ -125,7 +260,7 @@ nombre.strip().replace("García", "Gómez")  # "Ana Gómez"
 "ana,maria,luis".split(",")   # ['ana', 'maria', 'luis']
 "-".join(["2026", "08", "29"]) # "2026-08-29"
 
-"garcía" in nombre.lower()    # True
+"garcía" in nombre.lower()    # True — el operador "in" verifica si un substring existe
 ```
 
 **f-strings** (desde Python 3.6) son la forma moderna y preferida de formatear texto:
@@ -151,12 +286,50 @@ análisis con pandas.
 
 **Ejercicios: Strings**
 
-1. Dado `texto = "  Producto: Laptop  |  Precio: 1200  "`, extrae el nombre del producto y
+1. **(Calentamiento)** Dado `nombre = "pandas"`, imprime su primera letra, su última letra, y
+   su longitud, usando indexing y `len()`.
+2. Dado `texto = "  Producto: Laptop  |  Precio: 1200  "`, extrae el nombre del producto y
    el precio como dos variables limpias (sin espacios), usando `split()` y `strip()`.
-2. Usando un f-string, construye el mensaje `"El producto cuesta $1,200.00"` a partir de
+3. Usando un f-string, construye el mensaje `"El producto cuesta $1,200.00"` a partir de
    `precio = 1200`. Pista: el especificador `:,.2f` agrega separador de miles.
 
+### input() y programas interactivos
+
+Hasta ahora, todos los valores estaban fijos en el código. `input()` te permite **pedirle
+datos a quien ejecuta el programa**, haciendo que tus programas sean interactivos:
+
+```python
+nombre = input("¿Cómo te llamas? ")
+print(f"¡Hola, {nombre}!")
+```
+
+Al ejecutar esto, el programa se detiene, muestra `"¿Cómo te llamas? "`, y espera a que
+escribas algo y presiones Enter — lo que escribas queda guardado en `nombre`.
+
+> ⚠️ **`input()` siempre devuelve un string**, incluso si la persona escribe un número. Si
+> necesitas hacer cálculos con ese valor, tienes que convertirlo explícitamente:
+
+```python
+edad_texto = input("¿Cuántos años tienes? ")   # esto SIEMPRE es un string
+edad = int(edad_texto)                            # ahora sí es un número
+
+anio_nacimiento = 2026 - edad
+print(f"Naciste alrededor de {anio_nacimiento}")
+```
+
+**Ejercicios: input()**
+
+1. Escribe un programa que pida dos números al usuario (con dos llamadas a `input()`,
+   convertidos con `float()`), y muestre su suma.
+2. Escribe un programa que pida el precio de un producto y la cantidad comprada, y muestre el
+   total a pagar, formateado con un f-string como los que ya viste.
+
 ## Control de Flujo
+
+Hasta ahora, tus programas ejecutan todas sus líneas, una tras otra, sin excepción. El
+**control de flujo** es lo que te permite decidir **qué** código se ejecuta (condicionales) y
+**cuántas veces** (loops) — es, junto con las funciones, la base de cualquier programa que
+haga algo más interesante que una secuencia fija de instrucciones.
 
 ### Condicionales (if / elif / else)
 
@@ -174,7 +347,36 @@ print(categoria)  # "frío" — 15 no es > 15
 ```
 
 Python no usa llaves `{}`: la **indentación** (4 espacios por convención) define los bloques.
-Esto es más que estilo — es sintaxis obligatoria, y un error de indentación rompe el programa.
+Esto es más que estilo — es sintaxis obligatoria, y un error de indentación rompe el programa:
+
+```python
+if temperatura > 30:
+print("hace calor")   # ¡Error! Falta indentación
+```
+
+```text
+IndentationError: expected an indented block after 'if' statement on line 1
+```
+
+Si alguna vez ves un `IndentationError`, revisa que **todas** las líneas dentro de un mismo
+bloque (`if`, `for`, una función, etc.) tengan exactamente la misma indentación — mezclar
+espacios y tabulaciones, o desalinear una sola línea, es suficiente para provocarlo.
+
+Los condicionales se pueden **anidar** (poner uno dentro de otro) para evaluar varias
+condiciones combinadas:
+
+```python
+edad = 25
+tiene_licencia = True
+
+if edad >= 18:
+    if tiene_licencia:
+        print("Puede conducir")
+    else:
+        print("Es mayor de edad, pero no tiene licencia")
+else:
+    print("Es menor de edad")
+```
 
 El **operador ternario** condensa un `if/else` simple en una sola línea, algo que verás
 frecuentemente combinado con `apply()` en pandas:
@@ -190,10 +392,19 @@ estado = "mayor" if edad >= 18 else "menor"
 
 **Ejercicios: Condicionales**
 
-1. Escribe una función (aunque aún no hayas visto `def` formalmente, inténtalo con lo que
+1. **(Calentamiento)** Escribe un programa que imprima `"Par"` si un número es par y
+   `"Impar"` si es impar, usando `%` y `if/else`.
+2. **(Calentamiento)** Escribe un programa que reciba una edad (puedes usar `input()` de la
+   sección anterior, o simplemente una variable fija) y clasifique a la persona como
+   `"niño"` (menor de 13), `"adolescente"` (13 a 17) o `"adulto"` (18 o más), usando
+   `if/elif/else`.
+3. Escribe una función (aunque aún no hayas visto `def` formalmente, inténtalo con lo que
    sabes) que reciba una nota numérica y devuelva `"Aprobado"` si es `>= 60` y `"Reprobado"`
    en caso contrario.
-2. Reescribe ese mismo condicional como operador ternario en una sola línea.
+4. Reescribe ese mismo condicional del ejercicio anterior como operador ternario en una sola
+   línea.
+5. Escribe un condicional **anidado** que clasifique un número como `"positivo par"`,
+   `"positivo impar"`, `"negativo par"`, `"negativo impar"` o `"cero"`.
 
 ### Loops (for / while)
 
@@ -236,6 +447,32 @@ while contador < 3:
     contador += 1
 ```
 
+Un patrón extremadamente común es el **acumulador**: usar una variable fuera del loop para ir
+sumando (o combinando) un resultado en cada vuelta:
+
+```python
+numeros = [10, 20, 30, 40]
+total = 0                     # el "acumulador" empieza en un valor inicial neutro
+
+for numero in numeros:
+    total += numero            # equivalente a: total = total + numero
+
+print(total)   # 100
+```
+
+Vas a reconocer este patrón —empezar con un valor inicial y combinarlo iteración a
+iteración— constantemente, incluso cuando más adelante lo reemplaces con métodos vectorizados
+de pandas como `.sum()`.
+
+Los loops también se pueden **anidar** — un loop dentro de otro — típicamente para recorrer
+combinaciones de dos secuencias, como filas y columnas de una tabla:
+
+```python
+for fila in range(1, 4):
+    for columna in range(1, 4):
+        print(f"{fila} x {columna} = {fila * columna}")
+```
+
 `break` corta el loop por completo; `continue` salta a la siguiente iteración:
 
 ```python
@@ -255,9 +492,15 @@ for numero in range(10):
 
 **Ejercicios: Loops**
 
-1. Usando un `for` con `range()`, imprime los cuadrados de los números del 1 al 10.
-2. Usando un `while`, simula un contador regresivo desde 5 hasta 1, e imprime `"¡Despegue!"`
+1. **(Calentamiento)** Usa un `for` con `range()` para imprimir los números del 1 al 20, pero
+   solo los que son pares (combina el loop con un `if`).
+2. Usando un `for` con `range()`, imprime los cuadrados de los números del 1 al 10.
+3. Usando un `while`, simula un contador regresivo desde 5 hasta 1, e imprime `"¡Despegue!"`
    al llegar a 0.
+4. Usa el patrón acumulador para sumar todos los números del 1 al 100 con un `for`, sin usar
+   la función `sum()`.
+5. Usando dos loops `for` anidados, imprime una tabla de multiplicar completa del 1 al 5 (5
+   filas, cada una mostrando `1 x 1 = 1`, `1 x 2 = 2`, etc.).
 
 ### List comprehensions
 
@@ -293,12 +536,22 @@ completas más adelante.
 
 **Ejercicios: List comprehensions**
 
-1. Dada `palabras = ["sol", "mar", "montaña", "río"]`, crea una lista con la longitud de
+1. **(Calentamiento)** Dada `temperaturas_c = [0, 20, 30, 100]` (en Celsius), crea una lista
+   con esas temperaturas convertidas a Fahrenheit (`F = C * 9/5 + 32`), usando una list
+   comprehension.
+2. Dada `palabras = ["sol", "mar", "montaña", "río"]`, crea una lista con la longitud de
    cada palabra usando una list comprehension.
-2. Dada `numeros = range(1, 21)`, crea una lista solo con los múltiplos de 3, usando una
+3. Dada `numeros = range(1, 21)`, crea una lista solo con los múltiplos de 3, usando una
    comprehension con condición.
 
 ## Funciones
+
+Hasta ahora, si querías repetir un cálculo, tenías que copiar y pegar el código cada vez. Las
+**funciones** resuelven exactamente ese problema: te permiten empaquetar un bloque de código
+con un nombre, para reutilizarlo cuantas veces quieras sin repetirlo. Esto no es solo
+conveniencia — código que existe en un solo lugar es más fácil de corregir (arreglas un error
+una vez, no en cada copia) y de entender (un nombre descriptivo como `calcular_impuesto()` dice
+más que diez líneas sueltas de aritmética).
 
 ### Definición y scope
 
@@ -310,6 +563,25 @@ def calcular_precio_total(precio_unitario, cantidad):
 
 total = calcular_precio_total(4.5, 3)
 print(total)  # 13.5
+```
+
+> ⚠️ **`return` no es lo mismo que `print()`**, una confusión muy común al empezar.
+> `print()` solo **muestra** algo en pantalla, sin que el programa pueda usarlo después.
+> `return` **entrega** un valor a quien llamó la función, para que ese valor pueda guardarse en
+> una variable, usarse en un cálculo, o pasarse a otra función:
+
+```python
+def duplicar_con_print(x):
+    print(x * 2)   # solo lo muestra en pantalla
+
+def duplicar_con_return(x):
+    return x * 2    # lo entrega como resultado
+
+resultado = duplicar_con_print(5)   # imprime "10" en pantalla
+print(resultado)                      # pero esto imprime "None" — la función no devolvió nada
+
+resultado = duplicar_con_return(5)   # no imprime nada por sí sola
+print(resultado)                       # esto sí imprime "10" — el valor fue devuelto
 ```
 
 Los **parámetros por defecto** permiten llamar a la función sin especificar todos los
@@ -344,8 +616,10 @@ print(x)  # NameError: name 'x' is not defined
 
 **Ejercicios: Definición y scope**
 
-1. Escribe una función `es_par(numero)` que devuelva `True` o `False`.
-2. Escribe una función `describir_dataset(filas, columnas)` con `columnas=10` como valor por
+1. **(Calentamiento)** Escribe una función `saludar(nombre)` que **imprima** (con `print()`,
+   sin `return`) el mensaje `"Hola, <nombre>!"`.
+2. Escribe una función `es_par(numero)` que **devuelva** (con `return`) `True` o `False`.
+3. Escribe una función `describir_dataset(filas, columnas)` con `columnas=10` como valor por
    defecto, que devuelva un string como `"Dataset de 500 filas y 10 columnas"`.
 
 ### Args y kwargs
@@ -387,9 +661,11 @@ completo.
 
 **Ejercicios: Args y kwargs**
 
-1. Escribe una función `promedio(*numeros)` que devuelva el promedio de cualquier cantidad
+1. **(Calentamiento)** Escribe una función `mostrar_todos(*args)` que imprima cada argumento
+   recibido en una línea separada (sin sumarlos ni procesarlos, solo mostrarlos).
+2. Escribe una función `promedio(*numeros)` que devuelva el promedio de cualquier cantidad
    de números recibidos.
-2. Escribe una función `imprimir_config(**opciones)` que imprima cada par clave-valor
+3. Escribe una función `imprimir_config(**opciones)` que imprima cada par clave-valor
    recibido, uno por línea, en formato `"clave: valor"`.
 
 ### Lambdas y map/filter
@@ -430,9 +706,11 @@ Módulo 3, así que vale la pena sentirte cómodo con ellas desde ya.
 
 **Ejercicios: Lambdas y map/filter**
 
-1. Usa `sorted()` con una lambda como `key` para ordenar
+1. **(Calentamiento)** Escribe (sin usar `def`) una lambda `es_positivo` que reciba un número
+   y devuelva `True` si es mayor a 0.
+2. Usa `sorted()` con una lambda como `key` para ordenar
    `[("Ana", 28), ("Luis", 22), ("Marta", 35)]` por edad (el segundo elemento de cada tupla).
-2. Usa `map()` con una lambda para convertir la lista `["10", "20", "30"]` (strings) en una
+3. Usa `map()` con una lambda para convertir la lista `["10", "20", "30"]` (strings) en una
    lista de enteros.
 
 ## Estructuras de Datos
@@ -457,12 +735,15 @@ frutas[::-1]     # lista invertida
 ```
 
 El **slicing** (`inicio:fin:paso`) es un patrón que reaparece idéntico en pandas al
-seleccionar filas por posición (`df.iloc[1:3]`), así que familiarízate bien con su sintaxis.
+seleccionar filas por posición (`df.iloc[1:3]`), así que familiarízate bien con su sintaxis —
+ya lo viste también con strings, y funciona exactamente igual aquí.
 
 **Ejercicios: Lists**
 
-1. Crea una lista de 6 números y usa slicing para obtener solo los últimos 3.
-2. Dada `numeros = [5, 2, 8, 1, 9]`, ordénala de mayor a menor sin usar una nueva variable
+1. **(Calentamiento)** Crea una lista con tus 3 comidas favoritas, e imprímela completa con
+   `print()`. Luego imprime solo la primera y la última.
+2. Crea una lista de 6 números y usa slicing para obtener solo los últimos 3.
+3. Dada `numeros = [5, 2, 8, 1, 9]`, ordénala de mayor a menor sin usar una nueva variable
    (pista: método `.sort()` con el parámetro `reverse`).
 
 ### Tuples y Sets
@@ -500,9 +781,11 @@ Esta idea de "valores únicos" es exactamente lo que hace `df["columna"].unique(
 
 **Ejercicios: Tuples y Sets**
 
-1. Escribe una función que reciba una lista de números y devuelva una tupla con
+1. **(Calentamiento)** Crea una tupla con las coordenadas `(4, 7)` de un punto, y
+   desempaquétala en dos variables `x` e `y` usando la sintaxis `x, y = punto`.
+2. Escribe una función que reciba una lista de números y devuelva una tupla con
    `(suma, promedio, cantidad)`.
-2. Dadas dos listas de nombres con algunos elementos repetidos entre ellas, usa sets para
+3. Dadas dos listas de nombres con algunos elementos repetidos entre ellas, usa sets para
    encontrar los nombres que aparecen en **ambas** listas.
 
 ### Dictionaries
@@ -547,9 +830,11 @@ datos = {
 
 **Ejercicios: Dictionaries**
 
-1. Crea un diccionario que represente un producto (`nombre`, `precio`, `stock`). Escribe
+1. **(Calentamiento)** Crea un diccionario que te represente a ti (`nombre`, `edad`,
+   `ciudad`), e imprime cada clave con su valor usando un `for` con `.items()`.
+2. Crea un diccionario que represente un producto (`nombre`, `precio`, `stock`). Escribe
    código que aumente el `stock` en 10 unidades.
-2. Dado un diccionario `inventario = {"manzanas": 50, "peras": 30, "uvas": 0}`, itera sobre
+3. Dado un diccionario `inventario = {"manzanas": 50, "peras": 30, "uvas": 0}`, itera sobre
    sus items e imprime solo los productos con stock mayor a 0, en formato `"producto: cantidad"`.
 
 ## Manejo de Errores
@@ -611,9 +896,12 @@ establecer_precio(-5)  # ValueError: El precio no puede ser negativo
 
 **Ejercicios: Excepciones**
 
-1. Escribe una función `convertir_a_entero(texto)` que use `try/except` para devolver el
+1. **(Calentamiento)** Ejecuta `10 / 0` directamente (sin `try/except`) y observa el mensaje
+   de error exacto que Python muestra. Luego, envuélvelo en un `try/except ZeroDivisionError`
+   que imprima un mensaje amigable en vez de dejar que el programa se detenga.
+2. Escribe una función `convertir_a_entero(texto)` que use `try/except` para devolver el
    entero convertido, o `None` con un mensaje de error si el texto no es convertible.
-2. Escribe una función `obtener_elemento(lista, indice)` que maneje con `try/except` el caso
+3. Escribe una función `obtener_elemento(lista, indice)` que maneje con `try/except` el caso
    de un índice fuera de rango (`IndexError`) y devuelva `None` en ese caso.
 
 ### Debugging
@@ -674,7 +962,12 @@ logger.error("No se pudo conectar a la base de datos")
 
 Estos ejercicios combinan varios de los temas vistos en este capítulo.
 
-1. **Procesador de inventario.** Tienes una lista de diccionarios, cada uno representando un
+1. **Clasificador de números.** Escribe una función que reciba una lista de números y, usando
+   un `for` y condicionales, devuelva un diccionario con tres claves: `"pares"`,
+   `"impares"` y `"negativos"`, cada una con la lista de números de esa categoría. (Pista:
+   un número puede ser tanto negativo como par a la vez — decide tú cómo clasificarlo.)
+
+2. **Procesador de inventario.** Tienes una lista de diccionarios, cada uno representando un
    producto: `{"nombre": str, "precio": float, "stock": int}`. Escribe una función que:
    - Reciba la lista completa.
    - Use una list comprehension para calcular el valor total (`precio * stock`) de cada
@@ -683,14 +976,14 @@ Estos ejercicios combinan varios de los temas vistos en este capítulo.
      (`KeyError`), reportando el producto problemático sin detener el programa.
    - Devuelva el valor total del inventario completo.
 
-2. **Validador de datos.** Escribe una función `validar_registro(registro)` que reciba un
+3. **Validador de datos.** Escribe una función `validar_registro(registro)` que reciba un
    diccionario con claves `nombre`, `edad` y `email`, y devuelva una tupla
    `(es_valido, errores)` donde `errores` es una lista de strings describiendo cada problema
    encontrado (edad negativa, nombre vacío, email sin `@`, etc.). Usa `raise` internamente
    solo si decides estructurar la validación con excepciones personalizadas — de lo contrario,
    acumula los errores en la lista.
 
-3. **Generador de reportes.** Escribe una función `**kwargs`-based `generar_reporte(**metricas)`
+4. **Generador de reportes.** Escribe una función `**kwargs`-based `generar_reporte(**metricas)`
    que reciba métricas nombradas (por ejemplo `ventas=15000, clientes=320`) y devuelva un
    string formateado con f-strings, una línea por métrica, ordenadas alfabéticamente por
    nombre de métrica.
@@ -698,10 +991,16 @@ Estos ejercicios combinan varios de los temas vistos en este capítulo.
 ## Resumen
 
 - Python usa **tipado dinámico**: los tipos (`int`, `float`, `str`, `bool`) se infieren del
-  valor, no se declaran.
-- La **indentación** define los bloques de código — no es opcional.
+  valor, no se declaran. Las variables se nombran en **snake_case**.
+- `print()` muestra algo en pantalla; `input()` pide datos al usuario (siempre como `str`);
+  `#` inicia un comentario que Python ignora.
+- La **indentación** define los bloques de código — no es opcional, y un desalineamiento
+  produce un `IndentationError`.
+- Los strings y las listas son **secuencias**: comparten la misma sintaxis de indexing
+  (`objeto[0]`) y slicing (`objeto[1:3]`), y Python cuenta posiciones desde **0**.
 - Las **funciones** con `def`, parámetros por defecto, `*args`/`**kwargs` y **lambdas** son
   la base de casi todo lo que harás con `apply()` y funciones personalizadas en pandas.
+  Recuerda: `return` entrega un valor, `print()` solo lo muestra.
 - **Listas, tuplas, sets y diccionarios** son las cuatro estructuras de datos nativas — los
   diccionarios en particular son la forma más directa de construir un `DataFrame`.
 - El manejo de errores con `try/except/finally` y un buen hábito de debugging (`print`,
