@@ -4,6 +4,10 @@ Este capítulo cubre las cuatro tareas de limpieza más frecuentes: valores falt
 tipos de datos incorrectos y duplicados. Usaremos el `datos_crudos` presentado en la
 introducción del módulo.
 
+> 🎯 **Por qué te importa este capítulo:** en cualquier trabajo real de datos, esto es lo
+> primero que vas a hacer con un dataset nuevo, casi sin excepción. Ningún análisis, por
+> sofisticado que sea, sirve de nada si se construye sobre datos sucios sin que te des cuenta.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -327,15 +331,16 @@ estandarizado = (col - col.mean()) / col.std()
 
 ## Resumen
 
-- **Nulos:** identifica con `.isna()`, decide entre `dropna()` (eliminar) y `fillna()`/
-  `interpolate()` (rellenar) según el contexto del negocio, no de forma automática.
-- **Outliers:** detecta con IQR o z-score; decide entre eliminar, capar (`clip()`) o
-  transformar (`log1p()`) — nunca elimines sin investigar primero.
-- **Tipos:** `pd.to_numeric()` y `pd.to_datetime()` con `errors="coerce"` son la forma robusta
-  de convertir datos "sucios", dejando un registro claro de lo que no pudo convertirse.
-- **Duplicados:** `duplicated()`/`drop_duplicates()`, siempre con un `subset` explícito según
-  qué define un duplicado en tu contexto.
+Para **nulos**, identifica con `.isna()` y decide entre `dropna()` (eliminar) y `fillna()`/
+`interpolate()` (rellenar) según el contexto del negocio, nunca de forma automática. Para
+**outliers**, detecta con IQR o z-score y decide entre eliminar, capar (`clip()`) o
+transformar (`log1p()`) — pero nunca elimines sin investigar primero qué representa ese valor.
 
-Siguiente: [3.2 Transformación de Datos](02-transformacion-datos.md), donde tomamos datos ya
-limpios y los transformamos — renombrando, aplicando funciones, y trabajando con texto,
-fechas y categorías.
+En cuanto a **tipos**, `pd.to_numeric()` y `pd.to_datetime()` con `errors="coerce"` son la
+forma robusta de convertir datos "sucios", dejando un registro claro de lo que no pudo
+convertirse. Y para **duplicados**, `duplicated()`/`drop_duplicates()` siempre deberían llevar
+un `subset` explícito según qué define un duplicado en tu contexto específico.
+
+Con los datos ya limpios, en [3.2 Transformación de Datos](02-transformacion-datos.md) los
+transformamos de verdad: renombrar, aplicar funciones, trabajar con texto, fechas y
+categorías.

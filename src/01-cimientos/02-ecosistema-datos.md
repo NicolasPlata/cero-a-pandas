@@ -5,6 +5,11 @@ Jupyter/IPython, y se apoya en Matplotlib para gran parte de su capacidad de gra
 capítulo cubre esas tres piezas, además de cómo organizar tu entorno de trabajo con entornos
 virtuales.
 
+> 🎯 **Por qué te importa este capítulo:** cuando pandas se comporte de una forma que no
+> esperabas, la respuesta casi siempre está en cómo funciona NumPy por debajo. Y Jupyter no es
+> un detalle menor — es, en la práctica, donde vas a escribir el 90% del código de este libro
+> de aquí en adelante.
+
 ## NumPy
 
 [NumPy](https://numpy.org/) ("Numerical Python") es la librería que provee el array
@@ -357,15 +362,17 @@ plt.show()
 
 ## Resumen
 
-- **NumPy** provee el array (`ndarray`) homogéneo y vectorizado sobre el que pandas construye
-  sus estructuras — entender shapes, indexing, boolean indexing y operaciones vectorizadas
-  aquí te ahorra confusión constante más adelante.
-- Los **entornos virtuales** (`venv` o `conda`) aíslan las dependencias de cada proyecto y
-  son un hábito profesional no negociable.
-- **Jupyter/IPython** es el entorno de trabajo estándar para análisis exploratorio con
-  pandas; los comandos mágicos (`%time`, `%matplotlib inline`) son parte del flujo diario.
-- **Matplotlib** es el motor de graficación detrás de `df.plot()` — conocer `Figure` y `Axes`
-  te da control total cuando necesitas personalizar un gráfico más allá de lo automático.
+**NumPy** provee el array (`ndarray`) homogéneo y vectorizado sobre el que pandas construye
+sus estructuras. Entender shapes, indexing, boolean indexing y operaciones vectorizadas aquí
+te ahorra confusión constante más adelante. Los **entornos virtuales** (`venv` o `conda`)
+aíslan las dependencias de cada proyecto — un hábito profesional que conviene adoptar desde
+ya, no después de tu primer conflicto de versiones.
+
+**Jupyter/IPython** es el entorno de trabajo estándar para análisis exploratorio con pandas;
+sus comandos mágicos (`%time`, `%matplotlib inline`) forman parte del flujo diario de
+cualquiera que use la librería en serio. Y **Matplotlib** es el motor de graficación detrás de
+`df.plot()`: conocer `Figure` y `Axes` te da control total cuando el gráfico automático de
+pandas no basta.
 
 > 🚀 **Pon esto en práctica:** con el Módulo 1 ya puedes intentar
 > [Proyecto 1: La caja registradora](../09-proyectos/nivel-0-fundamentos/01-caja-registradora.md),

@@ -2,8 +2,12 @@
 
 Todo en pandas se construye sobre dos estructuras: la `Series` (una columna de datos con
 etiquetas) y el `DataFrame` (una tabla de `Series` que comparten un mismo índice). Entender
-bien estas dos estructuras — y el objeto `Index` que las sostiene por debajo — es el requisito
-más importante de todo el libro.
+bien estas dos estructuras, junto con el objeto `Index` que las sostiene por debajo, es el
+requisito más importante de todo el libro.
+
+> 🎯 **Por qué te importa este capítulo:** si algo de pandas te va a acompañar en cada línea
+> de código del resto del libro, es esto. `Series` y `DataFrame` no son "un tema más": son el
+> vocabulario base sobre el que están escritos todos los módulos siguientes.
 
 ```python
 import pandas as pd
@@ -14,7 +18,7 @@ import numpy as np
 
 ### Creación
 
-Una `Series` es un array unidimensional **etiquetado** — combina un array de NumPy con un
+Una `Series` es un array unidimensional **etiquetado**: combina un array de NumPy con un
 `Index` que le da nombre a cada posición.
 
 ```python
@@ -50,7 +54,7 @@ s5 = pd.Series(5, index=["x", "y", "z"])
 La forma del diccionario (`s3`) es especialmente natural: como cada clave ya identifica a su
 valor de forma única (igual que en un diccionario normal de Python), pandas las usa
 directamente como el índice de la `Series`, sin que tengas que especificarlo aparte. El caso
-del escalar (`s5`) hace lo inverso — repite el mismo valor `5` una vez por cada etiqueta del
+del escalar (`s5`) hace lo inverso: repite el mismo valor `5` una vez por cada etiqueta del
 índice que le diste, en vez de tomar los valores de una colección existente.
 
 **Ejercicios: Creación de Series**
@@ -63,7 +67,7 @@ del escalar (`s5`) hace lo inverso — repite el mismo valor `5` una vez por cad
 ### Indexing
 
 Puedes acceder a los elementos de una `Series` por **posición** (como una lista) o por
-**etiqueta** (como un diccionario) — esta dualidad es la razón de ser de `loc`/`iloc`, que
+**etiqueta** (como un diccionario). Esta dualidad es la razón de ser de `loc`/`iloc`, que
 verás en el capítulo 2.3:
 
 ```python
@@ -86,7 +90,7 @@ dtype: int64
 ```
 
 > ⚠️ **Advertencia sobre `s[0]`:** en versiones modernas de pandas, indexar una `Series` con
-> `s[0]` genera una advertencia de deprecación cuando el índice no es entero — es ambiguo si
+> `s[0]` genera una advertencia de deprecación cuando el índice no es entero, porque es ambiguo si
 > `0` se refiere a la posición o a una etiqueta literal `0`. Usa siempre `s.iloc[0]` (posición)
 > o `s.loc["etiqueta"]` (etiqueta) para ser explícito.
 
@@ -111,7 +115,7 @@ inventario.shape       # (3,)
 inventario.name         # 'stock'
 ```
 
-`inventario.values` te devuelve exactamente el `ndarray` de NumPy subyacente — un recordatorio
+`inventario.values` te devuelve exactamente el `ndarray` de NumPy subyacente: un recordatorio
 concreto de que, por debajo, una `Series` **es** un array de NumPy con una capa de etiquetas
 encima.
 
@@ -168,7 +172,7 @@ df4 = pd.DataFrame({"precio": s2, "stock": inventario})  # se alinean por índic
 ```
 
 > 💡 Cuando construyes un `DataFrame` desde varias `Series` con índices distintos, pandas las
-> **alinea automáticamente por índice** — si una etiqueta falta en una de las series, el
+> **alinea automáticamente por índice**: si una etiqueta falta en una de las series, el
 > resultado tendrá `NaN` en esa posición. Este comportamiento de alineación automática es una
 > de las características más importantes (y a veces sorprendentes) de pandas.
 
@@ -194,7 +198,7 @@ df.head(2)          # primeras 2 filas
 df.tail(2)           # últimas 2 filas
 ```
 
-`df.info()` es probablemente el comando que más ejecutarás al recibir un dataset nuevo — te
+`df.info()` es probablemente el comando que más ejecutarás al recibir un dataset nuevo. Te
 da, de un vistazo, cuántas filas hay, si hay valores nulos y qué tipo tiene cada columna:
 
 ```text
@@ -244,7 +248,7 @@ df.precio   # equivalente a df["precio"], PERO...
 
 > ⚠️ El acceso `df.columna` **falla** si el nombre de la columna tiene espacios, coincide con
 > un método de pandas (como `df.count`), o no es un identificador válido de Python. Por eso,
-> `df["columna"]` es la forma preferida y más robusta — úsala como default.
+> `df["columna"]` es la forma preferida y más robusta: úsala como default.
 
 **Ejercicios: Acceso básico**
 
@@ -257,11 +261,11 @@ df.precio   # equivalente a df["precio"], PERO...
 
 ### El objeto Index
 
-El `Index` no es una simple lista de etiquetas decorativas — es un objeto de pandas por
+El `Index` guarda mucho más que etiquetas decorativas: es un objeto de pandas por
 derecho propio, optimizado internamente para que buscar una fila por su etiqueta sea rápido
 (de forma similar a como una clave de diccionario te da acceso directo a su valor, sin
 recorrer el resto). Por defecto, pandas asigna un `RangeIndex` (0, 1, 2, ...) cuando no le
-dices nada — pero casi siempre tiene más sentido usar una columna con significado propio como
+dices nada, pero casi siempre tiene más sentido usar una columna con significado propio como
 índice:
 
 ```python
@@ -272,7 +276,7 @@ df_indexado.loc["Café"]     # ahora puedes acceder por nombre de producto direc
 ```
 
 Fíjate en lo que cambió: `producto` deja de ser una columna de datos normal y pasa a ser el
-mecanismo de etiquetado de las filas — por eso, después de `set_index("producto")`, ya no
+mecanismo de etiquetado de las filas. Por eso, después de `set_index("producto")`, ya no
 aparece como columna en `df_indexado.columns`, pero sí puedes usarlo con `.loc["Café"]` para
 llegar directo a esa fila.
 
@@ -288,11 +292,11 @@ son más rápidas y menos propensas a errores de alineación inesperada.
 ### MultiIndex
 
 Hasta ahora, el índice tenía **un solo nivel** (un valor por fila). Un `MultiIndex` permite
-indexar con **más de un nivel a la vez** — piensa en carpetas anidadas en un sistema de
+indexar con **más de un nivel a la vez**. Piensa en carpetas anidadas en un sistema de
 archivos: primero entras a la carpeta "Norte", y dentro de ella distingues entre "Café" y
 "Té". Es exactamente esa idea de jerarquía aplicada a las filas de un `DataFrame`, útil para
 datos como ventas por región y, dentro de cada región, por producto. Esta es solo una primera
-mirada — el Módulo 5 lo cubre en profundidad, incluyendo cómo navegarlo con `.loc`:
+mirada; el Módulo 5 lo cubre en profundidad, incluyendo cómo navegarlo con `.loc`:
 
 ```python
 datos_ventas = {
@@ -377,14 +381,16 @@ df_ventas.reset_index()   # "region" y "producto" vuelven a ser columnas normale
 
 ## Resumen
 
-- Una **`Series`** es un array unidimensional etiquetado; un **`DataFrame`** es una tabla de
-  `Series` alineadas por un índice común.
-- `df["col"]` devuelve una `Series`; `df[["col"]]` devuelve un `DataFrame` — la diferencia
-  importa.
-- El **`Index`** (incluyendo `MultiIndex`) es lo que le da a pandas su capacidad de alinear
-  datos automáticamente por etiqueta, no solo por posición.
-- La mayoría de operaciones en pandas **devuelven copias**, no modifican en el lugar —
-  acostúmbrate a reasignar (`df = df.metodo(...)`).
+Una **`Series`** es un array unidimensional etiquetado; un **`DataFrame`** es una tabla de
+`Series` alineadas por un índice común. La diferencia entre `df["col"]` (devuelve una
+`Series`) y `df[["col"]]` (devuelve un `DataFrame`) importa, y te va a seguir importando en
+capítulos posteriores.
 
-Siguiente: [2.2 Lectura y Escritura de Datos](02-lectura-escritura.md), donde aprenderás a
-llevar estos conceptos a datos reales almacenados en archivos y bases de datos.
+El **`Index`** —incluyendo `MultiIndex`— es lo que le da a pandas su capacidad de alinear
+datos automáticamente por etiqueta, no solo por posición. Y algo para acostumbrarte desde
+ahora: la mayoría de operaciones en pandas **devuelven copias** en vez de modificar en el
+lugar, así que la reasignación (`df = df.metodo(...)`) va a ser tu patrón por defecto.
+
+Con `Series`, `DataFrame` e `Index` ya asentados, es momento de llevar estos conceptos a datos
+reales: [2.2 Lectura y Escritura de Datos](02-lectura-escritura.md) cubre cómo moverlos entre
+archivos, bases de datos y tu código.

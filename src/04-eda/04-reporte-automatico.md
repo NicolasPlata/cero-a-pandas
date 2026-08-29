@@ -4,6 +4,11 @@ Después de explorar manualmente (4.1-4.3), este capítulo de cierre del módulo
 **automatizar** gran parte de ese trabajo repetitivo con herramientas de perfilado automático,
 y cómo documentar tus hallazgos de forma clara y reproducible para otras personas.
 
+> 🎯 **Por qué te importa este capítulo:** en un trabajo real, tu análisis vale poco si nadie
+> más puede entenderlo o reproducirlo. Un buen reporte es, muchas veces, lo único que otras
+> personas del equipo van a ver de todo el trabajo que hiciste — vale la pena que comunique
+> bien.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -236,15 +241,15 @@ Un buen reporte de hallazgos, sea en HTML o Markdown, generalmente sigue esta es
 
 ## Resumen
 
-- El **perfilado automático** (`ydata-profiling`) acelera drásticamente el EDA inicial, pero
-  requiere interpretación humana con contexto de negocio — no reemplaza el análisis.
-- `to_html()` y `DataFrame.style` cubren exportación rápida de tablas, con formato condicional
-  cuando es útil para la lectura visual.
-- **Jinja2** permite generar reportes HTML dinámicos combinando cálculos de pandas con texto
-  narrativo — la base de muchos sistemas de reportes automatizados.
-- Un buen reporte de hallazgos **cura** la exploración: contexto, metodología breve,
-  3-5 hallazgos clave, visualizaciones de soporte y limitaciones — no un volcado de todo lo
-  explorado.
+El **perfilado automático** (`ydata-profiling`) acelera drásticamente el EDA inicial, pero
+requiere interpretación humana con contexto de negocio: no reemplaza el análisis. Para
+exportación rápida de tablas, `to_html()` y `DataFrame.style` cubren lo básico, con formato
+condicional cuando es útil para la lectura visual.
+
+**Jinja2** permite generar reportes HTML dinámicos combinando cálculos de pandas con texto
+narrativo, la base de muchos sistemas de reportes automatizados. Y sobre todo: un buen reporte
+de hallazgos **cura** la exploración (contexto, metodología breve, 3-5 hallazgos clave,
+visualizaciones de soporte y limitaciones), no la vuelca completa sin criterio.
 
 > 🚀 **Pon esto en práctica:** con este módulo ya puedes intentar
 > [Proyecto 8: El reporte del gerente](../09-proyectos/nivel-2-limpieza-eda/03-reporte-gerente.md)

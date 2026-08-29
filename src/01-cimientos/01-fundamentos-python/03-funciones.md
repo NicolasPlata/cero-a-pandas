@@ -2,10 +2,15 @@
 
 Hasta ahora, si querías repetir un cálculo, tenías que copiar y pegar el código cada vez. Las
 **funciones** resuelven exactamente ese problema: te permiten empaquetar un bloque de código
-con un nombre, para reutilizarlo cuantas veces quieras sin repetirlo. Esto no es solo
-conveniencia — código que existe en un solo lugar es más fácil de corregir (arreglas un error
-una vez, no en cada copia) y de entender (un nombre descriptivo como `calcular_impuesto()` dice
+con un nombre, para reutilizarlo cuantas veces quieras sin repetirlo. Y no es solo cuestión de
+comodidad: código que existe en un solo lugar es más fácil de corregir (arreglas un error una
+vez, no en cada copia) y de entender (un nombre descriptivo como `calcular_impuesto()` dice
 más que diez líneas sueltas de aritmética).
+
+> 🎯 **Por qué te importa este capítulo:** casi todo lo que escribirás con pandas a partir del
+> Módulo 3 pasa por definir una función y pasársela a `.apply()`, o por escribir una lambda de
+> una línea. Si `def`, `return` y los parámetros por defecto ya son cómodos para ti, esa parte
+> del código nunca te va a frenar más adelante.
 
 ## Definición y scope
 
@@ -24,7 +29,7 @@ Sigamos exactamente qué ocurre al ejecutar `calcular_precio_total(4.5, 3)`: Pyt
 la definición de la función, asigna `precio_unitario = 4.5` y `cantidad = 3` (en el mismo
 orden en que los escribiste al llamarla), ejecuta el cuerpo de la función
 (`precio_unitario * cantidad`, que es `13.5`), y como encuentra un `return`, **entrega** ese
-valor de vuelta al punto donde se llamó la función — ahí es donde queda guardado en `total`.
+valor de vuelta al punto donde se llamó la función, que es donde queda guardado en `total`.
 
 > ⚠️ **`return` no es lo mismo que `print()`**, una confusión muy común al empezar.
 > `print()` solo **muestra** algo en pantalla, sin que el programa pueda usarlo después.
@@ -64,7 +69,7 @@ calcular_precio_total(10, 5, descuento=0.1)   # 45.0 — especifica los tres
 El **scope** (alcance) determina en qué parte de tu programa una variable existe y es
 visible. Piensa en el cuerpo de una función como una habitación temporal: las variables que
 creas **dentro** de ella (su scope **local**) solo existen mientras la función se está
-ejecutando, y desaparecen apenas termina — son invisibles desde afuera, igual que no puedes
+ejecutando, y desaparecen apenas termina. Son invisibles desde afuera, igual que no puedes
 ver lo que hay dentro de una habitación con la puerta cerrada:
 
 ```python
@@ -76,7 +81,7 @@ ejemplo()
 print(x)  # NameError: name 'x' is not defined
 ```
 
-Aunque `ejemplo()` ya se ejecutó, `x` nunca "salió" de la función — por eso `print(x)` falla:
+Aunque `ejemplo()` ya se ejecutó, `x` nunca "salió" de la función, y por eso `print(x)` falla:
 esa `x` jamás existió fuera de ese scope local.
 
 > ⚠️ **Cuidado con modificar variables globales dentro de una función** sin la palabra clave
@@ -94,7 +99,7 @@ esa `x` jamás existió fuera de ese scope local.
 
 ## Args y kwargs
 
-A veces no sabes de antemano **cuántos** argumentos recibirá tu función — imagina una función
+A veces no sabes de antemano **cuántos** argumentos recibirá tu función. Imagina una función
 que suma números: ¿debería aceptar exactamente 2? ¿3? ¿Qué pasa si alguien quiere sumar 10?
 Escribir una función distinta para cada cantidad posible de argumentos sería absurdo. Para
 esto existen `*args` (argumentos posicionales) y `**kwargs` (argumentos nombrados), que le
@@ -129,7 +134,7 @@ diccionario `kwargs` — literalmente el mismo diccionario que ya conoces del ca
 Puedes combinar `*args`/`**kwargs` con parámetros normales, siempre en este orden:
 `def f(pos, *args, kw=default, **kwargs)`.
 
-El **unpacking** (desempaquetado) es la operación inversa — expandir una lista o diccionario
+El **unpacking** (desempaquetado) es la operación inversa: expandir una lista o diccionario
 que ya tienes en argumentos individuales al llamar a una función, en vez de escribirlos uno
 por uno:
 
@@ -156,7 +161,7 @@ completo.
 
 ## Lambdas y map/filter
 
-Una **lambda** es, literalmente, una función — pero escrita de forma más compacta, sin nombre
+Una **lambda** es, literalmente, una función, pero escrita de forma más compacta, sin nombre
 ni la palabra `def`, pensada para usos breves y desechables (típicamente, como argumento de
 otra función). Estas dos definiciones son equivalentes:
 
@@ -223,5 +228,6 @@ ellas desde ya.
 
 ---
 
-Siguiente: [1.1.4 Estructuras de Datos](04-estructuras-de-datos.md), donde conoces las cuatro
-formas nativas de Python de agrupar datos.
+Ya sabes empaquetar lógica en funciones — falta ver cómo empaquetar los *datos* que esas
+funciones reciben y devuelven. Eso es justo lo que cubre
+[1.1.4 Estructuras de Datos](04-estructuras-de-datos.md).

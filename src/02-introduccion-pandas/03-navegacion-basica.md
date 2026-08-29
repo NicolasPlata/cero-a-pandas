@@ -2,7 +2,12 @@
 
 Con datos ya cargados en un `DataFrame`, el siguiente paso es poder seleccionar exactamente
 las filas y columnas que necesitas. Esta es, junto con la limpieza de datos, la habilidad que
-más practicarás en todo el libro — y la que más errores sutiles produce si no se domina bien.
+más practicarás en todo el libro, y la que más errores sutiles produce si no se domina bien.
+
+> 🎯 **Por qué te importa este capítulo:** `.loc` e `.iloc` no son un detalle de sintaxis —
+> son la diferencia entre un análisis correcto y uno silenciosamente equivocado. Confundir
+> selección por etiqueta con selección por posición es uno de los bugs más comunes (y más
+> difíciles de detectar) en código de pandas real.
 
 ```python
 import pandas as pd
@@ -218,14 +223,15 @@ df.query("categoria in ['Agua', 'Jugo']")
 
 ## Resumen
 
-- `df["col"]` y `df[0:3]` funcionan, pero mezclan selección por etiqueta y por posición de
-  forma implícita — para código robusto, prefiere siempre `.loc` e `.iloc`.
-- **`.loc`** selecciona por etiqueta con **slicing inclusivo**; **`.iloc`** selecciona por
-  posición con **slicing exclusivo** (como Python normal).
-- **`.at`/`.iat`** son la forma más rápida de acceder a un único valor.
-- El **boolean indexing** con `&`, `|`, `~` (nunca `and`/`or`/`not`) es la herramienta de
-  filtrado central de pandas; `.isin()` y `.query()` son alternativas más legibles para casos
-  específicos.
+`df["col"]` y `df[0:3]` funcionan, pero mezclan selección por etiqueta y por posición de forma
+implícita, así que para código robusto conviene preferir siempre `.loc` e `.iloc`.
+**`.loc`** selecciona por etiqueta con **slicing inclusivo**; **`.iloc`** selecciona por
+posición con **slicing exclusivo**, como el Python normal que ya conoces.
+
+Para un único valor, **`.at`/`.iat`** son la forma más rápida de acceder. Y para filtrar, el
+**boolean indexing** con `&`, `|`, `~` (nunca `and`/`or`/`not`) es la herramienta central de
+pandas — `.isin()` y `.query()` son alternativas más legibles para casos específicos, no
+sustitutos.
 
 > 🚀 **Pon esto en práctica:** ya puedes intentar
 > [Proyecto 4: Del cuaderno al DataFrame](../09-proyectos/nivel-1-primeros-pasos/01-cuaderno-al-dataframe.md)

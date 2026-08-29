@@ -4,6 +4,11 @@ Antes de agrupar o graficar nada, el primer paso de cualquier EDA es obtener un 
 numérico general del dataset. Este capítulo cubre las herramientas de pandas para eso: desde
 `describe()` hasta correlación y forma de las distribuciones.
 
+> 🎯 **Por qué te importa este capítulo:** `describe()` y `.corr()` son, literalmente, lo
+> primero que va a hacer cualquier analista al abrir un dataset nuevo. Antes de construir un
+> gráfico o un modelo, necesitas saber qué tan dispersos están tus datos y si hay outliers
+> que puedan estar distorsionando tus conclusiones.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -25,7 +30,7 @@ ventas["ingreso"] = ventas["precio"] * ventas["cantidad"]
 ### describe() e info()
 
 `describe()` es, casi con certeza, el primer comando estadístico que ejecutarás sobre
-cualquier dataset nuevo — resume de un vistazo tendencia central, dispersión y rango de cada
+cualquier dataset nuevo. Resume de un vistazo tendencia central, dispersión y rango de cada
 columna numérica:
 
 ```python
@@ -56,7 +61,7 @@ ventas["region"].describe()                    # describe() también funciona so
 ```
 
 `info()`, ya visto en módulos anteriores, complementa a `describe()` con tipos de datos y
-conteo de nulos — juntos son la pareja de comandos con la que deberías abrir cualquier
+conteo de nulos: juntos son la pareja de comandos con la que deberías abrir cualquier
 exploración:
 
 ```python
@@ -87,7 +92,7 @@ ventas["precio"].mode()               # valor(es) más frecuente(s) — devuelve
 ```
 
 > ⚠️ **Media vs. mediana:** si `mean()` y `median()` de una columna son muy distintos, es una
-> señal fuerte de que la distribución está sesgada o tiene outliers — recuerda el `precio =
+> señal fuerte de que la distribución está sesgada o tiene outliers. Recuerda el `precio =
 > 1000` del Módulo 3. En ese tipo de casos, la mediana suele ser un resumen más honesto del
 > "valor típico" que la media.
 
@@ -111,7 +116,7 @@ ventas["ingreso"].quantile(np.arange(0, 1.1, 0.1))  # deciles completos (0%, 10%
 ```
 
 Los percentiles son especialmente útiles para preguntas de negocio como "¿qué ingreso separa
-al 10% de ventas más altas del resto?" — mucho más informativo que solo mirar el máximo, que
+al 10% de ventas más altas del resto?", mucho más informativo que solo mirar el máximo, que
 puede ser un único caso atípico.
 
 **Ejercicios: Percentiles**
@@ -125,7 +130,7 @@ puede ser un único caso atípico.
 ### corr()
 
 `corr()` calcula el coeficiente de correlación (Pearson, por defecto) entre pares de columnas
-numéricas — mide qué tan fuerte y en qué dirección se mueven dos variables juntas, en un rango
+numéricas. Mide qué tan fuerte y en qué dirección se mueven dos variables juntas, en un rango
 de -1 a 1:
 
 ```python
@@ -142,7 +147,7 @@ ingreso   0.395421  0.911234  1.000000
 ```
 
 Como `ingreso = precio * cantidad`, tiene sentido que esté fuertemente correlacionado con
-`cantidad` (0.91) — la cantidad vendida domina más el ingreso que el precio en este dataset
+`cantidad` (0.91): la cantidad vendida domina más el ingreso que el precio en este dataset
 simulado. `corr()` también acepta otros métodos:
 
 ```python
@@ -158,7 +163,7 @@ ventas[["precio", "cantidad"]].corr(method="kendall")      # otra alternativa no
 
 ### cov()
 
-`cov()` calcula la covarianza — mide la dirección de la relación entre dos variables, pero (a
+`cov()` calcula la covarianza, que mide la dirección de la relación entre dos variables, pero (a
 diferencia de la correlación) **no está normalizada**, por lo que su magnitud depende de la
 escala de las variables y es difícil de interpretar de forma aislada:
 
@@ -192,7 +197,7 @@ ventas["precio"].kurt()         # curtosis: qué tan "pesadas" son las colas com
   valor positivo indica una cola larga hacia valores altos (común en variables como ingresos o
   precios); un valor negativo, una cola larga hacia valores bajos.
 - **Kurtosis (curtosis)** alta indica más valores extremos (colas pesadas) de lo que esperarías
-  en una distribución normal — una señal más de posibles outliers.
+  en una distribución normal: una señal más de posibles outliers.
 
 > 💡 Estos dos estadísticos son más difíciles de interpretar solo con números — en el
 > capítulo de visualización (4.3) verás cómo un histograma hace que la asimetría y la curtosis
@@ -227,15 +232,15 @@ ventas["precio"].kurt()         # curtosis: qué tan "pesadas" son las colas com
 
 ## Resumen
 
-- **`describe()`** e **`info()`** son el punto de partida obligado de cualquier EDA.
-- **Media vs. mediana**: cuando difieren mucho, sospecha de sesgo u outliers — la mediana es
-  más robusta.
-- **`quantile()`** generaliza los percentiles a cualquier punto de corte, útil para preguntas
-  de negocio sobre "el X% superior/inferior".
-- **`corr()`** mide relaciones lineales entre pares de variables (-1 a 1); recuerda que
-  correlación no implica causalidad, y que solo captura relaciones lineales por defecto.
-- **`skew()`** y **`kurt()`** describen la forma de una distribución más allá de su centro y
-  dispersión.
+**`describe()`** e **`info()`** son el punto de partida obligado de cualquier EDA. Cuando la
+media y la mediana difieren mucho, sospecha de sesgo u outliers: la mediana suele ser la
+medida más robusta de las dos. **`quantile()`** generaliza los percentiles a cualquier punto
+de corte, útil para preguntas de negocio sobre "el X% superior/inferior".
 
-Siguiente: [4.2 Agregación y Grouping](02-agregacion-grouping.md), donde estos mismos
-resúmenes estadísticos se calculan **por grupo** — la operación central de casi todo EDA real.
+**`corr()`** mide relaciones lineales entre pares de variables (-1 a 1) — recuerda que
+correlación no implica causalidad, y que solo captura relaciones lineales por defecto. Y
+**`skew()`**/**`kurt()`** describen la forma de una distribución más allá de su centro y
+dispersión.
+
+En [4.2 Agregación y Grouping](02-agregacion-grouping.md) estos mismos resúmenes estadísticos
+se calculan **por grupo**, que es, en la práctica, la operación central de casi todo EDA real.

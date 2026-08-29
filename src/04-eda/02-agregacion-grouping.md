@@ -1,9 +1,14 @@
 # 4.2 Agregación y Grouping
 
 Si tuvieras que quedarte con una sola habilidad de todo el libro, `groupby()` sería una fuerte
-candidata: es la operación que responde a la pregunta más común en análisis de datos —
+candidata: es la operación que responde a la pregunta más común en análisis de datos,
 "¿cómo se ve esta métrica, desglosada por categoría?". Este capítulo cubre `groupby()` en
 profundidad, junto con `pivot_table()` y `crosstab()`, sus primos cercanos.
+
+> 🎯 **Por qué te importa este capítulo:** casi cualquier pregunta de negocio real termina en
+> un `groupby()` — "¿qué región vende más?", "¿qué producto tiene mejor margen?". Si dominas
+> este capítulo, vas a poder responder la mayoría de preguntas que te hagan sobre un dataset
+> sin tener que pensar mucho en cómo hacerlo.
 
 ```python
 import pandas as pd
@@ -40,7 +45,7 @@ for nombre, sub_df in grupos:          # iterar sobre los grupos, uno por uno
     print(nombre, len(sub_df))
 ```
 
-El objeto `groupby()` en sí no es un `DataFrame` — es un `DataFrameGroupBy`, una estructura
+Lo que devuelve `groupby()` todavía no es un `DataFrame`: es un `DataFrameGroupBy`, una estructura
 intermedia que solo produce resultado cuando le aplicas una operación de agregación:
 
 ```python
@@ -218,7 +223,7 @@ ventas.groupby("region").filter(lambda grupo: grupo["ingreso"].mean() > 60)
 ## Pivot Tables
 
 `pivot_table()` (introducida en el Módulo 3 como herramienta de reshape) es, en el contexto de
-EDA, esencialmente un `groupby()` de dos dimensiones presentado como tabla cruzada — a menudo
+EDA, esencialmente un `groupby()` de dos dimensiones presentado como tabla cruzada. A menudo
 más legible que un `groupby()` con `MultiIndex` para reportes:
 
 ```python
@@ -261,7 +266,7 @@ ventas.pivot_table(index="region", values="ingreso", aggfunc=["sum", "mean", "co
 ## Crosstabs
 
 `pd.crosstab()` es una herramienta especializada para tablas de **frecuencias** (conteos) entre
-dos o más variables categóricas — el equivalente de `pivot_table()` pero optimizado
+dos o más variables categóricas: el equivalente de `pivot_table()` pero optimizado
 específicamente para contar, no para promediar o sumar otra columna:
 
 ```python
@@ -278,7 +283,7 @@ Norte        14               31    19
 Sur          17               35    17
 ```
 
-Con `normalize`, puedes convertir los conteos en proporciones — muy útil para comparar
+Con `normalize`, puedes convertir los conteos en proporciones, muy útil para comparar
 distribuciones relativas en vez de conteos absolutos:
 
 ```python
@@ -321,15 +326,15 @@ pd.crosstab(ventas["region"], ventas["categoria"], normalize="all")         # pr
 
 ## Resumen
 
-- `groupby()` implementa el patrón **dividir-aplicar-combinar** — es la operación central del
-  EDA con pandas.
-- **`agg()`** colapsa cada grupo en un resumen; las **named aggregations**
-  (`nombre=("col", "func")`) son la forma más limpia de usarlo con múltiples métricas.
-- **`transform()`** conserva el tamaño original — ideal para crear columnas comparativas
-  contra el resumen de su propio grupo; **`filter()`** selecciona grupos completos según una
-  condición sobre el grupo.
-- **`pivot_table()`** presenta agregaciones como tabla cruzada; **`crosstab()`** es su
-  variante especializada en conteos y proporciones entre variables categóricas.
+`groupby()` implementa el patrón **dividir-aplicar-combinar**, la operación central del EDA
+con pandas. **`agg()`** colapsa cada grupo en un resumen, y las **named aggregations**
+(`nombre=("col", "func")`) son la forma más limpia de usarlo con múltiples métricas a la vez.
 
-Siguiente: [4.3 Visualización con Pandas](03-visualizacion-pandas.md), donde estos mismos
-resúmenes y agregaciones cobran vida como gráficos.
+¿Necesitas conservar el tamaño original del `DataFrame`? Ahí entra **`transform()`**, ideal
+para crear columnas comparativas contra el resumen de su propio grupo. **`filter()`**, en
+cambio, selecciona grupos completos según una condición sobre el grupo entero. Y para
+presentar resultados como tabla cruzada, **`pivot_table()`** hace el trabajo general, mientras
+que **`crosstab()`** es su variante especializada en conteos y proporciones entre categóricas.
+
+Estos mismos resúmenes y agregaciones cobran vida como gráficos en
+[4.3 Visualización con Pandas](03-visualizacion-pandas.md).

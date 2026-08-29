@@ -5,6 +5,11 @@ columnas nuevas que no existían en los datos originales pero que capturan infor
 para tu análisis. Este capítulo cierra el Módulo 3 con lógica condicional vectorizada y una
 introducción a feature engineering.
 
+> 🎯 **Por qué te importa este capítulo:** la diferencia entre un análisis mediocre y uno que
+> realmente responde una pregunta de negocio casi siempre está en las variables derivadas, no
+> en las columnas originales. Saber crearlas bien es lo que separa "mostrar los datos" de
+> "generar un hallazgo".
+
 ```python
 import pandas as pd
 import numpy as np
@@ -168,7 +173,7 @@ es exactamente lo que necesitas para crear una columna comparativa como
 
 ## Resumen
 
-- **`np.where()`** y **`np.select()`** son la forma vectorizada de lógica condicional —
+- **`np.where()`** y **`np.select()`** son la forma vectorizada de lógica condicional, casi
   siempre preferibles a `apply(axis=1)` con un `if/elif/else` por rendimiento.
 - **`pd.cut()`** (bins de ancho/límites fijos) y **`pd.qcut()`** (bins de cantidad balanceada)
   son las herramientas estándar de binning.

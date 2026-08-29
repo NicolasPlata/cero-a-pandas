@@ -1,9 +1,14 @@
 # 3.3 Reshape y Reorganización
 
 A veces el problema no es que los datos estén sucios, sino que están en la **forma
-equivocada** para lo que necesitas hacer — o están repartidos en varias tablas que necesitas
+equivocada** para lo que necesitas hacer, o repartidos en varias tablas que necesitas
 combinar. Este capítulo cubre ambas situaciones: cambiar de forma (reshape) y combinar
 (concat/merge/join).
+
+> 🎯 **Por qué te importa este capítulo:** `merge()` en particular es donde más errores
+> silenciosos ocurren en pandas — un join mal planteado puede multiplicar tus filas sin
+> lanzar ningún error visible. Entender bien esta sección te ahorra depurar reportes con
+> números duplicados que "no tienen explicación".
 
 ```python
 import pandas as pd
@@ -51,7 +56,7 @@ Salida:
 ```
 
 El formato largo es generalmente **más flexible para análisis** (es lo que espera
-`groupby()`, y es el formato preferido para graficar con múltiples librerías) — mientras que
+`groupby()`, y es el formato preferido para graficar con múltiples librerías), mientras que
 el formato ancho suele ser mejor para **reportes legibles por humanos**.
 
 **Ejercicios: melt()**
@@ -63,7 +68,7 @@ el formato ancho suele ser mejor para **reportes legibles por humanos**.
 
 ### pivot() y pivot_table()
 
-`pivot()` es la operación inversa a `melt()` — de largo a ancho — pero **requiere que no haya
+`pivot()` es la operación inversa a `melt()` (de largo a ancho), pero **requiere que no haya
 valores duplicados** para la combinación de índice/columna:
 
 ```python
@@ -71,7 +76,7 @@ ventas_largo.pivot(index="producto", columns="mes", values="ventas")
 ```
 
 `pivot_table()` hace lo mismo, pero **permite duplicados**, agregándolos automáticamente
-(por defecto con la media) — es la versión más robusta y flexible, y la que más usarás en la
+(por defecto con la media). Es la versión más robusta y flexible, y la que más usarás en la
 práctica:
 
 ```python
@@ -87,11 +92,11 @@ ventas_largo.pivot_table(
 
 > ⚠️ **`pivot()` lanza un error** (`ValueError: Index contains duplicate entries`) si existe
 > más de una fila con la misma combinación de `index` y `columns`. `pivot_table()` no tiene
-> este problema porque asume que debe agregar — si tu caso de uso podría tener duplicados
+> este problema porque asume que debe agregar. Si tu caso de uso podría tener duplicados
 > (la mayoría de los casos reales), prefiere `pivot_table()` desde el principio.
 
 Verás `pivot_table()` en mucho más detalle, junto con `groupby()`, en el Módulo 4 (Análisis
-Exploratorio de Datos) — aquí es introducido como una operación de reshape, allá se explota
+Exploratorio de Datos): aquí es introducido como una operación de reshape, allá se explota
 como herramienta de agregación y resumen.
 
 **Ejercicios: pivot() y pivot_table()**
@@ -105,7 +110,7 @@ como herramienta de agregación y resumen.
 ## Stack/Unstack
 
 `stack()` y `unstack()` son la versión de reshape que opera sobre **niveles de índice** en
-vez de columnas nombradas — son especialmente relevantes cuando ya tienes un `MultiIndex`.
+vez de columnas nombradas, y son especialmente relevantes cuando ya tienes un `MultiIndex`.
 
 ### stack()
 
@@ -136,7 +141,7 @@ dtype: int64
 
 ### unstack()
 
-`unstack()` es la operación inversa — convierte el nivel más interno del índice de vuelta en
+`unstack()` es la operación inversa: convierte el nivel más interno del índice de vuelta en
 columnas:
 
 ```python
@@ -194,7 +199,7 @@ pd.concat([ventas_enero, ventas_febrero.rename(columns={"ventas": "ventas_feb"})
 
 ### merge()
 
-`merge()` combina dos `DataFrame`s basándose en el valor de una o más columnas comunes — es el
+`merge()` combina dos `DataFrame`s basándose en el valor de una o más columnas comunes. Es el
 equivalente de pandas a un `JOIN` de SQL, y es la forma más común de combinar datos
 relacionados que viven en tablas separadas:
 
@@ -235,7 +240,7 @@ pd.merge(ventas, productos, left_on="id_prod", right_on="producto_id")
 > ⚠️ **Verifica siempre el número de filas después de un merge.** Si la columna de unión no
 > es única en alguna de las dos tablas, un `merge()` puede **multiplicar filas**
 > inesperadamente (un merge "muchos a muchos" produce el producto cartesiano de las
-> coincidencias). Compara `len(resultado)` contra tus expectativas — es un error silencioso
+> coincidencias). Compara `len(resultado)` contra tus expectativas: es un error silencioso
 > muy común y difícil de detectar a simple vista.
 
 ### join()
@@ -254,7 +259,7 @@ df_a.join(df_b, lsuffix="_a", rsuffix="_b")
 ```
 
 `join()` es, en esencia, `merge()` con `left_index=True, right_index=True` como valores por
-defecto — úsalo cuando el índice ya es la clave natural de unión de tus datos.
+defecto; úsalo cuando el índice ya es la clave natural de unión de tus datos.
 
 **Ejercicios: Merge y Join**
 
@@ -265,7 +270,7 @@ defecto — úsalo cuando el índice ya es la clave natural de unión de tus dat
 
 ## Transpose y rotaciones
 
-`.T` (transpose) intercambia filas por columnas — útil ocasionalmente para inspeccionar
+`.T` (transpose) intercambia filas por columnas. Es útil ocasionalmente para inspeccionar
 `DataFrame`s con muchas columnas y pocas filas (por ejemplo, la salida de `.describe()`), donde
 verlo "de lado" es más legible:
 
@@ -306,16 +311,17 @@ resumen.T   # convierte las 4 columnas en 4 filas de una sola columna
 
 ## Resumen
 
-- **`melt()`** pasa de ancho a largo; **`pivot()`**/**`pivot_table()`** hacen lo inverso —
-  prefiere `pivot_table()` salvo que estés seguro de que no hay duplicados.
-- **`stack()`**/**`unstack()`** resuelven el mismo tipo de problema, pero operando sobre
-  niveles del índice — más naturales tras un `groupby()` con múltiples claves.
-- **`concat()`** apila `DataFrame`s (vertical u horizontalmente); **`merge()`**/**`join()`**
-  los combinan por valores de columna o por índice, respectivamente, con semántica de `JOIN`
-  de SQL (`inner`, `left`, `right`, `outer`).
-- Verifica siempre el número de filas resultante de un `merge()` — un merge mal planteado
-  puede multiplicar filas silenciosamente.
+**`melt()`** pasa de ancho a largo; **`pivot()`**/**`pivot_table()`** hacen lo inverso, aunque
+conviene preferir `pivot_table()` salvo que estés seguro de que no hay duplicados.
+**`stack()`**/**`unstack()`** resuelven el mismo tipo de problema pero operando sobre niveles
+del índice, algo más natural tras un `groupby()` con múltiples claves.
 
-Siguiente: [3.4 Creación de Nuevas Variables](04-nuevas-variables.md), el último capítulo del
-módulo, donde usamos todo lo anterior para derivar columnas nuevas con lógica condicional y
-feature engineering básico.
+Para combinar tablas, **`concat()`** las apila (vertical u horizontalmente), mientras que
+**`merge()`**/**`join()`** las combinan por valores de columna o por índice, con la misma
+semántica de `JOIN` que ya conocerías de SQL (`inner`, `left`, `right`, `outer`). Y una
+costumbre que vale la pena adoptar: verifica siempre el número de filas resultante de un
+`merge()`, porque uno mal planteado puede multiplicar filas sin ningún aviso.
+
+El último capítulo del módulo, [3.4 Creación de Nuevas Variables](04-nuevas-variables.md), usa
+todo lo anterior para derivar columnas nuevas con lógica condicional y feature engineering
+básico.

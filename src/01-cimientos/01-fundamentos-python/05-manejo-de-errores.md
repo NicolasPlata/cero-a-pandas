@@ -1,12 +1,18 @@
 # 1.1.5 Manejo de Errores
 
+> 🎯 **Por qué te importa este capítulo:** los datos reales vienen con errores — un CSV con un
+> valor de texto donde esperabas un número, un archivo que no existe, una API que responde
+> con un error. `try/except` es lo que te permite seguir procesando el resto del archivo en
+> vez de que un solo dato corrupto detenga todo el programa. Lo usarás constantemente desde el
+> Módulo 3 en adelante.
+
 ## Excepciones
 
 Ya te encontraste con errores como `ValueError` o `NameError` en capítulos anteriores, cuando
 algo salía mal al ejecutar tu código (dividir entre cero, convertir un texto inválido a
 número). A eso Python lo llama una **excepción**: una señal de que algo impidió continuar la
 ejecución normal. Por defecto, una excepción sin manejar **detiene el programa por completo**
-en ese punto — nada de lo que venga después se ejecuta.
+en ese punto: nada de lo que venga después se ejecuta.
 
 El bloque `try/except` es la forma de decirle a Python: "intenta ejecutar este código; si
 ocurre **este tipo específico** de error, no detengas el programa — ejecuta este otro bloque
@@ -172,23 +178,26 @@ Estos ejercicios combinan varios de los temas vistos en toda la sección 1.1.
 
 ## Resumen de 1.1
 
-- Python usa **tipado dinámico**: los tipos (`int`, `float`, `str`, `bool`) se infieren del
-  valor, no se declaran. Las variables se nombran en **snake_case**.
-- `print()` muestra algo en pantalla; `input()` pide datos al usuario (siempre como `str`);
-  `#` inicia un comentario que Python ignora.
-- La **indentación** define los bloques de código — no es opcional, y un desalineamiento
-  produce un `IndentationError`.
-- Los strings y las listas son **secuencias**: comparten la misma sintaxis de indexing
-  (`objeto[0]`) y slicing (`objeto[1:3]`), y Python cuenta posiciones desde **0**.
-- Las **funciones** con `def`, parámetros por defecto, `*args`/`**kwargs` y **lambdas** son
-  la base de casi todo lo que harás con `apply()` y funciones personalizadas en pandas.
-  Recuerda: `return` entrega un valor, `print()` solo lo muestra.
-- **Listas, tuplas, sets y diccionarios** son las cuatro estructuras de datos nativas — los
-  diccionarios en particular son la forma más directa de construir un `DataFrame`.
-- El manejo de errores con `try/except/finally` y un buen hábito de debugging (`print`,
-  `logging`, `pdb`) te ahorrará muchísimo tiempo al limpiar datos reales, que casi nunca
-  vienen perfectos.
+Python usa **tipado dinámico** (los tipos se infieren del valor, no se declaran) y nombra sus
+variables en **snake_case**. `print()` muestra algo en pantalla, `input()` pide datos al
+usuario (siempre como `str`), y `#` inicia un comentario que Python ignora por completo.
+
+La **indentación** no es un detalle de estilo: define los bloques de código, y un
+desalineamiento produce directamente un `IndentationError`. Los strings y las listas, por su
+parte, son **secuencias** — comparten la misma sintaxis de indexing (`objeto[0]`) y slicing
+(`objeto[1:3]`), y Python cuenta posiciones desde **0**.
+
+¿Qué vas a reutilizar más constantemente de aquí en adelante? Las **funciones**: `def`,
+parámetros por defecto, `*args`/`**kwargs` y las **lambdas** son la base de casi todo lo que
+harás con `apply()` en pandas (recuerda: `return` entrega un valor, `print()` solo lo
+muestra). **Listas, tuplas, sets y diccionarios** son las cuatro estructuras nativas para
+agrupar esos datos, y los diccionarios en particular son la forma más directa de construir un
+`DataFrame`.
+
+Por último, no subestimes el manejo de errores. `try/except/finally`, junto con un buen hábito
+de debugging (`print`, `logging`, `pdb`), te va a ahorrar muchísimo tiempo el día que trabajes
+con datos reales — que, como ya sabes, casi nunca vienen perfectos.
 
 Con esta base, estás listo para el siguiente capítulo:
-[1.2 Ecosistema Python para Datos](../02-ecosistema-datos.md), donde conocerás NumPy — la
+[1.2 Ecosistema Python para Datos](../02-ecosistema-datos.md), donde conocerás NumPy, la
 librería sobre la que pandas construye toda su estructura interna.

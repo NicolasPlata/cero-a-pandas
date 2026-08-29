@@ -2,11 +2,17 @@
 
 Hasta ahora, tus programas hacen exactamente lo mismo cada vez que los ejecutas: leen la
 primera línea, luego la segunda, luego la tercera, en ese orden fijo, sin desviarse nunca. Eso
-es útil, pero muy limitado — un programa real necesita **tomar decisiones** ("si el cliente
+es útil, pero muy limitado. Un programa real necesita **tomar decisiones** ("si el cliente
 pagó, marca el pedido como completo; si no, envía un recordatorio") y **repetir acciones**
 ("aplica un descuento a cada producto de la lista, uno por uno"). A eso se le llama
 **control de flujo**: mecanismos que cambian el orden en que se ejecutan las líneas de tu
 programa, según condiciones o repeticiones.
+
+> 🎯 **Por qué te importa este capítulo:** condicionales y loops son, literalmente, cómo
+> pandas decide qué filas mantener y cómo procesa una tabla completa por debajo. Cuando más
+> adelante escribas `df[df["precio"] > 100]`, estás aplicando la misma lógica de "si se
+> cumple la condición" que aprendes aquí — solo que aplicada a una tabla entera de una sola
+> vez, en vez de fila por fila.
 
 ## Condicionales (if / elif / else)
 
@@ -15,7 +21,7 @@ programa, según condiciones o repeticiones.
 Un **condicional** es una instrucción que le dice a Python: "ejecuta este bloque de código
 **solo si** se cumple esta condición". Es exactamente la misma idea que usas todos los días
 sin pensarlo: *"si está lloviendo, llevo paraguas"*. La acción (llevar paraguas) solo ocurre
-si la condición (está lloviendo) es verdadera — si no llueve, simplemente no la haces.
+si la condición (está lloviendo) es verdadera. Si no llueve, simplemente no la haces.
 
 En Python, esa idea se escribe con la palabra clave `if` ("si", en inglés), seguida de una
 **condición** — una expresión que Python evalúa y que siempre resulta en `True` o `False` (los
@@ -32,12 +38,12 @@ if temperatura > 30:
 Recorramos esto línea por línea: Python evalúa la expresión `temperatura > 30`. Como
 `temperatura` vale `35`, la expresión `35 > 30` es `True`. Como la condición es verdadera,
 Python **ejecuta** la línea indentada debajo (`print("Hace calor")`). Si `temperatura` valiera
-`20`, la condición `20 > 30` sería `False`, y esa línea **se saltaría por completo** — el
-programa seguiría de largo sin ejecutarla ni mostrar ningún error.
+`20`, la condición `20 > 30` sería `False`, y esa línea **se saltaría por completo**: el
+programa sigue de largo sin ejecutarla ni mostrar ningún error.
 
 ### Agregando alternativas: else
 
-`if` por sí solo solo cubre el caso "si se cumple, haz esto" — pero casi siempre también
+`if` por sí solo solo cubre el caso "si se cumple, haz esto", pero casi siempre también
 quieres decir qué hacer **si no se cumple**. Para eso está `else` ("si no"):
 
 ```python
@@ -77,7 +83,7 @@ Como ninguna de las dos condiciones se cumplió, ejecuta el `else`: `categoria` 
 `"frío"`.
 
 Puedes encadenar tantos `elif` como necesites, pero **Python los evalúa en orden, de arriba
-hacia abajo, y se detiene en el primero que sea verdadero** — el resto ni siquiera se evalúan.
+hacia abajo, y se detiene en el primero que sea verdadero**: el resto ni siquiera se evalúan.
 Esto es distinto a escribir varios `if` separados (sin `elif`), donde **cada uno** se evalúa de
 forma independiente, sin importar si uno anterior ya se cumplió:
 
@@ -106,8 +112,9 @@ if nota >= 60:
 
 Python no usa llaves `{}` como muchos otros lenguajes: la **indentación** (el espacio en
 blanco al inicio de una línea, 4 espacios por convención) es lo que le dice a Python **qué
-líneas pertenecen a qué bloque**. Esto no es solo una cuestión de estilo — es parte de la
-sintaxis del lenguaje, y un error de indentación impide que el programa se ejecute:
+líneas pertenecen a qué bloque**, y es parte obligatoria de la sintaxis del lenguaje, no una
+cuestión de estilo opcional. Un error de indentación impide directamente que el programa se
+ejecute:
 
 ```python
 if temperatura > 30:
@@ -121,7 +128,7 @@ IndentationError: expected an indented block after 'if' statement on line 1
 Python esperaba que la línea siguiente al `if` estuviera indentada (para saber que pertenece a
 ese bloque), y como no lo estaba, no pudo continuar. Si alguna vez ves un
 `IndentationError`, revisa que **todas** las líneas dentro de un mismo bloque tengan
-exactamente la misma indentación — mezclar espacios y tabulaciones, o desalinear una sola
+exactamente la misma indentación: mezclar espacios y tabulaciones, o desalinear una sola
 línea, es suficiente para provocarlo. La mayoría de los editores de código indentan
 automáticamente al presionar Enter después de un `:`, así que este error es más común al
 copiar y pegar código de fuentes que usan una indentación distinta.
@@ -129,7 +136,7 @@ copiar y pegar código de fuentes que usan una indentación distinta.
 ### Condicionales anidados
 
 Puedes poner un `if` **dentro** de otro `if` cuando una decisión depende de otra decisión
-anterior — es decir, cuando la segunda pregunta solo tiene sentido hacerla después de conocer
+anterior, es decir, cuando la segunda pregunta solo tiene sentido hacerla después de conocer
 la respuesta de la primera:
 
 ```python
@@ -145,8 +152,8 @@ else:
     print("Es menor de edad")
 ```
 
-Aquí, la pregunta "¿tiene licencia?" **solo se evalúa si la persona ya es mayor de edad** — no
-tendría sentido preguntarlo antes. Fíjate en la indentación: el segundo `if` está indentado
+Aquí, la pregunta "¿tiene licencia?" **solo se evalúa si la persona ya es mayor de edad**,
+porque no tendría sentido preguntarlo antes. Fíjate en la indentación: el segundo `if` está indentado
 un nivel más que el primero, porque vive **dentro** de su bloque.
 
 ### El operador ternario: un if/else en una sola línea
@@ -196,7 +203,7 @@ else:
 
 Un **loop** (bucle) repite un bloque de código varias veces, en vez de que tengas que escribir
 esa misma línea una y otra vez a mano. Imagina que tienes que enviar el mismo mensaje de
-bienvenida a 100 clientes — sin loops, tendrías que copiar y pegar el código de envío 100
+bienvenida a 100 clientes. Sin loops, tendrías que copiar y pegar el código de envío 100
 veces (cambiando el nombre cada vez). Con un loop, escribes la lógica **una sola vez** y le
 dices a Python "repite esto para cada cliente de la lista".
 
@@ -208,7 +215,7 @@ mientras se cumpla una condición, sin saber de antemano cuántas veces será.
 ### El loop for
 
 El `for` en Python itera directamente sobre los elementos de una secuencia (no sobre índices
-numéricos, como en otros lenguajes) — en cada iteración, la variable que declaras toma el
+numéricos, como en otros lenguajes): en cada iteración, la variable que declaras toma el
 valor del siguiente elemento de la secuencia:
 
 ```python
@@ -242,7 +249,7 @@ Salida:
 ```
 
 `enumerate()` envuelve la lista original y, en cada iteración, entrega **dos** valores a la
-vez: la posición (empezando en 0, como ya sabes) y el elemento — por eso `for` recibe dos
+vez: la posición (empezando en 0, como ya sabes) y el elemento; por eso `for` recibe dos
 nombres de variable (`indice, fruta`) en vez de uno.
 
 `range()` genera una secuencia de números, muy útil cuando quieres repetir algo un número
@@ -260,7 +267,7 @@ de strings y listas.
 ### El loop while
 
 Mientras que `for` repite una cantidad de veces que ya conoces (el tamaño de una lista, o el
-número que le des a `range()`), `while` repite **mientras una condición sea verdadera** — sin
+número que le des a `range()`), `while` repite **mientras una condición sea verdadera**, sin
 saber de antemano cuántas veces será:
 
 ```python
@@ -286,7 +293,7 @@ condición `3 < 3` es `False`, y el loop se detiene.
 
 Un patrón extremadamente común es el **acumulador**: usar una variable creada **fuera** del
 loop para ir sumando (o combinando) un resultado en cada vuelta. No podrías simplemente
-"reemplazar" el valor en cada iteración porque perderías lo acumulado hasta ese momento — por
+"reemplazar" el valor en cada iteración porque perderías lo acumulado hasta ese momento. Por
 eso la variable empieza en un valor neutro (`0` para sumas) y se va actualizando:
 
 ```python
@@ -339,7 +346,7 @@ directamente a la siguiente vuelta, sin terminar el loop:
 ```python
 for numero in range(10):
     if numero == 5:
-        break        # se detiene por completo al llegar a 5 — nunca procesa 5, 6, 7, 8, 9
+        break        # se detiene por completo al llegar a 5 (nunca procesa 5, 6, 7, 8, 9)
     if numero % 2 == 0:
         continue      # salta los pares (no ejecuta el print de esta vuelta), pero SIGUE el loop
     print(numero)      # imprime: 1, 3
@@ -429,5 +436,6 @@ completas más adelante.
 
 ---
 
-Siguiente: [1.1.3 Funciones](03-funciones.md), donde empaquetas bloques de código reutilizables
-en vez de repetirlos.
+Con esto ya sabes hacer que tu código decida y repita — en
+[1.1.3 Funciones](03-funciones.md) aprendes a empaquetar ese código en bloques reutilizables
+en vez de repetirlo.

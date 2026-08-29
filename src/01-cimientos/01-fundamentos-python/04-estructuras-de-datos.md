@@ -1,13 +1,18 @@
 # 1.1.4 Estructuras de Datos
 
 Hasta ahora, cada variable guardaba **un solo valor**: un nombre, un precio, una edad. Pero
-casi ningún problema real trabaja con valores sueltos — trabajas con una **lista** de
+casi ningún problema real trabaja con valores sueltos. Trabajas con una **lista** de
 productos, un **registro** de cliente con varios campos a la vez, un **conjunto** de valores
 que no deben repetirse. Python ofrece cuatro estructuras nativas para agrupar datos, y cada
 una tiene reglas distintas sobre **orden** (¿importa la posición?), **duplicados** (¿pueden
 repetirse los valores?) y **mutabilidad** (¿se puede modificar después de creada?). Elegir la
-estructura correcta para cada problema es una habilidad en sí misma — este capítulo te da las
+estructura correcta para cada problema es una habilidad en sí misma, y este capítulo te da las
 cuatro opciones para que empieces a reconocer cuál usar.
+
+> 🎯 **Por qué te importa este capítulo:** un `DataFrame` es, en el fondo, un diccionario de
+> listas — literalmente la estructura que construyes al final de este capítulo. Y cuando más
+> adelante uses `.unique()` para quitar duplicados de una columna, estarás usando la misma
+> idea que hay detrás de un `set` de Python.
 
 ## Lists
 
@@ -208,5 +213,5 @@ datos = {
 
 ---
 
-Siguiente: [1.1.5 Manejo de Errores](05-manejo-de-errores.md), el último capítulo de 1.1, donde
-aprendes a que tu código falle con elegancia en vez de romperse sin más.
+Nos queda un último tema en 1.1: [1.1.5 Manejo de Errores](05-manejo-de-errores.md), donde tu
+código aprende a fallar con elegancia en vez de simplemente romperse.

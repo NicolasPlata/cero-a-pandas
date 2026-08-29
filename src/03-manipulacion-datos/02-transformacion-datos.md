@@ -4,6 +4,11 @@ Con los datos ya limpios (tipos correctos, sin duplicados, nulos tratados), este
 cubre cómo transformarlos: renombrar y reordenar, aplicar funciones personalizadas, manipular
 texto y fechas, y trabajar con datos categóricos.
 
+> 🎯 **Por qué te importa este capítulo:** los accessors `.str` y `.dt` son, en la práctica,
+> lo que más vas a usar para convertir texto y fechas "sucias" en algo utilizable. Casi todo
+> dataset real trae al menos una columna de nombres o fechas que necesita este tratamiento
+> antes de poder analizarse en serio.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -347,14 +352,16 @@ ventas["producto"].cat.remove_unused_categories()      # limpiar categorías que
 
 ## Resumen
 
-- `rename()`, `sort_values()` y `reindex()` cubren la reorganización básica de un `DataFrame`.
-- `apply()` da flexibilidad total (incluyendo acceso a filas completas con `axis=1`) a costa
-  de rendimiento; `map()` es más simple y rápido para transformaciones elemento a elemento,
-  especialmente con diccionarios de traducción.
-- Los accessors **`.str`** y **`.dt`** son la forma vectorizada e idiomática de trabajar con
-  texto y fechas — evita loops manuales para esto.
-- El tipo **`category`** ahorra memoria y habilita comparaciones ordinales cuando una columna
-  de texto tiene pocos valores únicos repetidos.
+`rename()`, `sort_values()` y `reindex()` cubren la reorganización básica de un `DataFrame`.
+Para transformar valores, `apply()` da flexibilidad total (incluyendo acceso a filas completas
+con `axis=1`) a costa de rendimiento, mientras que `map()` es más simple y rápido para
+transformaciones elemento a elemento, sobre todo con diccionarios de traducción.
 
-Siguiente: [3.3 Reshape y Reorganización](03-reshape-reorganizacion.md), donde aprenderás a
-cambiar la forma completa de un `DataFrame` y a combinar múltiples fuentes de datos.
+Los accessors **`.str`** y **`.dt`** son la forma vectorizada e idiomática de trabajar con
+texto y fechas — evítalos y terminarás escribiendo loops manuales que no necesitas. Y el tipo
+**`category`** ahorra memoria y habilita comparaciones ordinales cuando una columna de texto
+tiene pocos valores únicos repetidos.
+
+Ya sabes limpiar y transformar columnas individuales. En
+[3.3 Reshape y Reorganización](03-reshape-reorganizacion.md) el problema cambia de escala:
+transformar la forma completa de un `DataFrame`, y combinar varios en uno.

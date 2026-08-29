@@ -2,9 +2,14 @@
 
 Los números resumen, pero los gráficos revelan. Una correlación de 0.3 puede ocultar una
 relación no lineal clara a simple vista; un promedio puede esconder una distribución bimodal.
-Este capítulo cubre `.plot()` — el método de graficación integrado de pandas, construido sobre
-Matplotlib (Módulo 1.2) — y su integración con Seaborn para gráficos estadísticos más
+Este capítulo cubre `.plot()`, el método de graficación integrado de pandas construido sobre
+Matplotlib (Módulo 1.2), y su integración con Seaborn para gráficos estadísticos más
 avanzados.
+
+> 🎯 **Por qué te importa este capítulo:** un análisis sin un buen gráfico de soporte
+> convence mucho menos que uno con él, sin importar qué tan sólidos sean tus números. Saber
+> elegir el gráfico correcto para cada pregunta es, en la práctica, tan importante como saber
+> calcularla.
 
 ```python
 import pandas as pd
@@ -25,7 +30,7 @@ ventas["ingreso"] = ventas["precio"] * ventas["cantidad"]
 
 ## Gráficos Básicos
 
-`df.plot()` es un atajo directo a Matplotlib — internamente, produce exactamente los mismos
+`df.plot()` es un atajo directo a Matplotlib: internamente, produce exactamente los mismos
 objetos `Figure`/`Axes` que viste en el Módulo 1, pero con mucho menos código:
 
 ```python
@@ -112,7 +117,7 @@ plt.show()
 ## Correlación: Heatmap
 
 Visualizar una matriz de correlación como tabla de números (Módulo 4.1) es útil, pero un
-**heatmap** (mapa de calor) la hace instantáneamente interpretable — los colores comunican
+**heatmap** (mapa de calor) la hace instantáneamente interpretable: los colores comunican
 magnitud y dirección de un vistazo:
 
 ```python
@@ -181,7 +186,7 @@ dice a pandas "dibuja aquí, en este subgráfico específico, no en una figura n
 ## Integración con Seaborn
 
 [Seaborn](https://seaborn.pydata.org/) se construye sobre Matplotlib (igual que `.plot()` de
-pandas) pero está diseñado específicamente para **datos tabulares y gráficos estadísticos** —
+pandas) pero está diseñado específicamente para **datos tabulares y gráficos estadísticos**:
 acepta un `DataFrame` completo y nombres de columna directamente, sin que tengas que extraer
 arrays manualmente.
 
@@ -249,16 +254,17 @@ gráfico exploratorio (para ti) de un gráfico de comunicación (para otros):
 
 ## Resumen
 
-- **`df.plot(kind=...)`** es un atajo directo a Matplotlib para gráficos rápidos de
-  exploración: `"line"`, `"bar"`, `"scatter"`, `"hist"`, `"box"`, `"kde"`, entre otros.
-- Histograma, KDE y boxplot cuentan historias complementarias sobre una distribución; úsalos
-  juntos, no como alternativas excluyentes.
-- Un **heatmap** hace que una matriz de correlación sea instantáneamente interpretable.
-- **Seaborn** (`sns`) trabaja directamente con `DataFrame`s y nombres de columna, y su
-  parámetro `hue` simplifica enormemente la comparación entre categorías.
-- Un buen gráfico exploratorio (para ti) y un buen gráfico de comunicación (para otros) no son
-  lo mismo — el segundo requiere intención adicional sobre título, orden y color.
+**`df.plot(kind=...)`** es un atajo directo a Matplotlib para gráficos rápidos de exploración:
+`"line"`, `"bar"`, `"scatter"`, `"hist"`, `"box"`, `"kde"`, entre otros. Histograma, KDE y
+boxplot cuentan historias complementarias sobre una distribución, así que úsalos juntos, no
+como alternativas excluyentes.
 
-Siguiente: [4.4 Reporte Automático](04-reporte-automatico.md), el último capítulo del módulo,
-donde automatizamos gran parte de este proceso exploratorio y lo documentamos de forma
-profesional.
+Un **heatmap** hace que una matriz de correlación sea instantáneamente interpretable, y
+**Seaborn** (`sns`) trabaja directamente con `DataFrame`s y nombres de columna, con un
+parámetro `hue` que simplifica enormemente la comparación entre categorías. Vale la pena
+recordar, además, que un buen gráfico exploratorio (para ti) y un buen gráfico de comunicación
+(para otros) no son lo mismo: el segundo requiere intención adicional sobre título, orden y
+color.
+
+El último capítulo del módulo, [4.4 Reporte Automático](04-reporte-automatico.md), automatiza
+gran parte de este proceso exploratorio y lo documenta de forma profesional.

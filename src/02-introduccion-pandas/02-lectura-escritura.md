@@ -1,8 +1,12 @@
 # 2.2 Lectura y Escritura de Datos
 
-En la práctica, casi nunca construyes un `DataFrame` a mano — lo cargas desde un archivo, una
+En la práctica, casi nunca construyes un `DataFrame` a mano: lo cargas desde un archivo, una
 base de datos o una API. Este capítulo cubre las funciones `read_*` y `to_*` de pandas, que
 cubren la inmensa mayoría de formatos que encontrarás en el trabajo real.
+
+> 🎯 **Por qué te importa este capítulo:** `read_csv()` es, con diferencia, la función que más
+> vas a ejecutar en toda tu carrera con pandas. Dominar sus parámetros ahora te va a ahorrar
+> horas de frustración cada vez que un archivo "raro" no cargue como esperabas.
 
 Todas siguen una convención de nombres consistente: `pd.read_<formato>()` para leer,
 `df.to_<formato>()` para escribir.
@@ -121,7 +125,7 @@ with pd.ExcelWriter("reporte_completo.xlsx") as writer:
 
 ## SQL
 
-`read_sql()` ejecuta una consulta SQL y devuelve el resultado directamente como `DataFrame` —
+`read_sql()` ejecuta una consulta SQL y devuelve el resultado directamente como `DataFrame`,
 uno de los puentes más importantes entre pandas y el mundo de bases de datos relacionales.
 Requiere una conexión, típicamente creada con `sqlalchemy`:
 
@@ -233,9 +237,9 @@ df.to_hdf("datos.h5", key="productos", mode="w")
 df_leido = pd.read_hdf("datos.h5", key="productos")
 ```
 
-`Pickle` serializa el objeto Python completo tal cual está en memoria — es el método más
-rápido de guardar/cargar, pero **solo debe usarse para almacenamiento temporal propio**, nunca
-para intercambiar datos con otros sistemas o personas:
+`Pickle` serializa el objeto Python completo tal cual está en memoria. Es el método más rápido
+de guardar/cargar, pero **solo debe usarse para almacenamiento temporal propio**, nunca para
+intercambiar datos con otros sistemas o personas:
 
 ```python
 df.to_pickle("productos.pkl")
@@ -243,7 +247,7 @@ df_leido = pd.read_pickle("productos.pkl")
 ```
 
 > ⚠️ **Nunca cargues un archivo Pickle de una fuente que no controlas.** Deserializar un
-> Pickle puede ejecutar código arbitrario — es un riesgo de seguridad real, no teórico.
+> Pickle puede ejecutar código arbitrario: es un riesgo de seguridad real, no teórico.
 
 **Ejercicios: Otros formatos**
 
@@ -324,14 +328,16 @@ df = pd.DataFrame({"titulo": titulos})
 
 ## Resumen
 
-- Cada formato tiene su par `read_<formato>()` / `to_<formato>()`, con una API consistente.
-- `read_csv()` es la función más usada del libro — dominar sus parámetros (`sep`, `encoding`,
-  `na_values`, `parse_dates`, `dtype`) resuelve la mayoría de problemas de carga de datos.
-- **CSV** es universal pero no preserva tipos; **Parquet** es eficiente y preserva tipos, pero
-  no es legible por humanos; **JSON** es el estándar para APIs web; **Pickle** es rápido pero
-  solo para uso propio y confiable.
-- Para SQL, `read_sql()`/`to_sql()` junto con `sqlalchemy` conectan pandas directamente con
-  bases de datos relacionales.
+Cada formato tiene su par `read_<formato>()` / `to_<formato>()`, con una API consistente entre
+ellos. De todos, `read_csv()` es la función más usada del libro: dominar sus parámetros
+(`sep`, `encoding`, `na_values`, `parse_dates`, `dtype`) resuelve la mayoría de problemas de
+carga de datos que te vas a encontrar.
 
-Siguiente: [2.3 Navegación Básica de Datos](03-navegacion-basica.md), donde aprenderás a
-seleccionar y filtrar con precisión los datos que ya sabes cargar.
+¿Cuándo usar cada formato binario? **CSV** es universal pero no preserva tipos; **Parquet** es
+eficiente y sí los preserva, aunque no es legible por humanos; **JSON** es el estándar para
+APIs web; **Pickle** es el más rápido, pero solo sirve para uso propio y confiable. Para SQL,
+`read_sql()`/`to_sql()` junto con `sqlalchemy` conectan pandas directamente con bases de datos
+relacionales.
+
+Ya sabes cargar datos — el siguiente paso natural es moverte dentro de ellos con precisión:
+[2.3 Navegación Básica de Datos](03-navegacion-basica.md) cubre exactamente eso.

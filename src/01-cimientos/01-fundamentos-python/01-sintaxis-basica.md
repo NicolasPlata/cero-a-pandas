@@ -1,5 +1,11 @@
 # 1.1.1 Sintaxis Básica
 
+> 🎯 **Por qué te importa este capítulo:** cada línea de pandas que escribirás en el resto del
+> libro es, en el fondo, Python con nombres distintos. Un `DataFrame` se construye con la
+> misma sintaxis de variables y tipos que ves aquí; un `.apply()` recibe una función como la
+> que vas a definir en un par de capítulos. Si esta base te queda floja, todo lo demás se
+> siente más difícil de lo que realmente es.
+
 ## Tu primer programa y los comentarios
 
 La tradición manda empezar por aquí:
@@ -298,5 +304,5 @@ print(f"Naciste alrededor de {anio_nacimiento}")
 
 ---
 
-Siguiente: [1.1.2 Control de Flujo](02-control-de-flujo.md), donde tus programas dejan de
-ejecutarse siempre línea por línea y empiezan a **decidir** qué hacer.
+Con la sintaxis básica ya bajo control, en [1.1.2 Control de Flujo](02-control-de-flujo.md)
+tus programas dejan de ejecutarse siempre línea por línea y empiezan a **decidir** qué hacer.
