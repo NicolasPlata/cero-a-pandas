@@ -129,7 +129,7 @@ hallazgos: 4 🔴, 14 🟡, en 8 archivos).
 | Historia | Prioridad | Estado |
 |----------|-----------|--------|
 | Plan de corrección documentado y aprobado | Alta | ✅ Hecho |
-| Fase 1 — Reescritura de 1.1.4 Estructuras de Datos (2 🔴 + 1 🟡) | Alta | ⏳ Pendiente |
+| Fase 1 — Reescritura de 1.1.4 Estructuras de Datos (2 🔴 + 1 🟡) | Alta | ✅ Hecho |
 | Fase 2 — Reescritura de 1.1.3 Funciones (3 🟡) | Alta | ⏳ Pendiente |
 | Fase 3 — Reescritura de 1.1.5 Manejo de Errores (1 🟡) | Alta | ⏳ Pendiente |
 | Fase 4 — Ediciones puntuales: 1.2 Arrays y shapes, 2.2 JSON, 2.1 Conceptos Fundamentales (1 🔴 + 3 🟡) | Media | ⏳ Pendiente |
