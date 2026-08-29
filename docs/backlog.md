@@ -45,6 +45,8 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Ampliación de 1.1 Fundamentos de Python: contenido nuevo (comentarios, primer programa, `input()`), explicaciones más profundas, ejercicios de calentamiento en cada sección | Alta | ✅ Hecho — pedido explícito tras feedback de que el capítulo era muy condensado para un usuario nuevo |
 | Subdivisión de 1.1 en 5 archivos (1.1.1-1.1.5) + página índice, por legibilidad | Media | ✅ Hecho — pedido explícito tras la ampliación anterior; mismo patrón de anidación que Niveles del Módulo 9 |
 | Reescritura de 1.1.2 Control de Flujo: explicaciones conceptuales (qué es un if/loop y por qué existe, no solo el código) con recorridos paso a paso | Alta | ✅ Hecho — feedback: "ni siquiera se explica lo que es un if", explicaciones vagas |
+| Auditoría de profundidad de explicaciones en Módulos 1-8 (`docs/auditoria-explicaciones.md`) | Alta | ✅ Hecho — 4 subtemas 🔴, 14 🟡 de ~214; 72% concentrado en Módulo 1 |
+| Reescribir los 8 capítulos priorizados por la auditoría (empezando por 1.1.4 Estructuras de Datos) | Alta | ⏳ Pendiente — a la espera de confirmación del usuario |
 | Módulo 2 — Introducción a Pandas | Alta | ✅ Hecho |
 | Módulo 3 — Manipulación de Datos | Alta | ✅ Hecho |
 | Módulo 4 — Análisis Exploratorio de Datos | Alta | ✅ Hecho |
