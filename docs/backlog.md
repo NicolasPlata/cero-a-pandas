@@ -51,6 +51,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Módulo 8 — Casos Especiales y Dominios | Alta | ✅ Hecho |
 | Secciones "¿Por qué aprender Python?" y "¿Por qué aprender pandas?" en la introducción | Media | ✅ Hecho |
 | Logo del libro (generado con Gemini): favicon del sitio + imagen en la introducción | Media | ✅ Hecho |
+| Recorte circular del logo (favicon, intro, panel lateral) y logo en el sidebar vía CSS | Media | ✅ Hecho — verificado visualmente con capturas de Chrome headless |
 | Página de Recursos Recomendados | Media | ✅ Hecho |
 | Página de Guía de Dedicación y Ritmo | Media | ✅ Hecho |
 | Página de Checklist de Competencias | Media | ✅ Hecho |

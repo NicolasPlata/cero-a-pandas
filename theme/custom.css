@@ -1,0 +1,16 @@
+/* Logo circular en la parte superior del panel de navegación (sidebar) */
+.sidebar-scrollbox::before {
+    content: "";
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 20px auto 14px auto;
+    border-radius: 50%;
+    background-color: #ffffff;
+    background-image: url("../images/logo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.08);
+    flex-shrink: 0;
+}
