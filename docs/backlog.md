@@ -117,6 +117,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Mover `ruta-aprendizaje-pandas.md`, `plan-desarrollo-mdbook.md` y `plan-expansion-modulo9.md` a `/docs` | Media | ✅ Hecho |
 | Crear este backlog en `/docs/backlog.md` | Media | ✅ Hecho |
 | Mantener el backlog actualizado en cada fase, con commits descriptivos | Alta | 🔄 En progreso — política adoptada a partir de este punto |
+| Crear `docs/CLAUDE.md` (contexto completo del proyecto para futuras sesiones) + `CLAUDE.md` raíz que lo importa | Media | ✅ Hecho — pedido explícito del usuario |
 
 ## Épica 7: Corrección de explicaciones vagas
 
