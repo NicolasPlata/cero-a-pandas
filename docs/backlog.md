@@ -118,6 +118,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Crear este backlog en `/docs/backlog.md` | Media | ✅ Hecho |
 | Mantener el backlog actualizado en cada fase, con commits descriptivos | Alta | 🔄 En progreso — política adoptada a partir de este punto |
 | Crear `docs/CLAUDE.md` (contexto completo del proyecto para futuras sesiones) + `CLAUDE.md` raíz que lo importa | Media | ✅ Hecho — pedido explícito del usuario |
+| Crear `README.md` profesional en la raíz (badges, índice, estructura, cómo compilar, licencia) | Media | ✅ Hecho — licencia elegida por el usuario: todos los derechos reservados |
 
 ## Épica 7: Corrección de explicaciones vagas
 
