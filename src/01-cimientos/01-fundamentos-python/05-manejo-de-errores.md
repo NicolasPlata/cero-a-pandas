@@ -2,8 +2,16 @@
 
 ## Excepciones
 
-Cuando algo falla en tiempo de ejecución, Python lanza una **excepción**. Si no la capturas,
-el programa se detiene. El bloque `try/except` permite manejarla con elegancia:
+Ya te encontraste con errores como `ValueError` o `NameError` en capítulos anteriores, cuando
+algo salía mal al ejecutar tu código (dividir entre cero, convertir un texto inválido a
+número). A eso Python lo llama una **excepción**: una señal de que algo impidió continuar la
+ejecución normal. Por defecto, una excepción sin manejar **detiene el programa por completo**
+en ese punto — nada de lo que venga después se ejecuta.
+
+El bloque `try/except` es la forma de decirle a Python: "intenta ejecutar este código; si
+ocurre **este tipo específico** de error, no detengas el programa — ejecuta este otro bloque
+en su lugar". Es como una red de seguridad: preparas de antemano un "plan B" para el momento
+en que algo salga mal.
 
 ```python
 def dividir(a, b):
@@ -16,6 +24,18 @@ def dividir(a, b):
 dividir(10, 2)   # 5.0
 dividir(10, 0)   # imprime el mensaje, devuelve None
 ```
+
+Sigamos qué hace Python en cada llamada. En `dividir(10, 2)`, Python ejecuta el bloque `try`
+completo sin problemas (`10 / 2` es `5.0`), nunca "mira" el bloque `except`, y devuelve `5.0`
+normalmente. En `dividir(10, 0)`, en cambio, la línea `a / b` lanza un `ZeroDivisionError` **a
+mitad del bloque `try`** — Python abandona inmediatamente el resto de ese bloque (el `return`
+nunca se alcanza), busca un `except` que coincida con ese tipo de error exacto, lo encuentra,
+y ejecuta su contenido en su lugar.
+
+> ⚠️ Si el error que ocurre **no coincide** con ningún `except` que hayas escrito, Python no
+> lo captura — el programa se detiene igual que si no hubieras usado `try/except` en absoluto.
+> Por eso es importante saber (o buscar) qué tipo específico de excepción puede lanzar el
+> código que estás protegiendo.
 
 Puedes capturar múltiples tipos de excepción y usar `finally` para código que debe ejecutarse
 siempre (haya error o no), como cerrar un archivo o una conexión:
