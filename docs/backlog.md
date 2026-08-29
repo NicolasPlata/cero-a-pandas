@@ -88,7 +88,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Fase 9A — Reestructuración: `SUMMARY.md`, carpetas por nivel, `00-intro.md`, capítulo de Historias de Usuario y Backlog | Alta | ✅ Hecho |
 | Fase 9B — Nivel 0: Proyectos 1-3 (Python puro) | Alta | ✅ Hecho |
 | Fase 9C — Nivel 1: Proyectos 4-5 (pandas básico) | Alta | ✅ Hecho |
-| Fase 9D — Nivel 2: Proyectos 6-9 (limpieza/transformación/EDA) | Alta | ⏳ Pendiente |
+| Fase 9D — Nivel 2: Proyectos 6-9 (limpieza/transformación/EDA) | Alta | ✅ Hecho |
 | Fase 9E — Nivel 3: Proyectos 10-12 (operaciones avanzadas) | Alta | ⏳ Pendiente |
 | Fase 9F — Nivel 4: Proyectos 13-15 (estadística y ML) | Alta | ⏳ Pendiente |
 | Fase 9G — Nivel 5: Proyectos 16-18 (optimización/ETL/dominios) | Alta | ⏳ Pendiente |
@@ -111,8 +111,8 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 
 ## Próximos pasos inmediatos
 
-1. Fase 9D: Proyectos 6-9 (Nivel 2, limpieza/transformación/EDA).
-2. Continuar fases 9E-9I en el orden del plan de expansión (`docs/plan-expansion-modulo9.md`).
+1. Fase 9E: Proyectos 10-12 (Nivel 3, operaciones avanzadas).
+2. Continuar fases 9F-9I en el orden del plan de expansión (`docs/plan-expansion-modulo9.md`).
 3. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo).
 
 ## Convención de commits de este proyecto
