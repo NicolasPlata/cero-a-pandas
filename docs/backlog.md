@@ -5,8 +5,9 @@ en sí (no es contenido del libro — es la gestión del proyecto de escribirlo)
 formato de historias de usuario y backlog que el Módulo 9 le enseña al lector.
 
 **Última actualización:** ver el commit más reciente que toca este archivo.
-**Estado general:** ✅ Expansión del Módulo 9 completa (Fases 9A-9I). Pendiente: habilitar
-GitHub Pages (paso manual) y decidir cuándo hacer push de todo lo acumulado.
+**Estado general:** ✅ Expansión del Módulo 9 completa (Fases 9A-9I). ✅ Corrección de
+explicaciones vagas completa (Épica 7, Fases 1-6). Pendiente: habilitar GitHub Pages (paso
+manual del dueño del repo).
 
 ---
 
@@ -134,16 +135,16 @@ hallazgos: 4 🔴, 14 🟡, en 8 archivos).
 | Fase 3 — Reescritura de 1.1.5 Manejo de Errores (1 🟡) | Alta | ✅ Hecho |
 | Fase 4 — Ediciones puntuales: 1.2 Arrays y shapes, 2.2 JSON, 2.1 Conceptos Fundamentales (1 🔴 + 3 🟡) | Media | ✅ Hecho |
 | Fase 5 — Ediciones puntuales: 3.2 Transformación (regex/.dt/Categoricals), 3.1 Duplicados, 5.4 Reorganización (1 🔴 + 4 🟡) | Media | ✅ Hecho |
-| Fase 6 — Verificación final (build, enlaces, formato) y cierre de la épica | Alta | ⏳ Pendiente |
+| Fase 6 — Verificación final (build, enlaces, formato) y cierre de la épica | Alta | ✅ Hecho |
 
 ---
 
 ## Próximos pasos inmediatos
 
-1. Épica 7, Fase 1: reescribir 1.1.4 Estructuras de Datos.
-2. Continuar Épica 7 (Fases 2-6) en el orden de `docs/plan-correccion-explicaciones.md`.
-3. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
+1. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
    ver Épica 4).
+2. Sin tareas pendientes adicionales — todas las épicas activas están cerradas. Próximos
+   pasos dependen de feedback nuevo del usuario.
 
 ## Convención de commits de este proyecto
 
