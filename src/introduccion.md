@@ -16,6 +16,60 @@ relativamente independiente una vez cubiertos sus prerrequisitos.
 No necesitas ningún conocimiento previo de programación para empezar por el Módulo 1. Si ya
 sabes Python pero eres nuevo en pandas, puedes comenzar directamente en el Módulo 2.
 
+## ¿Por qué aprender Python?
+
+Antes de invertir cientos de horas en esto, vale la pena tener claro el "por qué". Python se
+convirtió en el lenguaje de facto de la ciencia de datos, el análisis y el machine learning por
+razones concretas, no por moda:
+
+- **Es legible casi como pseudocódigo.** La curva de aprendizaje inicial es más suave que la de
+  la mayoría de los lenguajes de propósito general — puedes concentrarte en resolver el
+  problema, no en pelear con la sintaxis.
+- **Tiene el ecosistema de datos más grande y maduro que existe.** NumPy, pandas, Matplotlib,
+  scikit-learn, PyTorch, TensorFlow, statsmodels — prácticamente todo lo que necesitas para
+  análisis de datos y machine learning vive en Python, con librerías que se integran bien entre
+  sí (todas construidas, directa o indirectamente, sobre NumPy).
+- **Es versátil más allá de los datos.** El mismo lenguaje sirve para automatizar tareas,
+  construir aplicaciones web (Django, Flask), escribir scripts de sistema, o programar
+  microcontroladores — una habilidad que se reutiliza en muchos contextos, no solo en análisis
+  de datos.
+- **Tiene demanda real en el mercado laboral**, consistentemente entre los lenguajes más
+  solicitados en roles de datos, backend, automatización e investigación científica.
+- **Su comunidad y documentación son enormes.** Casi cualquier error que encuentres ya lo
+  encontró, documentó y resolvió alguien más antes que tú — algo que notarás constantemente al
+  usar los recursos de la [página de Recursos Recomendados](recursos.md).
+
+> 💡 No aprendes Python para "saber programar" en abstracto — lo aprendes porque es la
+> herramienta que te permite hacerle preguntas a los datos y obtener respuestas. Todo el
+> Módulo 1 está diseñado con ese objetivo específico en mente, no como un curso de
+> programación general.
+
+## ¿Por qué aprender pandas?
+
+Si Python es el lenguaje, pandas es la herramienta específica que vas a usar en el día a día
+para trabajar con datos tabulares — hojas de cálculo, tablas de bases de datos, resultados de
+APIs, archivos CSV. Algunas razones concretas por las que este libro dedica 8 de sus 9 módulos
+a dominarlo:
+
+- **Es el estándar de la industria.** Prácticamente cualquier flujo de trabajo de datos en
+  Python —desde un análisis exploratorio rápido hasta un pipeline de producción— pasa por
+  pandas en algún punto.
+- **Resuelve el problema real: datos desordenados.** Los datos del mundo real casi nunca llegan
+  limpios. pandas fue diseñado específicamente para lidiar con valores faltantes, tipos
+  inconsistentes y formatos irregulares — el Módulo 3 completo gira en torno a esto.
+- **Es el punto de entrada al resto del ecosistema.** Un `DataFrame` de pandas es lo que le
+  entregas a Matplotlib para graficar, a scikit-learn para entrenar un modelo, o a statsmodels
+  para un análisis estadístico — aprender pandas bien hace que todo lo demás sea más fácil.
+- **La habilidad se transfiere.** Herramientas más recientes para datos a mayor escala (Polars,
+  Dask, incluso la API de pandas-on-Spark) imitan deliberadamente la API de pandas — lo que
+  aprendas aquí no se queda obsoleto cuando cambies de herramienta.
+- **Es directamente aplicable a preguntas de negocio reales**, no solo a ejercicios académicos
+  — es precisamente lo que vas a practicar en los 19 proyectos del Módulo 9.
+
+> 💡 Dominar pandas no es memorizar cada método de su API (nadie lo hace) — es desarrollar la
+> intuición de **qué operación corresponde a qué pregunta sobre tus datos**. Ese es el
+> objetivo real de este libro.
+
 ## ¿Cómo está organizado el libro?
 
 El contenido sigue una progresión de dificultad creciente, organizada en **9 módulos**:
@@ -28,7 +82,8 @@ El contenido sigue una progresión de dificultad creciente, organizada en **9 m�
 6. **Análisis Estadístico y Machine Learning** — Estadística inferencial, preparación de datos e integración con scikit-learn.
 7. **Optimización y Performance** — Profiling, optimización de código, gestión de memoria, paralelización.
 8. **Casos Especiales y Dominios** — Datos geoespaciales, financieros, académicos y pipelines ETL.
-9. **Proyectos Integradores** — Cinco proyectos aplicados que combinan todo lo aprendido.
+9. **Proyectos Integradores** — 19 proyectos progresivos, presentados como historias de
+   usuario y backlog, que combinan todo lo aprendido.
 
 Cada módulo se divide en **temas** (capítulos) y cada tema en **subtemas** (secciones), siguiendo
 la misma jerarquía de la ruta de aprendizaje que sirvió de base para este libro. Al final del

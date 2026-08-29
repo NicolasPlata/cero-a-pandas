@@ -49,6 +49,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Módulo 6 — Análisis Estadístico y Machine Learning | Alta | ✅ Hecho |
 | Módulo 7 — Optimización y Performance | Alta | ✅ Hecho |
 | Módulo 8 — Casos Especiales y Dominios | Alta | ✅ Hecho |
+| Secciones "¿Por qué aprender Python?" y "¿Por qué aprender pandas?" en la introducción | Media | ✅ Hecho |
 | Página de Recursos Recomendados | Media | ✅ Hecho |
 | Página de Guía de Dedicación y Ritmo | Media | ✅ Hecho |
 | Página de Checklist de Competencias | Media | ✅ Hecho |
