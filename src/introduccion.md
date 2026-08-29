@@ -1,5 +1,9 @@
 # Introducción
 
+<p align="center">
+  <img src="images/logo.png" alt="Logo de Pandas de Cero a Experto: un panda estilizado con un gráfico de barras" width="220">
+</p>
+
 ¡Bienvenido o bienvenida a **Pandas de Cero a Experto**! Este libro es una guía integral,
 pensada para llevarte desde tus primeros pasos en Python hasta un dominio avanzado de
 [pandas](https://pandas.pydata.org/), la librería de referencia para análisis y manipulación
