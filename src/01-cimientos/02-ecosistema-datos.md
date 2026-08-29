@@ -40,7 +40,15 @@ Salida:
 int64
 ```
 
-Los arrays pueden tener múltiples dimensiones. El **shape** describe su forma:
+Que sea **homogéneo** y de **tamaño fijo** es justo lo que lo hace rápido: como todos los
+elementos son del mismo tipo, NumPy los guarda contiguos en un bloque de memoria compacto, sin
+el overhead de que cada elemento sea un objeto Python independiente (como sí ocurre dentro de
+una lista normal). Es exactamente ese diseño el que hace posibles las operaciones vectorizadas
+que verás en un momento.
+
+Los arrays pueden tener múltiples dimensiones. El **shape** (forma) describe cuántos
+elementos tiene en cada dimensión — para una matriz de 2 filas y 3 columnas, el shape es
+`(2, 3)`:
 
 ```python
 matriz = np.array([[1, 2, 3], [4, 5, 6]])
@@ -61,7 +69,10 @@ np.random.rand(3, 3)        # matriz 3x3 de valores aleatorios entre 0 y 1
 ```
 
 **Indexing y slicing** funcionan de forma similar a las listas, pero se extienden de forma
-natural a múltiples dimensiones:
+natural a múltiples dimensiones: en vez de encadenar corchetes como harías con una lista de
+listas (`lista[1][2]`), un array de NumPy acepta ambos índices separados por coma dentro de
+un mismo corchete (`matriz[1, 2]`) — la coma separa "qué fila" de "qué columna". Un `:` solo
+en una posición significa "todos los elementos de esa dimensión":
 
 ```python
 matriz = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
@@ -72,12 +83,15 @@ matriz[:, 2]     # [3, 6, 9] — toda la tercera columna
 matriz[0:2, 0:2] # sub-matriz 2x2 superior izquierda
 ```
 
-**Reshape** cambia la forma de un array sin cambiar sus datos:
+**Reshape** cambia la forma de un array **sin mover ni cambiar sus datos** — reinterpreta la
+misma secuencia de valores agrupándola en un shape distinto. Piensa en `plano` como una sola
+fila de 12 casillas numeradas de 0 a 11; `.reshape(3, 4)` simplemente corta esa fila en 3
+tramos de 4 y los apila, sin reordenar ningún valor:
 
 ```python
-plano = np.arange(12)          # array de 0 a 11
-plano.reshape(3, 4)             # reorganizado en 3 filas x 4 columnas
-plano.reshape(4, 3)             # o en 4 filas x 3 columnas
+plano = np.arange(12)          # array de 0 a 11: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+plano.reshape(3, 4)             # los mismos 12 valores, agrupados en 3 filas x 4 columnas
+plano.reshape(4, 3)             # los mismos 12 valores, agrupados en 4 filas x 3 columnas
 ```
 
 > ⚠️ **Cuidado:** `reshape()` requiere que el número total de elementos coincida exactamente

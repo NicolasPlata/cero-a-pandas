@@ -166,6 +166,10 @@ El parámetro `if_exists` controla qué pasa si la tabla ya existe:
 
 ### JSON
 
+**JSON** (JavaScript Object Notation) es el formato estándar para intercambiar datos entre
+sistemas web — la mayoría de las APIs REST devuelven sus respuestas en este formato, así que
+`to_json()`/`read_json()` son el puente natural entre pandas y ese mundo:
+
 ```python
 df.to_json("productos.json", orient="records")
 df_leido = pd.read_json("productos.json", orient="records")

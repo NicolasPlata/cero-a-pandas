@@ -47,6 +47,12 @@ s4 = pd.Series(np.arange(5))
 s5 = pd.Series(5, index=["x", "y", "z"])
 ```
 
+La forma del diccionario (`s3`) es especialmente natural: como cada clave ya identifica a su
+valor de forma única (igual que en un diccionario normal de Python), pandas las usa
+directamente como el índice de la `Series`, sin que tengas que especificarlo aparte. El caso
+del escalar (`s5`) hace lo inverso — repite el mismo valor `5` una vez por cada etiqueta del
+índice que le diste, en vez de tomar los valores de una colección existente.
+
 **Ejercicios: Creación de Series**
 
 1. Crea una `Series` con las poblaciones de 4 países inventados, usando el nombre del país
@@ -251,9 +257,12 @@ df.precio   # equivalente a df["precio"], PERO...
 
 ### El objeto Index
 
-El `Index` es el objeto que etiqueta las filas (y, en el caso de las columnas, también es un
-`Index`). Por defecto, pandas asigna un `RangeIndex` (0, 1, 2, ...), pero puedes usar
-cualquier columna como índice:
+El `Index` no es una simple lista de etiquetas decorativas — es un objeto de pandas por
+derecho propio, optimizado internamente para que buscar una fila por su etiqueta sea rápido
+(de forma similar a como una clave de diccionario te da acceso directo a su valor, sin
+recorrer el resto). Por defecto, pandas asigna un `RangeIndex` (0, 1, 2, ...) cuando no le
+dices nada — pero casi siempre tiene más sentido usar una columna con significado propio como
+índice:
 
 ```python
 df.set_index("producto")   # usa la columna "producto" como índice (devuelve una copia)
@@ -261,6 +270,11 @@ df.set_index("producto")   # usa la columna "producto" como índice (devuelve un
 df_indexado = df.set_index("producto")
 df_indexado.loc["Café"]     # ahora puedes acceder por nombre de producto directamente
 ```
+
+Fíjate en lo que cambió: `producto` deja de ser una columna de datos normal y pasa a ser el
+mecanismo de etiquetado de las filas — por eso, después de `set_index("producto")`, ya no
+aparece como columna en `df_indexado.columns`, pero sí puedes usarlo con `.loc["Café"]` para
+llegar directo a esa fila.
 
 El índice no tiene que ser único, pero **cuando lo es**, muchas operaciones (joins, lookups)
 son más rápidas y menos propensas a errores de alineación inesperada.
@@ -273,8 +287,12 @@ son más rápidas y menos propensas a errores de alineación inesperada.
 
 ### MultiIndex
 
-Un `MultiIndex` permite indexar con **más de un nivel** — útil para datos jerárquicos, como
-ventas por región y luego por producto:
+Hasta ahora, el índice tenía **un solo nivel** (un valor por fila). Un `MultiIndex` permite
+indexar con **más de un nivel a la vez** — piensa en carpetas anidadas en un sistema de
+archivos: primero entras a la carpeta "Norte", y dentro de ella distingues entre "Café" y
+"Té". Es exactamente esa idea de jerarquía aplicada a las filas de un `DataFrame`, útil para
+datos como ventas por región y, dentro de cada región, por producto. Esta es solo una primera
+mirada — el Módulo 5 lo cubre en profundidad, incluyendo cómo navegarlo con `.loc`:
 
 ```python
 datos_ventas = {
