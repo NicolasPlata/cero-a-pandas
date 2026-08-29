@@ -20,59 +20,42 @@ relativamente independiente una vez cubiertos sus prerrequisitos.
 No necesitas ningún conocimiento previo de programación para empezar por el Módulo 1. Si ya
 sabes Python pero eres nuevo en pandas, puedes comenzar directamente en el Módulo 2.
 
-## ¿Por qué aprender Python?
+## ¿Por qué aprender Python? (y qué no te va a dar este libro)
 
-Antes de invertir cientos de horas en esto, vale la pena tener claro el "por qué". Python se
-convirtió en el lenguaje de facto de la ciencia de datos, el análisis y el machine learning por
-razones concretas, no por moda:
+Antes de invertir cientos de horas en esto, prefiero ser honesto en vez de venderte algo: este
+libro no te va a convertir en programador solo por leerlo. Nadie aprende a programar leyendo —
+se aprende escribiendo código, equivocándose, y volviendo a intentarlo, muchas veces, durante
+semanas. Si esperas un atajo o una fórmula mágica, no lo vas a encontrar aquí, ni en ningún
+otro lado.
 
-- **Es legible casi como pseudocódigo.** La curva de aprendizaje inicial es más suave que la de
-  la mayoría de los lenguajes de propósito general — puedes concentrarte en resolver el
-  problema, no en pelear con la sintaxis.
-- **Tiene el ecosistema de datos más grande y maduro que existe.** NumPy, pandas, Matplotlib,
-  scikit-learn, PyTorch, TensorFlow, statsmodels — prácticamente todo lo que necesitas para
-  análisis de datos y machine learning vive en Python, con librerías que se integran bien entre
-  sí (todas construidas, directa o indirectamente, sobre NumPy).
-- **Es versátil más allá de los datos.** El mismo lenguaje sirve para automatizar tareas,
-  construir aplicaciones web (Django, Flask), escribir scripts de sistema, o programar
-  microcontroladores — una habilidad que se reutiliza en muchos contextos, no solo en análisis
-  de datos.
-- **Tiene demanda real en el mercado laboral**, consistentemente entre los lenguajes más
-  solicitados en roles de datos, backend, automatización e investigación científica.
-- **Su comunidad y documentación son enormes.** Casi cualquier error que encuentres ya lo
-  encontró, documentó y resolvió alguien más antes que tú — algo que notarás constantemente al
-  usar los recursos de la [página de Recursos Recomendados](recursos.md).
+Con eso claro: Python sí es una elección razonable para empezar, por motivos concretos y no
+solo por moda. Es un lenguaje relativamente legible para quien recién empieza — no vas a pelear
+tanto con la sintaxis como con otros lenguajes. Tiene el conjunto de librerías de datos más
+usado hoy (NumPy, pandas, scikit-learn, entre otras), así que lo que aprendas aquí se conecta
+directamente con el resto del ecosistema. Y hay trabajo real pidiendo esta habilidad, en roles
+de datos, backend y automatización.
 
-> 💡 No aprendes Python para "saber programar" en abstracto — lo aprendes porque es la
-> herramienta que te permite hacerle preguntas a los datos y obtener respuestas. Todo el
-> Módulo 1 está diseñado con ese objetivo específico en mente, no como un curso de
-> programación general.
+Nada de eso importa si no le dedicas las horas de práctica que el Módulo 1 te va a pedir. La
+lectura te da el mapa; el código que tú mismo escribas es lo único que realmente construye la
+habilidad.
 
 ## ¿Por qué aprender pandas?
 
-Si Python es el lenguaje, pandas es la herramienta específica que vas a usar en el día a día
+Si Python es el lenguaje, pandas es la herramienta puntual que vas a usar el 80% del tiempo
 para trabajar con datos tabulares — hojas de cálculo, tablas de bases de datos, resultados de
-APIs, archivos CSV. Algunas razones concretas por las que este libro dedica 8 de sus 9 módulos
-a dominarlo:
+APIs. Por eso este libro le dedica 8 de sus 9 módulos.
 
-- **Es el estándar de la industria.** Prácticamente cualquier flujo de trabajo de datos en
-  Python —desde un análisis exploratorio rápido hasta un pipeline de producción— pasa por
-  pandas en algún punto.
-- **Resuelve el problema real: datos desordenados.** Los datos del mundo real casi nunca llegan
-  limpios. pandas fue diseñado específicamente para lidiar con valores faltantes, tipos
-  inconsistentes y formatos irregulares — el Módulo 3 completo gira en torno a esto.
-- **Es el punto de entrada al resto del ecosistema.** Un `DataFrame` de pandas es lo que le
-  entregas a Matplotlib para graficar, a scikit-learn para entrenar un modelo, o a statsmodels
-  para un análisis estadístico — aprender pandas bien hace que todo lo demás sea más fácil.
-- **La habilidad se transfiere.** Herramientas más recientes para datos a mayor escala (Polars,
-  Dask, incluso la API de pandas-on-Spark) imitan deliberadamente la API de pandas — lo que
-  aprendas aquí no se queda obsoleto cuando cambies de herramienta.
-- **Es directamente aplicable a preguntas de negocio reales**, no solo a ejercicios académicos
-  — es precisamente lo que vas a practicar en los 19 proyectos del Módulo 9.
+Es, en la práctica, el estándar de facto para esto en Python: la mayoría de flujos de trabajo
+de datos —desde una exploración rápida hasta un pipeline en producción— pasan por pandas en
+algún punto, y sirve de puente hacia el resto del ecosistema (lo que produces con pandas es lo
+que después le entregas a Matplotlib, a scikit-learn, o a un modelo estadístico). También fue
+diseñado pensando en datos reales, que casi nunca llegan limpios — el Módulo 3 completo gira
+en torno a eso.
 
-> 💡 Dominar pandas no es memorizar cada método de su API (nadie lo hace) — es desarrollar la
-> intuición de **qué operación corresponde a qué pregunta sobre tus datos**. Ese es el
-> objetivo real de este libro.
+No hace falta memorizar su API completa (nadie lo hace, ni siquiera después de años usándola).
+Lo que este libro busca es que desarrolles la intuición de qué operación corresponde a qué
+pregunta sobre tus datos — y esa intuición solo se construye resolviendo ejercicios reales, no
+memorizando listas de métodos.
 
 ## ¿Cómo está organizado el libro?
 

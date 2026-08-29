@@ -157,7 +157,7 @@ puntos).
 | Plan documentado y aprobado | Alta | ✅ Hecho |
 | Fase 1 — Ejemplo en cada convención de `introduccion.md` | Media | ✅ Hecho |
 | Fase 2 — Sección "Sobre el autor" (desde el CV) + créditos en README + borrar el CV | Alta | ✅ Hecho — CV eliminado del disco y purgado del historial de git (ver incidente en Épica 6) |
-| Fase 3 — Reescribir "¿Por qué aprender Python/pandas?" con expectativas realistas | Alta | ⏳ Pendiente |
+| Fase 3 — Reescribir "¿Por qué aprender Python/pandas?" con expectativas realistas | Alta | ✅ Hecho |
 | Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ⏳ Pendiente |
 | Fase 5 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 1-4 | Media | ⏳ Pendiente |
 | Fase 6 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 5-8 | Media | ⏳ Pendiente |
