@@ -13,6 +13,46 @@ ejercicios de cada tema para confirmar que no te falta nada.
 
 ## Antes de empezar: ¿cómo ejecuto Python?
 
+### Instalar Python
+
+Antes de poder ejecutar nada, necesitas Python instalado en tu computador. Para comprobar si
+ya lo tienes, abre una terminal (en Windows, busca "PowerShell" o "Símbolo del sistema"; en
+macOS o Linux, "Terminal") y escribe:
+
+```bash
+python --version
+```
+
+Si no reconoce el comando, prueba con `python3 --version` (en macOS y Linux, `python` a veces
+apunta a una versión antigua de Python 2, y el ejecutable de Python 3 se llama `python3`). Si
+alguno de los dos te devuelve un número de versión (por ejemplo, `Python 3.12.1`), ya tienes
+Python instalado y puedes saltarte el resto de esta sección.
+
+Si no tienes Python, descárgalo desde la página oficial:
+**[python.org/downloads](https://www.python.org/downloads/)**. El sitio detecta tu sistema
+operativo automáticamente y te ofrece el instalador correcto.
+
+- **Windows:** ejecuta el instalador descargado y, muy importante, marca la casilla **"Add
+  python.exe to PATH"** en la primera pantalla, antes de darle a "Install Now". Si te la
+  saltas, el comando `python` no funcionará después desde la terminal, y tendrás que
+  reinstalar o ajustar el PATH manualmente.
+- **macOS:** ejecuta el instalador `.pkg` descargado y sigue los pasos. Alternativamente, si
+  tienes [Homebrew](https://brew.sh/) instalado, `brew install python` es más rápido de
+  mantener actualizado.
+- **Linux:** la mayoría de distribuciones ya traen Python 3 preinstalado (confírmalo con
+  `python3 --version`). Si falta, instálalo con el gestor de paquetes de tu distribución, por
+  ejemplo `sudo apt install python3` en Ubuntu/Debian.
+
+> 💡 Usa siempre la versión **estable más reciente** que ofrezca la página oficial (evita
+> versiones marcadas como "pre-release" o "release candidate"). Cualquier versión 3.10 o
+> superior funciona perfectamente para todo el contenido de este libro.
+
+> ⚠️ Este libro usa exclusivamente **Python 3**. Si en algún momento ves un tutorial o
+> documentación que menciona `print "algo"` sin paréntesis, es Python 2, una versión obsoleta
+> que ya no recibe soporte oficial — ignóralo y sigue con Python 3.
+
+### Cómo ejecutar código una vez instalado
+
 Hay dos formas principales de ejecutar código Python, y las usarás ambas en este libro:
 
 1. **De forma interactiva (REPL):** abres una terminal, escribes `python` (o `python3`) y

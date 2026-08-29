@@ -61,6 +61,15 @@ publicadas por distintos ministerios y organizaciones del gobierno de la India. 
 identificador tipo `SIH26001`), `Theme`, `Deadline for Idea Submission`, y `Details` (la
 descripción completa del problema, texto libre).
 
+El dataset fue recopilado y publicado originalmente en Kaggle por el usuario
+[lakshyakeshwani](https://www.kaggle.com/lakshyakeshwani), a partir de información pública del
+*Smart India Hackathon*:
+[kaggle.com/datasets/lakshyakeshwani/sih-2026-problem-statements](https://www.kaggle.com/datasets/lakshyakeshwani/sih-2026-problem-statements).
+Se incluye aquí una copia únicamente con fines educativos, para que puedas seguir este
+ejercicio sin depender de una cuenta de Kaggle. Si vas a reutilizar este dataset más allá del
+ejercicio (por ejemplo, en un proyecto propio o publicado), revisa la licencia indicada en la
+página original de Kaggle y da crédito al autor.
+
 ```python
 import pandas as pd
 df = pd.read_csv("sih_2026_problem_statements.csv")
