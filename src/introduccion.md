@@ -96,25 +96,53 @@ checklist de competencias para autoevaluarte.
 
 ## Convenciones usadas en este libro
 
-A lo largo de los capítulos encontrarás los siguientes elementos recurrentes:
+A lo largo de los capítulos encontrarás los siguientes elementos recurrentes.
 
-- **Bloques de código** en Python, listos para copiar y ejecutar:
+**Bloques de código** en Python, listos para copiar y ejecutar:
 
-  ```python
-  import pandas as pd
+```python
+import pandas as pd
 
-  df = pd.DataFrame({"producto": ["A", "B"], "precio": [10, 20]})
-  print(df)
-  ```
+df = pd.DataFrame({"producto": ["A", "B"], "precio": [10, 20]})
+print(df)
+```
 
-- **Salida esperada**, mostrada justo después del código que la produce, para que puedas
-  verificar que tus resultados coinciden.
-- **Advertencias**, marcadas con ⚠️, que señalan errores comunes o comportamientos
-  contraintuitivos de pandas.
-- **Ejercicios de práctica**, al final de secciones puntuales, para consolidar un concepto
-  específico apenas aprendido.
-- **Ejercicios integradores**, al final de cada capítulo, que combinan varios conceptos del
-  tema en un ejercicio más completo.
+**Salida esperada**, mostrada justo después del código que la produce, para que puedas
+verificar que tus resultados coinciden con los míos:
+
+```text
+  producto  precio
+0        A      10
+1        B      20
+```
+
+**Advertencias**, marcadas con ⚠️, que señalan errores comunes o comportamientos
+contraintuitivos de pandas — presta atención especial a estas, son los sitios donde más gente
+se tropieza:
+
+> ⚠️ **Ejemplo de advertencia:** `df["precio"]` devuelve una `Series`, pero `df[["precio"]]`
+> (con doble corchete) devuelve un `DataFrame` de una sola columna. Parecen casi lo mismo,
+> pero tienen métodos y comportamientos distintos — este tipo de detalle es exactamente lo que
+> las advertencias del libro te van a señalar antes de que te encuentres con el error tú
+> mismo.
+
+**Tips**, marcados con 💡, con recomendaciones prácticas o atajos que no son estrictamente
+necesarios pero sí útiles:
+
+> 💡 **Ejemplo de tip:** cuando dudes entre dos formas de escribir algo en pandas, prefiere la
+> más explícita mientras aprendes — la más corta casi siempre llega sola, con la práctica.
+
+**Ejercicios de práctica**, al final de secciones puntuales, para consolidar un concepto
+específico apenas aprendido. Se ven así:
+
+> **Ejercicios: Nombre de la sección**
+>
+> 1. Un ejercicio corto, enfocado en el concepto que acabas de leer.
+> 2. Otro un poco más exigente, que te obliga a combinar ese concepto con algo anterior.
+
+**Ejercicios integradores**, al final de cada capítulo, que combinan varios conceptos del
+tema en un ejercicio más completo — más parecidos a un mini-problema real que a una práctica
+aislada de un solo método.
 
 ## Preparando tu entorno
 

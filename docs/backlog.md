@@ -154,7 +154,7 @@ puntos).
 | Historia | Prioridad | Estado |
 |----------|-----------|--------|
 | Plan documentado y aprobado | Alta | ✅ Hecho |
-| Fase 1 — Ejemplo en cada convención de `introduccion.md` | Media | ⏳ Pendiente |
+| Fase 1 — Ejemplo en cada convención de `introduccion.md` | Media | ✅ Hecho |
 | Fase 2 — Sección "Sobre el autor" (desde el CV) + créditos en README + borrar el CV | Alta | ⏳ Pendiente |
 | Fase 3 — Reescribir "¿Por qué aprender Python/pandas?" con expectativas realistas | Alta | ⏳ Pendiente |
 | Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ⏳ Pendiente |
