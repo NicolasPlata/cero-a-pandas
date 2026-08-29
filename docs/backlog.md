@@ -6,7 +6,7 @@ formato de historias de usuario y backlog que el Módulo 9 le enseña al lector.
 
 **Última actualización:** ver el commit más reciente que toca este archivo.
 **Estado general:** ✅ Expansión del Módulo 9 completa (Fases 9A-9I). ✅ Corrección de
-explicaciones vagas completa (Épica 7). 🔄 Épica 8 (feedback profesional) en curso. Pendiente:
+explicaciones vagas completa (Épica 7). ✅ Épica 8 (feedback profesional) completa. Pendiente:
 habilitar GitHub Pages (paso manual del dueño del repo).
 
 ---
@@ -158,19 +158,20 @@ puntos).
 | Fase 1 — Ejemplo en cada convención de `introduccion.md` | Media | ✅ Hecho |
 | Fase 2 — Sección "Sobre el autor" (desde el CV) + créditos en README + borrar el CV | Alta | ✅ Hecho — CV eliminado del disco y purgado del historial de git (ver incidente en Épica 6) |
 | Fase 3 — Reescribir "¿Por qué aprender Python/pandas?" con expectativas realistas | Alta | ✅ Hecho |
-| Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ⏳ Pendiente |
+| Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ✅ Hecho |
 | Fase 5 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 1-4 | Media | ✅ Hecho |
 | Fase 6 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 5-8 y páginas de cierre (`recursos.md`, `guia-ritmo.md`, `checklist-competencias.md`) | Media | ✅ Hecho |
 | Fase 7 — Correcciones de tono en Módulo 9 (prosa: Contexto, intros de nivel, Palabras de cierre) | Media | ✅ Hecho |
-| Fase 8 — Verificación final y cierre de la épica | Alta | ⏳ Pendiente |
+| Fase 8 — Verificación final y cierre de la épica | Alta | ✅ Hecho |
 
 ---
 
 ## Próximos pasos inmediatos
 
-1. Épica 8, Fase 1: agregar ejemplo a cada convención en `introduccion.md`.
-2. Continuar Épica 8 (Fases 2-8) en el orden de `docs/plan-feedback-profesional.md`.
-3. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
+Con la Épica 8 cerrada, no hay trabajo de contenido pendiente identificado. El único punto
+abierto del proyecto es:
+
+1. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
    ver Épica 4).
 
 ## Convención de commits de este proyecto
