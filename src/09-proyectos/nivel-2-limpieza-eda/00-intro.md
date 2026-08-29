@@ -14,7 +14,9 @@ público real.
 | [Proyecto 6: Datos de clientes en mal estado](01-clientes-mal-estado.md) | Limpieza completa: nulos, duplicados, tipos, outliers. |
 | [Proyecto 7: Unificando sucursales](02-unificando-sucursales.md) | Estandarizar esquemas distintos y combinarlos con `concat`/`merge`. |
 | [Proyecto 8: El reporte del gerente](03-reporte-gerente.md) | Feature engineering y `groupby()` con named aggregations. |
-| [Proyecto 9: Tu primer EDA con datos reales](04-primer-eda-real.md) | Análisis exploratorio completo sobre un dataset público de tu elección. |
+| [Proyecto 9: Tu primer EDA con datos reales](04-primer-eda-real.md) | Análisis exploratorio completo sobre un dataset público real, incluido en el propio libro. |
 
 Los proyectos 6-8 se apoyan uno en el resultado del anterior — resuélvelos en orden si puedes.
-El Proyecto 9 es independiente y marca la transición hacia datasets que tú mismo eliges.
+El Proyecto 9 es independiente y marca la transición hacia datos reales, no preparados
+especialmente para el ejercicio (aunque en este caso el libro ya te lo entrega — a partir del
+Capstone del Módulo 9, la búsqueda del dataset también será tuya).

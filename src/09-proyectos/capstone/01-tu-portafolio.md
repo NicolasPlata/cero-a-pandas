@@ -56,10 +56,31 @@ primera historia de usuario **la escribes tú**.
 
 ## Dataset
 
-Tú decides, completamente. Buenas fuentes: [Kaggle Datasets](https://www.kaggle.com/datasets),
-[UCI ML Repository](https://archive.ics.uci.edu/), portales de datos abiertos, o incluso datos
-propios (de un hobby, un club, un proyecto personal) si prefieres algo más único que un
-dataset público conocido.
+Tú decides, completamente. Tres formas concretas de conseguirlo, de más simple a más
+personal:
+
+1. **[UCI ML Repository](https://archive.ics.uci.edu/)** — la opción con menos fricción: no
+   necesitas cuenta. Busca un tema que te interese, entra al dataset, y en su página hay un
+   botón directo de descarga (normalmente un `.zip` o `.csv`) o un enlace `Download` — sin
+   pasos intermedios.
+2. **[Kaggle Datasets](https://www.kaggle.com/datasets)** — el catálogo más grande, pero
+   requiere crear una cuenta gratuita para descargar. Una vez dentro del dataset que elijas,
+   el botón `Download` (arriba a la derecha) te da un `.zip` con el/los CSV — descomprímelo
+   en una carpeta `data/` junto a tu notebook o script, igual que hicimos con el dataset del
+   Proyecto 9.
+3. **Portales de datos abiertos gubernamentales** — busca `"datos abiertos" + tu país` (por
+   ejemplo, [datos.gov.co](https://www.datos.gov.co/) en Colombia,
+   [datos.gob.mx](https://datos.gob.mx/) en México, o el portal de tu propio país) si te
+   interesa un tema de política pública, salud, economía o educación con datos oficiales.
+
+También puedes usar **datos propios** (de un hobby, un club, un proyecto personal) si
+prefieres algo más único que un dataset público conocido — en ese caso no hay nada que
+descargar, solo exportar o recopilar lo que ya tienes a un formato que pandas pueda leer
+(CSV, Excel, JSON).
+
+Sea cual sea la fuente, guarda el archivo en una carpeta `data/` dentro de tu propio proyecto
+(no en este repositorio del libro) y referencia esa ruta relativa en tu código — es lo que
+hace que tu capstone sea reproducible por otra persona (HU-6).
 
 ## Pistas técnicas
 

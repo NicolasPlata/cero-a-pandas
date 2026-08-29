@@ -119,6 +119,8 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Mantener el backlog actualizado en cada fase, con commits descriptivos | Alta | 🔄 En progreso — política adoptada a partir de este punto |
 | Crear `docs/CLAUDE.md` (contexto completo del proyecto para futuras sesiones) + `CLAUDE.md` raíz que lo importa | Media | ✅ Hecho — pedido explícito del usuario |
 | Crear `README.md` profesional en la raíz (badges, índice, estructura, cómo compilar, licencia) | Media | ✅ Hecho — licencia elegida por el usuario: todos los derechos reservados |
+| Proyecto 9: usar el dataset real provisto por el usuario (SIH 2026 problem statements) en vez de "elige tú" | Alta | ✅ Hecho — dataset publicado en `src/09-proyectos/nivel-2-limpieza-eda/data/`, perfilado y con quirks reales documentados |
+| Explicitar cómo conseguir datos en Proyecto 18 (yfinance/Ruta B, fuentes públicas/Ruta A) y Proyecto 19 (Capstone: UCI/Kaggle/portales gubernamentales, paso a paso) | Media | ✅ Hecho |
 
 ## Épica 7: Corrección de explicaciones vagas
 

@@ -42,7 +42,12 @@ cuál camino tomar (o los dos).
 - [ ] **HU-A4** (Prioridad: Media) — Visualizar sucursales existentes y candidatas válidas en
       un mapa (con `.plot()` o `folium`).
 - [ ] **HU-A5** (Prioridad: Baja) — Si consigues datos públicos de densidad poblacional o
-      puntos de interés cercanos, crúzalos con `sjoin()` para priorizar candidatas.
+      puntos de interés cercanos, crúzalos con `sjoin()` para priorizar candidatas. Dos
+      fuentes concretas para esto: el portal de datos abiertos de tu ciudad o país (busca
+      `"datos abiertos" + tu ciudad`, o el sitio de tu instituto nacional de estadística), o
+      [OpenStreetMap](https://www.openstreetmap.org/) a través de su
+      [Overpass API](https://overpass-turbo.eu/), que permite consultar puntos de interés
+      (cafeterías, universidades, oficinas) por zona geográfica sin necesidad de una cuenta.
 
 ## Ruta B: Inversión de las ganancias
 
@@ -70,10 +75,34 @@ cuál camino tomar (o los dos).
 
 ## Dataset
 
-- **Ruta A:** define tú mismo las coordenadas de las 3 sucursales (puedes usar cualquier
-  ciudad que conozcas) y al menos 4-5 ubicaciones candidatas.
-- **Ruta B:** usa `yfinance` si tienes conexión a internet, o la serie simulada de precios del
-  Módulo 8.2 si prefieres trabajar sin dependencias externas.
+- **Ruta A:** no necesitas descargar nada — define tú mismo las coordenadas de las 3
+  sucursales (puedes usar cualquier ciudad que conozcas; busca las coordenadas de 3
+  direcciones reales en Google Maps, clic derecho → "¿Qué hay aquí?", te da lat/lon
+  directamente) y al menos 4-5 ubicaciones candidatas de la misma forma.
+
+- **Ruta B:** aquí sí hay una dependencia externa, pero **no es un archivo que descargues
+  manualmente** — es una librería que consulta datos en vivo por ti:
+
+  ```bash
+  pip install yfinance
+  ```
+
+  ```python
+  import yfinance as yf
+
+  precios = yf.download("AAPL", start="2023-01-01", end="2026-01-01")
+  print(precios.head())
+  ```
+
+  `"AAPL"` es el **ticker** (símbolo bursátil) de Apple — puedes usar cualquier otro:
+  `"MSFT"` (Microsoft), `"GOOGL"` (Google), `"AMZN"` (Amazon), o un ETF diversificado como
+  `"SPY"` (que sigue al índice S&P 500, una opción razonable si no tienes una empresa
+  específica en mente). Si no reconoces el ticker de una empresa, buscar
+  `"<nombre de la empresa> ticker"` en internet lo resuelve en segundos. `yfinance` necesita
+  conexión a internet activa en el momento de ejecutar `yf.download()` — no hay un paso de
+  "descargar el archivo primero". Si prefieres no depender de esto (por ejemplo, sin
+  conexión estable), usa directamente la serie simulada de precios del Módulo 8.2 — el resto
+  del proyecto funciona idéntico con cualquiera de las dos fuentes.
 
 ## Pistas técnicas
 
