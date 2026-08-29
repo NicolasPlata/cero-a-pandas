@@ -181,4 +181,27 @@ públicos reales (Kaggle, UCI) para practicar con datos del mundo real.
 - **Consulta la [Guía de Dedicación y Ritmo](guia-ritmo.md)** si quieres planificar tu avance
   en semanas o meses según tu disponibilidad.
 
+## Sobre el autor
+
+Soy Nicolás Plata, de Bogotá, Colombia. Estudié Ingeniería Civil, no Ingeniería de Sistemas —
+durante buena parte de la carrera pensé que terminaría diseñando estructuras o gestionando
+obras, no escribiendo código.
+
+Eso cambió trabajando en automatización de procesos: notaba que reportes que a alguien le
+tomaban horas armar a mano en Excel se resolvían con un script de Python en minutos. Aprendí
+pandas ahí, por necesidad, con un curso online y bastante ensayo y error — el mismo camino que
+te va a tocar recorrer a ti con este libro, no uno más corto.
+
+Ese cambio de rumbo me llevó a trabajar como desarrollador de software: primero automatizando
+procesos internos con Python y SQL, después construyendo una aplicación completa de principio
+a fin (base de datos, backend, despliegue en la nube), y actualmente como desarrollador de
+soluciones digitales en la Agencia Nacional de Infraestructura (ANI) de Colombia, donde
+trabajo con datos geoespaciales (PostGIS) para sistemas de visualización — el mismo tipo de
+datos que verás en el capítulo de GeoPandas del Módulo 8.
+
+No tengo un título en ciencias de la computación, y aprendí la gran mayoría de lo que sé de
+Python y pandas de la misma forma en que tú lo vas a aprender: leyendo, practicando, y
+rompiendo código hasta que funcionara. Puedes encontrarme en
+[GitHub](https://github.com/NicolasPlata).
+
 ¡Empecemos!

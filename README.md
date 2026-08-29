@@ -142,7 +142,11 @@ Módulo 9).
 
 ## Créditos
 
-- **Autor:** [Nicolás Plata](https://github.com/NicolasPlata)
+- **Autor:** [Nicolás Plata](https://github.com/NicolasPlata) — Ingeniero Civil convertido a
+  desarrollador de software y datos; su recorrido de autoaprendizaje (el mismo que este libro
+  le propone al lector) está contado en la sección
+  ["Sobre el autor"](https://nicolasplata.github.io/cero-a-pandas/introduccion.html#sobre-el-autor)
+  del libro.
 - **Logo:** generado con Gemini
 - Construido con [mdBook](https://rust-lang.github.io/mdBook/)
 

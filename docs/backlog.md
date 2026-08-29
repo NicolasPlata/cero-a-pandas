@@ -117,6 +117,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Mover `ruta-aprendizaje-pandas.md`, `plan-desarrollo-mdbook.md` y `plan-expansion-modulo9.md` a `/docs` | Media | ✅ Hecho |
 | Crear este backlog en `/docs/backlog.md` | Media | ✅ Hecho |
 | Mantener el backlog actualizado en cada fase, con commits descriptivos | Alta | 🔄 En progreso — política adoptada a partir de este punto |
+| Purgar del historial de git un archivo con datos personales comiteado por error | Alta | ✅ Hecho — `git filter-branch` + force-push; verificado que no queda ningún objeto del archivo en el historial |
 | Crear `docs/CLAUDE.md` (contexto completo del proyecto para futuras sesiones) + `CLAUDE.md` raíz que lo importa | Media | ✅ Hecho — pedido explícito del usuario |
 | Crear `README.md` profesional en la raíz (badges, índice, estructura, cómo compilar, licencia) | Media | ✅ Hecho — licencia elegida por el usuario: todos los derechos reservados |
 | Proyecto 9: usar el dataset real provisto por el usuario (SIH 2026 problem statements) en vez de "elige tú" | Alta | ✅ Hecho — dataset publicado en `src/09-proyectos/nivel-2-limpieza-eda/data/`, perfilado y con quirks reales documentados |
@@ -155,7 +156,7 @@ puntos).
 |----------|-----------|--------|
 | Plan documentado y aprobado | Alta | ✅ Hecho |
 | Fase 1 — Ejemplo en cada convención de `introduccion.md` | Media | ✅ Hecho |
-| Fase 2 — Sección "Sobre el autor" (desde el CV) + créditos en README + borrar el CV | Alta | ⏳ Pendiente |
+| Fase 2 — Sección "Sobre el autor" (desde el CV) + créditos en README + borrar el CV | Alta | ✅ Hecho — CV eliminado del disco y purgado del historial de git (ver incidente en Épica 6) |
 | Fase 3 — Reescribir "¿Por qué aprender Python/pandas?" con expectativas realistas | Alta | ⏳ Pendiente |
 | Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ⏳ Pendiente |
 | Fase 5 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 1-4 | Media | ⏳ Pendiente |
