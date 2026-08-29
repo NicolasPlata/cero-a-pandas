@@ -6,8 +6,8 @@ formato de historias de usuario y backlog que el Módulo 9 le enseña al lector.
 
 **Última actualización:** ver el commit más reciente que toca este archivo.
 **Estado general:** ✅ Expansión del Módulo 9 completa (Fases 9A-9I). ✅ Corrección de
-explicaciones vagas completa (Épica 7, Fases 1-6). Pendiente: habilitar GitHub Pages (paso
-manual del dueño del repo).
+explicaciones vagas completa (Épica 7). 🔄 Épica 8 (feedback profesional) en curso. Pendiente:
+habilitar GitHub Pages (paso manual del dueño del repo).
 
 ---
 
@@ -141,14 +141,36 @@ hallazgos: 4 🔴, 14 🟡, en 8 archivos).
 | Fase 5 — Ediciones puntuales: 3.2 Transformación (regex/.dt/Categoricals), 3.1 Duplicados, 5.4 Reorganización (1 🔴 + 4 🟡) | Media | ✅ Hecho |
 | Fase 6 — Verificación final (build, enlaces, formato) y cierre de la épica | Alta | ✅ Hecho |
 
+## Épica 8: Feedback profesional (5 puntos)
+
+> Como lector evaluando si este libro fue hecho con cuidado por una persona real, quiero
+> convenciones ejemplificadas, saber quién lo escribió, expectativas honestas sobre el
+> esfuerzo que requiere, un tono humano (no genérico de IA), y entender por qué cada capítulo
+> importa en la práctica profesional.
+
+Basada en `docs/plan-feedback-profesional.md` (feedback externo recibido por el usuario, 5
+puntos).
+
+| Historia | Prioridad | Estado |
+|----------|-----------|--------|
+| Plan documentado y aprobado | Alta | ✅ Hecho |
+| Fase 1 — Ejemplo en cada convención de `introduccion.md` | Media | ⏳ Pendiente |
+| Fase 2 — Sección "Sobre el autor" (desde el CV) + créditos en README + borrar el CV | Alta | ⏳ Pendiente |
+| Fase 3 — Reescribir "¿Por qué aprender Python/pandas?" con expectativas realistas | Alta | ⏳ Pendiente |
+| Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ⏳ Pendiente |
+| Fase 5 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 1-4 | Media | ⏳ Pendiente |
+| Fase 6 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 5-8 | Media | ⏳ Pendiente |
+| Fase 7 — Correcciones de tono en Módulo 9 (prosa: Contexto, Palabras de cierre) | Media | ⏳ Pendiente |
+| Fase 8 — Verificación final y cierre de la épica | Alta | ⏳ Pendiente |
+
 ---
 
 ## Próximos pasos inmediatos
 
-1. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
+1. Épica 8, Fase 1: agregar ejemplo a cada convención en `introduccion.md`.
+2. Continuar Épica 8 (Fases 2-8) en el orden de `docs/plan-feedback-profesional.md`.
+3. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo —
    ver Épica 4).
-2. Sin tareas pendientes adicionales — todas las épicas activas están cerradas. Próximos
-   pasos dependen de feedback nuevo del usuario.
 
 ## Convención de commits de este proyecto
 
