@@ -166,9 +166,9 @@ públicos reales (Kaggle, UCI) para practicar con datos del mundo real.
 
 ## Sobre el autor
 
-Soy Nicolás Plata, de Bogotá, Colombia. Estudié Ingeniería Civil, no Ingeniería de Sistemas —
-durante buena parte de la carrera pensé que terminaría diseñando estructuras o gestionando
-obras, no escribiendo código.
+Soy Nicolás Plata, de Santander, Colombia, radicado actualmente en Bogotá. Estudié Ingeniería
+Civil, no Ingeniería de Sistemas — durante buena parte de la carrera pensé que terminaría
+diseñando estructuras o gestionando obras, no escribiendo código.
 
 Eso cambió trabajando en automatización de procesos: notaba que reportes que a alguien le
 tomaban horas armar a mano en Excel se resolvían con un script de Python en minutos. Aprendí
