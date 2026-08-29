@@ -5,6 +5,11 @@ vectorizadas". Este capítulo explica **por qué**, con medición real de rendim
 las herramientas para reconocer cuándo esa diferencia realmente importa (y cuándo no vale la
 pena optimizar).
 
+> 🎯 **Por qué te importa este capítulo:** la diferencia entre un script que corre en segundos
+> y uno que tarda horas casi siempre se reduce a esto. Con datasets pequeños no lo vas a
+> notar, pero apenas trabajes con cientos de miles de filas, saber vectorizar deja de ser un
+> detalle de estilo y se vuelve la diferencia entre que tu código sea usable o no.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -22,7 +27,7 @@ df_grande = pd.DataFrame({
 ### Por qué apply() con loop implícito es lento
 
 Cuando usas `apply()` con `axis=1`, o iteras con `.iterrows()`, pandas ejecuta la operación
-**fila por fila en Python puro** — perdiendo la ventaja principal de NumPy: operar sobre
+**fila por fila en Python puro**, perdiendo la ventaja principal de NumPy: operar sobre
 bloques completos de memoria contigua usando código C optimizado, sin el overhead del
 intérprete de Python en cada paso.
 
@@ -55,8 +60,8 @@ vectorizado: 0.003s
 ```
 
 La versión vectorizada es, en este ejemplo, **más de 1000 veces más rápida** que `iterrows()`.
-Esta no es una excepción — es el patrón general para cualquier operación elemento por elemento
-sobre columnas numéricas.
+Esto no es un caso aislado: es el comportamiento general de cualquier operación elemento por
+elemento sobre columnas numéricas.
 
 > ⚠️ **`.iterrows()` casi nunca es la respuesta correcta.** Si te encuentras escribiendo
 > `for index, row in df.iterrows()`, detente y pregúntate: ¿existe una operación vectorizada,
@@ -105,7 +110,7 @@ np.abs(df_grande["a"] - df_grande["b"])
 ### Reglas de broadcasting
 
 El **broadcasting** es el mecanismo que permite operar entre estructuras de formas distintas
-sin escribir loops explícitos — ya lo usaste implícitamente cada vez que sumaste un escalar a
+sin escribir loops explícitos. Ya lo usaste implícitamente cada vez que sumaste un escalar a
 una columna completa (`df["precio"] * 1.19`). Las reglas, heredadas directamente de NumPy
 (Módulo 1.2), son:
 
@@ -159,7 +164,7 @@ tiempo_numpy = time.perf_counter() - inicio
 print(f"pandas: {tiempo_pandas:.5f}s, numpy puro: {tiempo_numpy:.5f}s")
 ```
 
-> 💡 En la práctica, esta diferencia suele ser pequeña para operaciones simples — el
+> 💡 En la práctica, esta diferencia suele ser pequeña para operaciones simples. El
 > verdadero salto de rendimiento está entre "vectorizado" y "loop fila por fila" (cientos o
 > miles de veces), no entre "pandas vectorizado" y "NumPy puro vectorizado" (típicamente un
 > factor de 1.5x-3x). Optimiza primero eliminando loops; bajar a `.values` es una micro-
@@ -207,15 +212,18 @@ Un resumen de las prácticas de este capítulo, en orden de impacto:
 
 ## Resumen
 
-- Los loops explícitos (`for`, `.iterrows()`) y `apply(axis=1)` son órdenes de magnitud más
-  lentos que las operaciones vectorizadas equivalentes, porque pierden la ventaja de operar
-  sobre bloques de memoria contiguos con código optimizado.
-- El **broadcasting** permite operar entre estructuras de formas distintas sin loops, pero
-  recuerda que la alineación entre `Series` es **por índice**, no por posición.
-- Mide con `%timeit`/`time.perf_counter()` antes de optimizar — la intuición sobre qué es
-  lento frecuentemente se equivoca.
-- Prioriza eliminar loops primero; las micro-optimizaciones (como usar `.values` directamente)
-  tienen impacto mucho menor y solo valen la pena una vez confirmado el cuello de botella real.
+Los loops explícitos (`for`, `.iterrows()`) y `apply(axis=1)` son órdenes de magnitud más
+lentos que las operaciones vectorizadas equivalentes, porque pierden la ventaja de operar
+sobre bloques de memoria contiguos con código optimizado. El **broadcasting** permite operar
+entre estructuras de formas distintas sin loops, pero recuerda que la alineación entre
+`Series` es **por índice**, no por posición.
 
-Siguiente: [5.3 I/O Avanzado](03-io-avanzado.md), donde aplicamos este mismo criterio de
-eficiencia a la carga de datos que no caben cómodamente en memoria.
+¿Cómo saber si vale la pena optimizar algo? Midiendo con `%timeit`/`time.perf_counter()`, no
+adivinando: la intuición sobre qué es lento frecuentemente se equivoca. Y en cuanto a
+prioridades, elimina loops primero — las micro-optimizaciones (como usar `.values`
+directamente) tienen impacto mucho menor y solo valen la pena una vez confirmado el cuello de
+botella real.
+
+Aplicamos este mismo criterio de eficiencia a la carga de datos en
+[5.3 I/O Avanzado](03-io-avanzado.md), esta vez para datos que no caben cómodamente en
+memoria.

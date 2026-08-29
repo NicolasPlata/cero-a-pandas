@@ -5,6 +5,11 @@ memoria. Este capítulo relaja esa suposición: qué hacer cuando un archivo es 
 RAM disponible, cómo trabajar eficientemente con bases de datos, y cómo consumir APIs web de
 forma robusta.
 
+> 🎯 **Por qué te importa este capítulo:** tarde o temprano vas a recibir un archivo que tu
+> laptop no puede cargar de un solo golpe, o vas a necesitar datos que solo existen detrás de
+> una API. Saber procesar por chunks o paginar peticiones es lo que separa "no puedo trabajar
+> con esto" de "lo tengo resuelto".
+
 ```python
 import pandas as pd
 import numpy as np
@@ -210,10 +215,10 @@ for pagina in range(1, 6):
 df_completo = pd.concat(resultados, ignore_index=True)
 ```
 
-> 💡 Introducir una pausa (`time.sleep()`) entre peticiones sucesivas no es solo cortesía —
-> muchos sitios bloquean automáticamente direcciones IP que hacen demasiadas peticiones en
-> poco tiempo. Además, siempre revisa el archivo `robots.txt` del sitio y sus términos de
-> servicio antes de hacer scraping a escala.
+> 💡 Introducir una pausa (`time.sleep()`) entre peticiones sucesivas evita que muchos sitios
+> bloqueen automáticamente direcciones IP que hacen demasiadas peticiones en poco tiempo.
+> Además, siempre revisa el archivo `robots.txt` del sitio y sus términos de servicio antes de
+> hacer scraping a escala.
 
 **Ejercicios: APIs y Web**
 
@@ -237,15 +242,16 @@ df_completo = pd.concat(resultados, ignore_index=True)
 
 ## Resumen
 
-- **`chunksize`** en `read_csv()`/`read_sql()` permite procesar archivos más grandes que la
-  memoria disponible, iterando pedazo por pedazo.
-- Los formatos columnares como **Parquet** permiten cargar solo las columnas necesarias,
-  reduciendo memoria de forma mucho más efectiva que CSV.
-- **Filtra en la base de datos, no en pandas**, siempre que sea posible — transferir menos
-  datos es casi siempre más rápido que transferir todo y descartar después.
-- Al consumir **APIs**, maneja errores HTTP explícitamente, respeta la paginación y los
-  límites de tasa; al hacer **web scraping**, pausa entre peticiones y respeta `robots.txt`.
+**`chunksize`** en `read_csv()`/`read_sql()` permite procesar archivos más grandes que la
+memoria disponible, iterando pedazo por pedazo. Los formatos columnares como **Parquet**
+llevan esto más lejos: permiten cargar solo las columnas necesarias, reduciendo memoria de
+forma mucho más efectiva que CSV.
 
-Siguiente: [5.4 MultiIndex y Datos Jerárquicos](04-multiindex.md), el último capítulo del
-módulo, donde profundizamos en la estructura de índices de múltiples niveles que ya
-adelantamos en módulos anteriores.
+Una regla que vale la pena grabarse: **filtra en la base de datos, no en pandas**, siempre que
+sea posible, porque transferir menos datos es casi siempre más rápido que transferir todo y
+descartar después. Y al consumir **APIs**, maneja errores HTTP explícitamente y respeta la
+paginación y los límites de tasa; al hacer **web scraping**, pausa entre peticiones y respeta
+`robots.txt`.
+
+El último capítulo del módulo, [5.4 MultiIndex y Datos Jerárquicos](04-multiindex.md),
+profundiza en la estructura de índices de múltiples niveles que ya adelantamos antes.

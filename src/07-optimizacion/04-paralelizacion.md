@@ -5,6 +5,12 @@ El capítulo de cierre del módulo cubre cómo distribuir trabajo entre múltipl
 concurrencia de I/O (`asyncio`) — cuatro herramientas con propósitos distintos que conviene no
 confundir entre sí.
 
+> 🎯 **Por qué te importa este capítulo:** usar la herramienta equivocada aquí no solo no
+> ayuda, puede hacer las cosas más lentas. Meter `asyncio` a un problema de cómputo puro no
+> acelera nada porque el GIL sigue bloqueando; meter `multiprocessing` a un problema de
+> esperar respuestas de red desperdicia recursos que no necesitabas. Elegir bien es la mitad
+> del trabajo.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -15,7 +21,7 @@ import numpy as np
 ### Por qué no basta con threads en Python
 
 Python tiene un **Global Interpreter Lock (GIL)** que impide que múltiples hilos (`threads`)
-ejecuten bytecode de Python simultáneamente dentro de un mismo proceso — por eso, para
+ejecuten bytecode de Python simultáneamente dentro de un mismo proceso. Por eso, para
 paralelismo real en tareas de **cómputo intensivo** (como procesar datos), se usan **procesos**
 separados (`multiprocessing`), cada uno con su propio intérprete y memoria, en vez de threads.
 
@@ -50,7 +56,7 @@ if __name__ == "__main__":   # OBLIGATORIO en Windows/macOS al usar multiprocess
 ```
 
 > ⚠️ **El bloque `if __name__ == "__main__":` no es opcional al usar `multiprocessing`** en
-> Windows y macOS (con el método de inicio `spawn`) — sin él, cada proceso hijo reimporta el
+> Windows y macOS (con el método de inicio `spawn`); sin él, cada proceso hijo reimporta el
 > script completo, causando una recursión infinita de creación de procesos. En Linux es menos
 > crítico (usa `fork` por defecto), pero escribirlo siempre es la práctica segura y portable.
 
@@ -70,7 +76,7 @@ with Pool(processes=4) as pool:
 
 > 💡 `multiprocessing` tiene overhead real: crear procesos y serializar datos entre ellos
 > (pickle) no es gratis. Para tareas pequeñas o rápidas, el overhead de paralelizar puede
-> superar la ganancia — es más apropiado para tareas donde cada unidad de trabajo es
+> superar la ganancia. Es más apropiado para tareas donde cada unidad de trabajo es
 > genuinamente costosa (segundos, no milisegundos).
 
 **Ejercicios: Multiprocessing**
@@ -102,12 +108,12 @@ client.close()
 ```
 
 El mismo `Client` puede apuntar a un clúster remoto (varias máquinas) simplemente cambiando la
-dirección de conexión, sin cambiar el resto del código de análisis — la escalabilidad de
+dirección de conexión, sin cambiar el resto del código de análisis: la escalabilidad de
 "mi laptop" a "un clúster de 50 máquinas" es, en gran medida, un cambio de configuración, no
 de lógica de negocio.
 
 > 💡 El dashboard de Dask (accesible normalmente en `http://localhost:8787` al crear un
-> `Client` local) es una de sus características más valiosas para diagnóstico — muestra en
+> `Client` local) es una de sus características más valiosas para diagnóstico. Muestra en
 > tiempo real qué tareas se están ejecutando, en qué worker, y dónde están los cuellos de
 > botella del cómputo distribuido.
 
@@ -122,7 +128,7 @@ de lógica de negocio.
 ## Introducción a Spark
 
 [Apache Spark](https://spark.apache.org/) (a través de **PySpark**, su API de Python) es el
-motor de procesamiento distribuido más establecido para **Big Data** genuino — datasets de
+motor de procesamiento distribuido más establecido para **Big Data** genuino: datasets de
 cientos de GB a TB, distribuidos naturalmente entre muchas máquinas de un clúster.
 
 ```python
@@ -137,7 +143,7 @@ df_spark.groupBy("region").agg({"ingreso": "sum"}).show()
 resumen_pandas = df_spark.groupBy("region").agg({"ingreso": "sum"}).toPandas()
 ```
 
-> ⚠️ **Nunca llames `.toPandas()` sobre un DataFrame de Spark que aún es "grande"** — eso
+> ⚠️ **Nunca llames `.toPandas()` sobre un DataFrame de Spark que aún es "grande".** Eso
 > intenta traer todos los datos distribuidos de vuelta a la memoria de una sola máquina,
 > anulando por completo el propósito de usar Spark. El patrón correcto es: filtrar y agregar
 > **dentro** de Spark (aprovechando el cómputo distribuido), y convertir a pandas solo el
@@ -160,7 +166,7 @@ resumen_pandas = df_spark.groupBy("region").agg({"ingreso": "sum"}).toPandas()
 ## Async para I/O concurrente
 
 `asyncio` resuelve un problema distinto a `multiprocessing`: no paralelismo de **cómputo**,
-sino **concurrencia de I/O** — situaciones donde tu programa pasa la mayor parte del tiempo
+sino **concurrencia de I/O**: situaciones donde tu programa pasa la mayor parte del tiempo
 **esperando** (una respuesta de red, una consulta a base de datos), no calculando. Es
 especialmente relevante al consumir múltiples APIs (Módulo 5.3) de forma eficiente.
 
@@ -186,7 +192,7 @@ df = pd.DataFrame(resultados)
 
 Comparado con hacer las 10 peticiones secuencialmente con `requests` (Módulo 5.3), donde cada
 una espera a que la anterior termine, `asyncio.gather()` las lanza todas prácticamente al
-mismo tiempo y espera a que todas terminen — si cada petición tarda 1 segundo, la versión
+mismo tiempo y espera a que todas terminen. Si cada petición tarda 1 segundo, la versión
 secuencial tarda ~10 segundos; la versión concurrente, ~1 segundo (limitado por la más lenta).
 
 > 💡 **Regla de decisión clave:** usa `multiprocessing` (o Dask/Spark) cuando el cuello de
@@ -223,21 +229,22 @@ secuencial tarda ~10 segundos; la versión concurrente, ~1 segundo (limitado por
 
 ## Resumen
 
-- **`multiprocessing`** paraleliza cómputo real entre núcleos, evitando la limitación del
-  GIL de Python — con overhead de creación de procesos que solo vale la pena para tareas
-  genuinamente costosas.
-- **Dask distribuido** extiende el mismo enfoque de "API similar a pandas" a múltiples
-  máquinas, con un dashboard útil para diagnóstico.
-- **PySpark** es la herramienta establecida para Big Data genuino a escala de clúster
-  empresarial — nunca traigas datos grandes de vuelta a pandas con `.toPandas()` antes de
-  reducirlos.
-- **`asyncio`** resuelve concurrencia de I/O (esperas de red/disco), no cómputo — no debe
-  confundirse ni mezclarse innecesariamente con las herramientas de paralelismo de cómputo.
+**`multiprocessing`** paraleliza cómputo real entre núcleos, evitando la limitación del GIL de
+Python, pero con overhead de creación de procesos que solo vale la pena para tareas
+genuinamente costosas. **Dask distribuido** extiende ese mismo enfoque de "API similar a
+pandas" a múltiples máquinas, con un dashboard útil para diagnóstico. Cuando el volumen es
+Big Data genuino a escala de clúster empresarial, **PySpark** es la herramienta establecida:
+la regla de oro ahí es nunca traer datos grandes de vuelta a pandas con `.toPandas()` antes de
+reducirlos.
+
+Y **`asyncio`** resuelve un problema distinto por completo: concurrencia de I/O (esperas de
+red/disco), no cómputo. No lo confundas ni lo mezcles innecesariamente con las herramientas de
+paralelismo de cómputo de este capítulo.
 
 > 🚀 **Pon esto en práctica:** ya puedes intentar
 > [Proyecto 17: Escalando a mil sucursales](../09-proyectos/nivel-5-produccion-dominios/02-escalando-mil-sucursales.md)
-> del Módulo 9 — y si ya resolviste el Proyecto 11 (Módulo 5), reconocerás la misma disciplina
-> de medir antes de optimizar, ahora a una escala mucho mayor.
+> del Módulo 9. Si ya resolviste el Proyecto 11 (Módulo 5), reconocerás la misma disciplina de
+> medir antes de optimizar, ahora a una escala mucho mayor.
 
 Con esto cierra el **Módulo 7: Optimización y Performance**. Ya sabes medir, optimizar
 memoria y velocidad, y escalar más allá de una sola máquina cuando hace falta. El

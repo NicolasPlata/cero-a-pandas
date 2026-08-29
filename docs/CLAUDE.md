@@ -218,8 +218,9 @@ y las convenciones; el backlog documenta el *qué* y el *cuándo*.
 ## Tono y estilo del contenido del libro
 
 Amigable y pedagógico, sin sacrificar rigor técnico. Español neutro. Sin emojis decorativos
-fuera de los marcadores establecidos (`⚠️`, `💡`, `🚀`, y los indicadores de nivel `🟢🟡🔴` del
-Módulo 9). Convención de nombres de variables en el código: `snake_case` (se enseña
+fuera de los marcadores establecidos (`⚠️`, `💡`, `🚀`, `🎯` para el recuadro "Por qué te
+importa este capítulo" al inicio de cada tema de los Módulos 1-8, y los indicadores de nivel
+`🟢🟡🔴` del Módulo 9). Convención de nombres de variables en el código: `snake_case` (se enseña
 explícitamente como convención en 1.1.1). Evitar comentarios de código que expliquen el
 "qué" en vez del "por qué" — el propio Módulo 1 enseña esta regla al lector, así que el
 código de ejemplo del libro debe modelarla.

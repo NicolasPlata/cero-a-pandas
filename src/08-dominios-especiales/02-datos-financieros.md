@@ -5,6 +5,11 @@ más usadas para esto. Este capítulo cubre cómo obtener datos bursátiles, cal
 técnicos, medir retornos y volatilidad, y probar una estrategia de trading simple mediante
 backtesting.
 
+> 🎯 **Por qué te importa este capítulo:** un backtest mal hecho no falla con un error visible;
+> falla mostrándote una estrategia ganadora que en realidad nunca habría funcionado en tiempo
+> real. El `shift()` que ves más abajo no es un detalle técnico menor: es lo que separa un
+> resultado honesto de uno que te hace perder dinero real.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -200,7 +205,7 @@ plt.legend(["Estrategia", "Buy & Hold"])
 plt.show()
 ```
 
-> ⚠️ **El `shift(1)` en `posicion` no es opcional — es lo que separa un backtest válido de
+> ⚠️ **El `shift(1)` en `posicion` no es opcional: es lo que separa un backtest válido de
 > uno con look-ahead bias (sesgo de anticipación).** Sin él, la estrategia estaría "operando"
 > con información de precio de cierre del mismo día en que se genera la señal, algo imposible
 > en la práctica real (no conoces el cierre del día hasta que el día termina). Este es uno de
@@ -208,7 +213,7 @@ plt.show()
 > artificialmente optimistas que no se replicarán en trading real.
 
 Un backtest más completo también consideraría costos de transacción, slippage (diferencia
-entre el precio esperado y el precio real de ejecución), e impuestos — omitidos aquí por
+entre el precio esperado y el precio real de ejecución), e impuestos, omitidos aquí por
 simplicidad pedagógica, pero relevantes en cualquier backtest usado para decisiones reales.
 
 **Ejercicios: Backtesting**
@@ -235,15 +240,16 @@ simplicidad pedagógica, pero relevantes en cualquier backtest usado para decisi
 
 ## Resumen
 
-- **`yfinance`** es la vía más directa para obtener datos bursátiles reales como `DataFrame`;
-  los indicadores técnicos (SMA, EMA, RSI, MACD) son, en esencia, aplicaciones de `rolling()`
-  y `ewm()` que ya conocías del Módulo 5.
-- Los **retornos logarítmicos** son aditivos en el tiempo y preferidos en análisis
-  cuantitativo; la **volatilidad** se calcula como la desviación estándar de los retornos,
-  frecuentemente anualizada.
-- El **backtesting** simula el desempeño histórico de una estrategia — pero es inválido sin
-  `shift()` correcto para evitar look-ahead bias, y siempre debe compararse contra un
-  benchmark simple (buy-and-hold).
+**`yfinance`** es la vía más directa para obtener datos bursátiles reales como `DataFrame`, y
+los indicadores técnicos (SMA, EMA, RSI, MACD) resultan ser, en esencia, aplicaciones de
+`rolling()` y `ewm()` que ya conocías del Módulo 5, no fórmulas nuevas y misteriosas. Para
+medir desempeño, los **retornos logarítmicos** son aditivos en el tiempo y por eso preferidos
+en análisis cuantitativo, mientras que la **volatilidad** se calcula como la desviación
+estándar de esos retornos, frecuentemente anualizada.
+
+El **backtesting** simula el desempeño histórico de una estrategia, pero solo es válido con un
+`shift()` correcto que evite el look-ahead bias, y siempre debe compararse contra un benchmark
+simple (buy-and-hold) para saber si realmente aportó algo.
 
 Siguiente: [8.3 Datos Académicos](03-datos-academicos.md), donde profundizamos en
 `statsmodels` para modelos estadísticos más allá de OLS, y damos una introducción a

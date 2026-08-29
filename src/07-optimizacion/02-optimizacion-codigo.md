@@ -5,6 +5,12 @@ botella reales. Este capítulo cubre las técnicas para resolverlos: desde vecto
 avanzada hasta compilación con Cython/Numba y una primera introducción a Dask para datos que
 exceden la memoria disponible.
 
+> 🎯 **Por qué te importa este capítulo:** no todas estas técnicas valen la pena siempre.
+> Compilar una función con Numba tiene sentido cuando se llama millones de veces sobre arrays
+> numéricos; añadirle esa complejidad a código que ya corre en milisegundos solo te cuesta
+> mantenibilidad sin ganar nada. Saber elegir la herramienta correcta importa tanto como saber
+> usarla.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -20,7 +26,7 @@ df = pd.DataFrame({
 
 ### NumPy ufuncs
 
-Ya usaste ufuncs (funciones universales de NumPy) en el Módulo 5 — aquí profundizamos en por
+Ya usaste ufuncs (funciones universales de NumPy) en el Módulo 5. Aquí profundizamos en por
 qué son tan rápidas y cómo aprovecharlas al máximo. Una ufunc opera sobre arrays completos en
 un solo bucle implementado en C, evitando por completo el overhead del intérprete de Python:
 
@@ -38,7 +44,7 @@ resultado_rapido = df["a"] ** 2 + 2 * df["a"] + 1
 calculo_vectorizado = np.vectorize(calculo_lento)
 ```
 
-> ⚠️ **`np.vectorize()` no compila nada** — es esencialmente un `apply()` disfrazado, útil
+> ⚠️ **`np.vectorize()` no compila nada.** Es esencialmente un `apply()` disfrazado, útil
 > por conveniencia de sintaxis (por ejemplo, para aplicar una función con lógica condicional
 > compleja), pero **no** obtiene la velocidad real de una ufunc nativa de NumPy. Para
 > velocidad real con lógica compleja, necesitas Numba (más adelante en este capítulo) o
@@ -103,7 +109,7 @@ resultado = suma_acumulada_cython(df["a"].values)
 ```
 
 > 💡 Cython requiere un paso de compilación separado y una sintaxis con anotaciones de tipo
-> (`cdef double`) — más fricción de desarrollo que Numba (a continuación), pero da control muy
+> (`cdef double`), con más fricción de desarrollo que Numba (a continuación), pero da control muy
 > fino y es ampliamente usado en librerías del propio ecosistema científico de Python (pandas
 > y NumPy mismos usan Cython internamente para partes de su código). Para la mayoría de casos
 > de uso de un analista de datos, Numba ofrece una relación esfuerzo/beneficio mejor.
@@ -111,8 +117,8 @@ resultado = suma_acumulada_cython(df["a"].values)
 ## Numba
 
 [Numba](https://numba.pydata.org/) compila funciones Python **en tiempo de ejecución**
-(JIT — Just-In-Time) con un simple decorador, sin necesidad de un paso de compilación separado
-ni cambiar la sintaxis del lenguaje — ideal para bucles numéricos que no se pueden vectorizar
+(JIT, Just-In-Time) con un simple decorador, sin necesidad de un paso de compilación separado
+ni cambiar la sintaxis del lenguaje. Es ideal para bucles numéricos que no se pueden vectorizar
 fácilmente:
 
 ```python
@@ -181,7 +187,7 @@ print(resultado)          # muestra un "grafo de tareas" pendiente, no el result
 resultado_final = resultado.compute()   # AHORA se ejecuta el cálculo completo
 ```
 
-> 💡 La API de Dask DataFrame está deliberadamente diseñada para parecerse a pandas — la
+> 💡 La API de Dask DataFrame está deliberadamente diseñada para parecerse a pandas: la
 > mayoría de operaciones que ya conoces (`groupby`, `merge`, `.loc`) funcionan de forma
 > similar, con la diferencia clave de que las operaciones son **perezosas**: construyen un
 > grafo de tareas primero, y solo se ejecutan cuando llamas explícitamente a `.compute()`. Esto
@@ -215,17 +221,18 @@ resultado_final = resultado.compute()   # AHORA se ejecuta el cálculo completo
 
 ## Resumen
 
-- Las **ufuncs de NumPy** son la base de la vectorización rápida; `np.vectorize()` es
-  conveniente pero **no** aporta la velocidad real de una ufunc nativa.
-- **Cython** compila Python a C con anotaciones de tipo — máximo control, más fricción de
-  desarrollo.
-- **Numba** compila con un simple decorador (`@jit`) — mejor relación esfuerzo/beneficio para
-  la mayoría de analistas, pero solo vale la pena para funciones llamadas repetidamente sobre
-  arrays de NumPy puros.
-- **Dask** extiende la API de pandas a datos que no caben en memoria, con ejecución perezosa —
-  introducido aquí, profundizado en el capítulo de paralelización.
-- Ninguna de estas herramientas es gratis en complejidad — vuelve siempre al principio del
-  módulo: mide primero, optimiza después, y solo donde el profiling confirma que hace falta.
+Las **ufuncs de NumPy** son la base de la vectorización rápida; `np.vectorize()` es conveniente
+de escribir, pero no aporta la velocidad real de una ufunc nativa, así que no la confundas con
+una optimización genuina. Para compilar de verdad, **Cython** da control máximo a cambio de más
+fricción de desarrollo (anotaciones de tipo, un paso de compilación), mientras que **Numba**
+ofrece mejor relación esfuerzo/beneficio para la mayoría de analistas con un simple decorador
+`@jit`, aunque solo vale la pena para funciones llamadas repetidamente sobre arrays de NumPy
+puros. Cuando el problema ya no es velocidad sino que los datos no caben en memoria, **Dask**
+extiende la API de pandas con ejecución perezosa, un tema que retomamos con más profundidad en
+el capítulo de paralelización.
+
+Ninguna de estas herramientas es gratis en complejidad. Vuelve siempre al principio del módulo:
+mide primero, optimiza después, y solo donde el profiling confirma que realmente hace falta.
 
 Siguiente: [7.3 Gestión de Memoria](03-gestion-memoria.md), donde el foco pasa de la velocidad
 al espacio: cómo hacer que los mismos datos ocupen mucho menos en memoria.

@@ -5,6 +5,12 @@ sociales, salud pública, políticas públicas. Profundiza en `statsmodels` más
 básico del Módulo 6, e introduce dos ideas centrales de econometría moderna: diseño de
 causalidad y pensamiento causal con DAGs.
 
+> 🎯 **Por qué te importa este capítulo:** en investigación aplicada, un coeficiente
+> estadísticamente significativo no significa nada por sí solo si el diseño detrás no soporta
+> una interpretación causal. Diferencias en diferencias, matching y los DAGs no son
+> formalismos académicos: son lo que te permite defender, frente a un revisor o un comité, que
+> tu resultado no es solo una correlación disfrazada.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -42,7 +48,7 @@ print(modelo.summary())
 ```
 
 La sintaxis de fórmula `"salario ~ educacion_anios + experiencia + region"` se lee como
-"salario en función de educación, experiencia y región" — `statsmodels` maneja automáticamente
+"salario en función de educación, experiencia y región". `statsmodels` maneja automáticamente
 la codificación de `region` (categórica) como variable dummy, sin necesidad de un
 `OneHotEncoder` manual.
 
@@ -87,7 +93,7 @@ modelo_poisson = smf.glm(
 
 > 💡 A diferencia de scikit-learn (orientado a predicción, visto en el Módulo 6), la fortaleza
 > de `statsmodels` está en el **resumen estadístico interpretable**: coeficientes, errores
-> estándar, p-values e intervalos de confianza para cada variable — precisamente lo que
+> estándar, p-values e intervalos de confianza para cada variable: precisamente lo que
 > necesitas para escribir la sección de resultados de un paper o reporte de investigación.
 
 **Ejercicios: GLM**
@@ -113,7 +119,7 @@ acercarse a respuestas causales.
 
 El diseño de **diferencias en diferencias (DiD)** es uno de los más usados en economía
 aplicada y políticas públicas: compara el cambio en un resultado, antes y después de una
-intervención, entre un grupo tratado y un grupo de control — la idea es que cualquier
+intervención, entre un grupo tratado y un grupo de control. La idea es que cualquier
 tendencia general (afectando a ambos grupos por igual) se cancela, aislando el efecto de la
 intervención.
 
@@ -139,12 +145,12 @@ print(modelo_did.summary())
 ```
 
 El coeficiente del término de interacción (`tratado:periodo[T.despues]`) es el estimador de
-diferencias en diferencias — la estimación del efecto causal de la intervención, neta de la
+diferencias en diferencias: la estimación del efecto causal de la intervención, neta de la
 tendencia general que afecta a ambos grupos.
 
 > ⚠️ **DiD depende críticamente del supuesto de "tendencias paralelas"**: que, de no haber
 > existido la intervención, ambos grupos habrían evolucionado de forma similar en el tiempo.
-> Este supuesto no se puede probar directamente con los datos posteriores a la intervención —
+> Este supuesto no se puede probar directamente con los datos posteriores a la intervención.
 > típicamente se argumenta mostrando que las tendencias **antes** de la intervención ya eran
 > similares entre ambos grupos.
 
@@ -152,7 +158,7 @@ tendencia general que afecta a ambos grupos.
 
 El **matching** es otra estrategia para estimar efectos causales: para cada observación
 tratada, buscar una observación de control lo más "similar" posible en sus características
-observables, y comparar los resultados solo entre pares emparejados — reduciendo el sesgo que
+observables, y comparar los resultados solo entre pares emparejados, reduciendo el sesgo que
 vendría de comparar grupos sistemáticamente distintos.
 
 ```python
@@ -173,7 +179,7 @@ print(f"Diferencia promedio (tratado - emparejado): {diferencia_salario.mean():.
 ```
 
 > 💡 El matching es conceptualmente similar al `merge()` espacial del capítulo anterior (buscar
-> "lo más cercano"), pero en el espacio de características, no geográfico — de hecho, aquí
+> "lo más cercano"), pero en el espacio de características, no geográfico. De hecho, aquí
 > reutilizamos `NearestNeighbors` de scikit-learn (Módulo 6) precisamente por esa similitud
 > estructural.
 
@@ -188,8 +194,8 @@ print(f"Diferencia promedio (tratado - emparejado): {diferencia_salario.mean():.
 ## Análisis Causal: introducción a DAGs
 
 Un **DAG** (Directed Acyclic Graph, grafo acíclico dirigido) es una herramienta visual para
-representar explícitamente tus supuestos sobre relaciones causales entre variables — qué causa
-qué — antes de decidir qué modelo estadístico ajustar. No es una herramienta de pandas en sí,
+representar explícitamente tus supuestos sobre relaciones causales entre variables: qué causa
+qué, antes de decidir qué modelo estadístico ajustar. No es una herramienta de pandas en sí,
 pero informa directamente qué variables incluir (o no) en un modelo de regresión.
 
 ```text
@@ -203,7 +209,7 @@ pero informa directamente qué variables incluir (o no) en un modelo de regresi�
 ```
 
 En este DAG hipotético, `región` afecta tanto a `experiencia` (por ejemplo, distintas
-oportunidades laborales) como directamente a `salario` — convirtiéndola en una **variable de
+oportunidades laborales) como directamente a `salario`, convirtiéndola en una **variable de
 confusión (confounder)** que debe incluirse en el modelo para no sesgar el efecto estimado de
 `experiencia` sobre `salario`. Por el contrario, si una variable fuera un resultado
 **posterior** al tratamiento de interés (un "collider" o una variable en el camino causal), la
@@ -211,7 +217,7 @@ recomendación es a menudo la opuesta: **no** incluirla, porque hacerlo introduc
 vez de reducirlo.
 
 > 💡 Librerías como [`dowhy`](https://github.com/py-why/dowhy) permiten especificar un DAG
-> explícitamente en código y usarlo para guiar automáticamente qué variables ajustar — un
+> explícitamente en código y usarlo para guiar automáticamente qué variables ajustar: un
 > paso más allá de dibujar el diagrama a mano, útil cuando el número de variables y relaciones
 > candidatas crece. Para este libro, el DAG es principalmente una **herramienta de
 > pensamiento**: dibujarlo antes de ajustar cualquier modelo te obliga a hacer explícitos tus
@@ -242,16 +248,17 @@ vez de reducirlo.
 
 ## Resumen
 
-- La **API de fórmulas de `statsmodels`** (`smf.ols`, `smf.glm`) es más legible que la API de
-  arrays para trabajo académico, y maneja automáticamente variables categóricas.
-- Los **GLM** extienden la regresión más allá de variables continuas: `Binomial` para
-  binarias, `Poisson` para conteos.
-- **Diferencias en diferencias** y **matching** son diseños econométricos para acercarse a
-  estimaciones causales a partir de datos observacionales, cada uno con supuestos específicos
-  que deben justificarse, no solo asumirse.
-- Un **DAG**, aunque no es una herramienta de pandas, disciplina el pensamiento sobre qué
-  variables controlar (confounders) y cuáles evitar (colliders) antes de ajustar cualquier
-  modelo.
+La **API de fórmulas de `statsmodels`** (`smf.ols`, `smf.glm`) es más legible que la API de
+arrays para trabajo académico, y maneja automáticamente variables categóricas. Cuando la
+variable dependiente no es continua, los **GLM** extienden la regresión con `Binomial` para
+binarias o `Poisson` para conteos.
+
+Para acercarse a estimaciones causales a partir de datos observacionales, este capítulo
+presentó dos diseños econométricos: **diferencias en diferencias** y **matching**, cada uno
+con supuestos específicos que hay que justificar explícitamente, nunca simplemente asumir. Y
+aunque un **DAG** no es una herramienta de pandas, disciplina el pensamiento sobre qué
+variables controlar (confounders) y cuáles evitar (colliders) antes de ajustar cualquier
+modelo, algo que ningún paquete estadístico puede decidir por ti.
 
 Siguiente: [8.4 ETL y Pipelines](04-etl-pipelines.md), el capítulo de cierre del módulo y del
 libro antes de los proyectos integradores, donde llevamos todo lo aprendido a un pipeline de

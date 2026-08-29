@@ -1,9 +1,14 @@
 # 5.1 Time Series
 
-Pandas nació, en parte, para analizar series financieras — y su soporte para datos temporales
+Pandas nació, en parte, para analizar series financieras, y su soporte para datos temporales
 sigue siendo uno de sus puntos más fuertes frente a otras herramientas. Este capítulo cubre el
 `DatetimeIndex`, el resampling, las ventanas móviles y las operaciones de desplazamiento
 temporal que forman la base de cualquier análisis de series de tiempo.
+
+> 🎯 **Por qué te importa este capítulo:** ventas diarias, precios de acciones, sensores de
+> temperatura, tráfico de un sitio web. Si un dataset tiene fecha, tarde o temprano vas a
+> necesitar `resample()` o una media móvil para responder la pregunta real: "¿estamos
+> creciendo, o es solo ruido?"
 
 ```python
 import pandas as pd
@@ -22,7 +27,7 @@ ventas_diarias = pd.Series(
 
 ### Creación
 
-`pd.date_range()` genera secuencias de fechas con una frecuencia específica — es la forma más
+`pd.date_range()` genera secuencias de fechas con una frecuencia específica. Es la forma más
 común de construir un `DatetimeIndex` desde cero:
 
 ```python
@@ -34,7 +39,7 @@ pd.date_range("2026-01-01", periods=5, freq="h")               # 5 horas consecu
 pd.date_range("2026-01-01", periods=5, freq="B")                 # 5 días hábiles (excluye fines de semana)
 ```
 
-Ya conoces `pd.to_datetime()` desde el Módulo 3 — es la otra vía principal para obtener un
+Ya conoces `pd.to_datetime()` desde el Módulo 3: es la otra vía principal para obtener un
 `DatetimeIndex`, partiendo de datos existentes en vez de generarlos:
 
 ```python
@@ -60,7 +65,7 @@ df = df.set_index("fecha")   # ahora el índice es un DatetimeIndex
 
 ### Propiedades
 
-Con un `DatetimeIndex` como índice, el slicing por fecha se vuelve extremadamente natural —
+Con un `DatetimeIndex` como índice, el slicing por fecha se vuelve extremadamente natural,
 mucho más flexible que el slicing posicional que viste en el Módulo 2:
 
 ```python
@@ -90,7 +95,7 @@ ventas_diarias.index.is_month_start      # booleano: ¿es el primer día del mes
 
 ### Upsampling y downsampling
 
-`resample()` cambia la frecuencia de una serie temporal — **downsampling** agrega datos hacia
+`resample()` cambia la frecuencia de una serie temporal. **Downsampling** agrega datos hacia
 una frecuencia más gruesa (de diario a semanal, por ejemplo); **upsampling** los expande hacia
 una frecuencia más fina (de mensual a diario), típicamente introduciendo nulos que luego se
 rellenan o interpolan:
@@ -107,7 +112,7 @@ ventas_mensuales = ventas_diarias.resample("ME").sum()
 ventas_mensuales.resample("D").ffill()
 ```
 
-`resample()` es conceptualmente un `groupby()` sobre intervalos de tiempo — de hecho, admite
+`resample()` es conceptualmente un `groupby()` sobre intervalos de tiempo; de hecho, admite
 la misma sintaxis de `agg()` con múltiples funciones:
 
 ```python
@@ -151,7 +156,7 @@ ventas_diarias.resample("2D").sum()        # cada 2 días (los múltiplos numér
 ### Rolling windows
 
 Una **ventana móvil (rolling window)** calcula una estadística sobre una ventana de tamaño
-fijo que se desliza a través de la serie — la media móvil es el ejemplo clásico, usada para
+fijo que se desliza a través de la serie. La media móvil es el ejemplo clásico, usada para
 suavizar ruido y revelar tendencias:
 
 ```python
@@ -192,7 +197,7 @@ ventas_diarias.rolling(window=7, center=True).mean()        # ventana centrada, 
 ### Expanding
 
 `expanding()` es similar a `rolling()`, pero la ventana **crece indefinidamente** desde el
-inicio de la serie en vez de tener un tamaño fijo — útil para estadísticas acumulativas como
+inicio de la serie en vez de tener un tamaño fijo. Útil para estadísticas acumulativas como
 "el promedio de todo lo que ha pasado hasta ahora":
 
 ```python
@@ -237,7 +242,7 @@ serie_irregular.interpolate(method="time")   # respeta que hay más días entre 
 ## Lag, Shift y Diff
 
 `shift()` desplaza los valores de una serie hacia adelante o atrás en el tiempo, manteniendo
-el índice original — la base para comparar un valor contra su versión "de ayer" o crear
+el índice original: la base para comparar un valor contra su versión "de ayer" o crear
 variables de lag para modelos predictivos:
 
 ```python
@@ -278,7 +283,7 @@ plt.show()
 ```
 
 Si la media móvil se mantiene consistentemente por encima del promedio expandido, es una señal
-visual simple de tendencia creciente — un análisis de tendencia más riguroso (descomposición
+visual simple de tendencia creciente. Un análisis de tendencia más riguroso (descomposición
 estacional, modelos ARIMA, etc.) queda fuera del alcance de este libro centrado en pandas, pero
 esta base te prepara para herramientas como `statsmodels`, que verás mencionada en el
 Módulo 8.
@@ -307,12 +312,11 @@ Módulo 8.
   se vuelve natural.
 - **`resample()`** cambia la frecuencia de una serie — piénsalo como un `groupby()` sobre
   intervalos de tiempo.
-- **`rolling()`** calcula estadísticas sobre una ventana de tamaño fijo (tendencias
-  recientes); **`expanding()`** las calcula sobre una ventana que crece desde el inicio
-  (acumulados históricos).
-- **`shift()`**, **`diff()`** y **`pct_change()`** son la base de cualquier análisis de
-  crecimiento período a período.
+Para tendencias recientes, **`rolling()`** calcula estadísticas sobre una ventana de tamaño
+fijo; para acumulados históricos, **`expanding()`** las calcula sobre una ventana que crece
+desde el inicio. Y **`shift()`**, **`diff()`** y **`pct_change()`** son la base de cualquier
+análisis de crecimiento período a período.
 
-Siguiente: [5.2 Operaciones Vectorizadas](02-operaciones-vectorizadas.md), donde formalizamos
-por qué las operaciones que has usado a lo largo del libro son más rápidas que un loop
-equivalente — y cuándo esa diferencia realmente importa.
+En [5.2 Operaciones Vectorizadas](02-operaciones-vectorizadas.md) formalizamos por qué las
+operaciones que has usado a lo largo del libro son más rápidas que un loop equivalente, y
+cuándo esa diferencia realmente importa.

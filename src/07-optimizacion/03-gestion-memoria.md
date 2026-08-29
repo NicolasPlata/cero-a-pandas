@@ -4,6 +4,11 @@ A veces el problema no es la velocidad, sino que el dataset simplemente no cabe 
 disponible. Este capítulo cubre cuatro técnicas para reducir el uso de memoria de un
 `DataFrame`, frecuentemente por un factor de 2x a 10x, sin perder información.
 
+> 🎯 **Por qué te importa este capítulo:** "compra más RAM" no siempre es una opción, y ni
+> siquiera es la primera que deberías considerar. Con frecuencia, un `DataFrame` está usando
+> 5 o 10 veces la memoria que realmente necesita simplemente porque nadie ajustó los tipos de
+> dato después de cargarlo.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -50,15 +55,15 @@ con `downcast` es más seguro que adivinar manualmente:
 pd.to_numeric(df["edad"], downcast="integer")   # elige automáticamente el int más pequeño que sirve
 ```
 
-> ⚠️ **Elegir un tipo demasiado pequeño causa overflow silencioso** en algunas operaciones —
-> por ejemplo, sumar dos columnas `int8` puede exceder el rango de `int8` y "dar la vuelta" a
+> ⚠️ **Elegir un tipo demasiado pequeño causa overflow silencioso** en algunas operaciones.
+> Por ejemplo, sumar dos columnas `int8` puede exceder el rango de `int8` y "dar la vuelta" a
 > un valor incorrecto sin lanzar ningún error. Verifica siempre el rango real de tus datos
 > (`.min()`, `.max()`) antes de reducir el tipo, y ten cuidado con operaciones posteriores que
 > podrían generar valores fuera de ese rango original.
 
 ### float32 vs float64
 
-El mismo principio aplica a los flotantes — `float32` usa la mitad de memoria que `float64`, a
+El mismo principio aplica a los flotantes: `float32` usa la mitad de memoria que `float64`, a
 costa de precisión:
 
 ```python
@@ -86,7 +91,7 @@ diferencia.abs().max()   # generalmente del orden de 1e-7, insignificante para l
 
 ## Category Dtype
 
-Ya usaste `category` en el Módulo 3 — aquí cuantificamos su impacto real en memoria:
+Ya usaste `category` en el Módulo 3. Aquí cuantificamos su impacto real en memoria:
 
 ```python
 df["categoria"].memory_usage(deep=True)                        # como object (texto): varios MB
@@ -127,7 +132,7 @@ df["categoria"].cat.categories               # el "diccionario" de valores únic
 
 Cuando una columna numérica contiene **mayoritariamente un mismo valor** (frecuentemente
 ceros, común en datos de conteos o en resultados de one-hot encoding), una estructura
-**sparse** almacena solo los valores distintos al valor "de fondo", junto con sus posiciones —
+**sparse** almacena solo los valores distintos al valor "de fondo", junto con sus posiciones,
 ahorrando memoria proporcionalmente a cuán dispersos son los datos:
 
 ```python
@@ -213,16 +218,16 @@ tabla = pq.read_table("datos_grandes.parquet", memory_map=True)
 
 ## Resumen
 
-- **Downcast de enteros y flotantes** (`int8`/`int16`/`int32`, `float32`) reduce memoria
-  directamente proporcional al tipo elegido — pero cuidado con overflow si el rango real de
-  los datos puede crecer después.
-- **`category`** ahorra memoria significativamente cuando hay pocos valores únicos repetidos
-  muchas veces; puede empeorar la memoria si la cardinalidad es alta.
-- **Sparse arrays** son ideales para columnas mayoritariamente compuestas de un solo valor
-  (típicamente ceros), como resultados de one-hot encoding con muchas categorías.
-- **Memory mapping** permite trabajar con archivos más grandes que la RAM disponible sin
-  cargarlos completos — más relevante en formatos binarios y PyArrow que en el flujo típico de
-  `pd.read_csv()`.
+El **downcast de enteros y flotantes** (`int8`/`int16`/`int32`, `float32`) reduce memoria en
+proporción directa al tipo elegido, pero con una advertencia: cuidado con el overflow si el
+rango real de los datos puede crecer después de aplicarlo. **`category`** ahorra memoria de
+forma significativa cuando hay pocos valores únicos repetidos muchas veces, aunque puede
+empeorar las cosas si la cardinalidad resulta ser alta. Para columnas mayoritariamente
+compuestas de un solo valor (típicamente ceros, como en resultados de one-hot encoding con
+muchas categorías), los **sparse arrays** son la herramienta correcta. Y cuando ni siquiera
+downcast y category bastan porque el archivo es más grande que la RAM disponible, el **memory
+mapping** permite trabajar con él sin cargarlo completo, algo más relevante en formatos
+binarios y PyArrow que en el flujo típico de `pd.read_csv()`.
 
 Siguiente: [7.4 Paralelización](04-paralelizacion.md), el capítulo de cierre del módulo, donde
 distribuimos el trabajo entre múltiples núcleos o máquinas para escalar más allá de una sola

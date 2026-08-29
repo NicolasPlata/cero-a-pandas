@@ -1,9 +1,14 @@
 # 8.1 Datos Geoespaciales con GeoPandas
 
-[GeoPandas](https://geopandas.org/) extiende pandas con un tipo de columna adicional —
-**geometría** (puntos, líneas, polígonos) — y operaciones espaciales sobre ella. Si tu trabajo
+[GeoPandas](https://geopandas.org/) extiende pandas con un tipo de columna adicional:
+**geometría** (puntos, líneas, polígonos), y operaciones espaciales sobre ella. Si tu trabajo
 involucra ubicaciones, rutas, regiones o cualquier dato con componente geográfico, este
 capítulo es tu punto de entrada.
+
+> 🎯 **Por qué te importa este capítulo:** cualquier pregunta que empiece con "¿dónde?"
+> —qué sucursales están cerca de qué clientes, qué zonas concentran más ventas, qué rutas se
+> cruzan— necesita operaciones espaciales, no solo filtros numéricos. GeoPandas es lo que
+> convierte esa pregunta en código.
 
 ```bash
 pip install geopandas
@@ -52,7 +57,7 @@ gpd.read_file("barrios.geojson")   # GeoJSON
 gpd.read_file("regiones.shp")        # Shapefile
 ```
 
-> 💡 Un `GeoDataFrame` se comporta como un `DataFrame` normal en casi todo — `.loc`, `.iloc`,
+> 💡 Un `GeoDataFrame` se comporta como un `DataFrame` normal en casi todo: `.loc`, `.iloc`,
 > `groupby()`, `merge()`, todo lo que ya conoces sigue funcionando igual. La diferencia es que
 > tiene una columna `geometry` "activa" que habilita además los métodos y operaciones
 > espaciales de este capítulo.
@@ -78,7 +83,7 @@ zona_gdf.geometry.centroid            # punto central geométrico de cada geomet
 ```
 
 > ⚠️ **`.area` y `.length` en coordenadas geográficas (CRS tipo `EPSG:4326`, en grados) NO
-> están en metros ni kilómetros** — están en grados, una unidad sin significado físico
+> están en metros ni kilómetros.** Están en grados, una unidad sin significado físico
 > intuitivo para medir distancias reales. Para obtener área o longitud en unidades físicas
 > reales (metros, km²), primero debes reproyectar a un CRS métrico apropiado para tu región,
 > como verás en la siguiente sección.
@@ -113,7 +118,7 @@ tiendas_geo.crs = "EPSG:4326"   # asigna un CRS si el GeoDataFrame no lo tenía 
 
 ### to_crs()
 
-`to_crs()` reproyecta las geometrías a un nuevo sistema de coordenadas — típicamente, un CRS
+`to_crs()` reproyecta las geometrías a un nuevo sistema de coordenadas, típicamente un CRS
 métrico apropiado para tu región de trabajo antes de calcular áreas o distancias:
 
 ```python
@@ -161,7 +166,7 @@ tiendas_metricas.geometry.iloc[0].distance(tiendas_metricas.geometry.iloc[1])
 
 ### Merge espacial
 
-`sjoin()` (spatial join) es el equivalente geoespacial de `merge()` (Módulo 3) — combina dos
+`sjoin()` (spatial join) es el equivalente geoespacial de `merge()` (Módulo 3): combina dos
 `GeoDataFrame`s basándose en su **relación espacial** (contención, intersección, cercanía), no
 en una columna de clave compartida:
 
@@ -248,16 +253,18 @@ mapa.save("mapa_tiendas.html")
 
 ## Resumen
 
-- Un **`GeoDataFrame`** es un `DataFrame` con una columna de geometría (`Point`, `LineString`,
-  `Polygon`) construida con Shapely — el resto de la API de pandas sigue funcionando igual.
-- El **CRS** define cómo se interpretan las coordenadas; usa `EPSG:4326` para almacenamiento e
-  intercambio, pero reproyecta (`to_crs()`) a un CRS métrico antes de calcular áreas o
-  distancias reales.
-- Las **operaciones espaciales** (`buffer`, `contains`, `intersects`, `distance`) y el
-  **spatial join** (`sjoin()`) responden preguntas de relación geográfica que un `merge()`
-  normal no puede resolver.
-- **`.plot()`** para exploración rápida y estática; **`folium`** para mapas interactivos como
-  producto final.
+Un **`GeoDataFrame`** es, en el fondo, un `DataFrame` con una columna de geometría (`Point`,
+`LineString`, `Polygon`) construida con Shapely: el resto de la API de pandas que ya conoces
+sigue funcionando exactamente igual. El **CRS** define cómo se interpretan esas coordenadas;
+usa `EPSG:4326` para almacenamiento e intercambio, pero reproyecta (`to_crs()`) a un CRS
+métrico antes de calcular áreas o distancias reales, o los números saldrán mal sin ningún
+error que te avise.
+
+Para responder preguntas de relación geográfica que un `merge()` normal no puede resolver,
+recurre a las **operaciones espaciales** (`buffer`, `contains`, `intersects`, `distance`) y al
+**spatial join** (`sjoin()`). Y para mostrar resultados: `.plot()` sirve para exploración
+rápida y estática, mientras que `folium` es la opción cuando el mapa interactivo es el
+producto final.
 
 Siguiente: [8.2 Datos Financieros](02-datos-financieros.md), donde cambiamos de dominio
 geoespacial a series de precios, retornos y análisis técnico básico.

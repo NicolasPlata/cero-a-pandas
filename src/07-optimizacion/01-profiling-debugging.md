@@ -4,6 +4,11 @@ Antes de optimizar nada, necesitas saber **dónde** mirar. Este capítulo cubre 
 herramientas de profiling (memoria y tiempo) y debugging que te dicen exactamente eso, en vez
 de optimizar por intuición.
 
+> 🎯 **Por qué te importa este capítulo:** la intuición sobre qué parte de tu código es
+> lenta falla con más frecuencia de la que crees. Perfilar antes de optimizar evita que
+> pases horas acelerando una función que representa el 2% del tiempo total, mientras el
+> cuello de botella real sigue intacto.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -20,7 +25,7 @@ df = pd.DataFrame({
 
 ### memory_profiler
 
-La librería `memory_profiler` mide el uso de memoria **línea por línea** de una función —
+La librería `memory_profiler` mide el uso de memoria **línea por línea** de una función:
 mucho más preciso que adivinar a partir del tamaño del dataset:
 
 ```bash
@@ -93,7 +98,7 @@ plt.show()
 ```
 
 Una línea que sube y luego **no baja** después de que la función termina (y el objeto debería
-haberse liberado) es la señal clásica de un leak — frecuentemente causado por referencias que
+haberse liberado) es la señal clásica de un leak, frecuentemente causado por referencias que
 persisten sin querer (variables globales, closures, o cachés que crecen sin límite).
 
 **Ejercicios: Visualización de memoria**
@@ -166,7 +171,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
      5         1      19850.0  19850.0     92.3      resumen = df.groupby("categoria").agg(...)
 ```
 
-Esta salida deja claro que el `groupby().agg()` es responsable del 92% del tiempo — ahí es
+Esta salida deja claro que el `groupby().agg()` es responsable del 92% del tiempo. Ahí es
 exactamente donde valdría la pena enfocar cualquier esfuerzo de optimización, no en el `.copy()`
 inicial.
 
@@ -181,7 +186,7 @@ inicial.
 
 ### pdb en contexto de pandas
 
-Ya viste `pdb` en el Módulo 1 para Python general — aplicado a pandas, es especialmente útil
+Ya viste `pdb` en el Módulo 1 para Python general. Aplicado a pandas, es especialmente útil
 para inspeccionar el estado exacto de un `DataFrame` en el punto donde algo falla:
 
 ```python
@@ -268,16 +273,12 @@ def pipeline_con_logging(df):
 
 ## Resumen
 
-- **`memory_profiler`** mide uso de memoria línea por línea — revela que operaciones como
-  `.copy()` son frecuentemente las responsables de picos de memoria.
-- **`cProfile`** perfila por función (visión general); **`line_profiler`** perfila por línea
-  (detalle preciso) — úsalos en ese orden: primero identifica la función lenta, luego la línea
-  específica dentro de ella.
-- **`pdb`** (y `%debug` en Jupyter) permite inspeccionar el estado exacto de tus datos en el
-  momento de un error.
-- **`logging`**, no `print()`, es el estándar para diagnosticar pipelines de datos en
-  producción.
+**`memory_profiler`** mide uso de memoria línea por línea, y suele revelar que operaciones
+como `.copy()` son las responsables de los picos que no esperabas. Para tiempo, el orden
+correcto es primero **`cProfile`** (visión general por función) y luego **`line_profiler`**
+(detalle por línea) dentro de la función que resultó ser el cuello de botella real.
 
-Siguiente: [7.2 Optimización de Código](02-optimizacion-codigo.md), donde usamos esta
-capacidad de medición para aplicar (con criterio) las técnicas de optimización más avanzadas
-de este módulo.
+Para errores puntuales, **`pdb`** (o `%debug` en Jupyter) te deja inspeccionar el estado exacto
+de tus datos en el momento en que algo falló, en vez de adivinar desde el traceback. Y en
+producción, **`logging`** reemplaza a `print()` como estándar para diagnosticar pipelines: deja
+un rastro que puedes revisar después, no solo mientras el proceso está corriendo frente a ti.

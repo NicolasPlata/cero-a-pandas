@@ -2,7 +2,7 @@
 
 Este libro está diseñado para completarse en aproximadamente **300-350 horas** de contenido
 teórico (Módulos 1-8), más un bloque adicional y sustancial de práctica en el Módulo 9, cuyos
-**19 proyectos** puedes dosificar a tu propio ritmo — no se espera que completes los 19 antes
+**19 proyectos** puedes dosificar a tu propio ritmo. No se espera que completes los 19 antes
 de considerar el libro terminado. Esta página te ayuda a planificar ese tiempo de forma
 realista según tu disponibilidad, y a reconocer si vas por buen camino.
 
@@ -21,7 +21,7 @@ realista según tu disponibilidad, y a reconocer si vas por buen camino.
 | 9. Proyectos Integradores (19 proyectos) | 120-200, según cuántos completes |
 
 Si ya tienes experiencia previa con Python (Módulo 1.1) o con NumPy/Jupyter (Módulo 1.2),
-puedes avanzar considerablemente más rápido por esas secciones específicas — usa el checklist
+puedes avanzar considerablemente más rápido por esas secciones específicas. Usa el checklist
 de "qué deberías saber" al inicio de cada módulo para decidir si necesitas el capítulo
 completo o solo una revisión rápida.
 
@@ -50,7 +50,7 @@ elegidos vale más que completar los 19 de forma apresurada.
 | **Media** | 6-8 meses | 12-15 horas/semana |
 | **Flexible** | 9-12 meses | 8-10 horas/semana |
 
-Ninguna de estas velocidades es "la correcta" — la mejor es la que puedas sostener de forma
+Ninguna de estas velocidades es "la correcta": la mejor es la que puedas sostener de forma
 consistente. Un ritmo flexible mantenido durante 12 meses produce mejor aprendizaje que un
 ritmo rápido abandonado en la semana 3 por agotamiento.
 
@@ -58,12 +58,12 @@ ritmo rápido abandonado en la semana 3 por agotamiento.
 
 Para una dedicación de referencia de 15 horas semanales (ritmo medio):
 
-- **6 horas** — lectura de teoría y ejemplos de código de los capítulos.
-- **6 horas** — resolución de los ejercicios de subtema e integradores de cada capítulo.
-- **2 horas** — trabajo en los proyectos del Módulo 9 (distribuido a lo largo de todo el
-  proceso, no solo al final — ver más abajo).
-- **1 hora** — revisión y consolidación: releer notas, resolver dudas pendientes, actualizar
-  tu propio resumen de conceptos clave.
+De esas 15 horas, un poco menos de la mitad (6 horas) va a lectura de teoría y ejemplos de
+código de los capítulos, y otras 6 a resolver los ejercicios de subtema e integradores de cada
+capítulo. Las 3 horas restantes se dividen entre el trabajo en los proyectos del Módulo 9,
+distribuido a lo largo de todo el proceso y no solo al final (ver más abajo), y una hora de
+revisión y consolidación: releer notas, resolver dudas pendientes, actualizar tu propio resumen
+de conceptos clave.
 
 Ajusta las proporciones a tu ritmo total, pero mantén la lógica: dedica más tiempo a
 **practicar** (ejercicios) que a **leer**. La comprensión de pandas se construye escribiendo
@@ -84,7 +84,7 @@ hacer sin ayuda en cada etapa:
 ## Cómo recorrer los 19 proyectos del Módulo 9
 
 Aunque el Módulo 9 aparece al final del libro, sus proyectos **no** requieren esperar a
-terminar los Módulos 1-8 por completo — cada uno indica su propio requisito previo exacto en
+terminar los Módulos 1-8 por completo: cada uno indica su propio requisito previo exacto en
 el propio capítulo. De hecho, el Nivel 0 ni siquiera necesita pandas: puedes intentar el
 Proyecto 1 apenas termines el Módulo 1.1. La tabla siguiente resume cuándo, en tu lectura del
 libro, cada proyecto queda a tu alcance:
@@ -96,31 +96,31 @@ libro, cada proyecto queda a tu alcance:
 | **Módulos 3-4** (Manipulación de Datos + EDA) | Proyectos 6-9 (Nivel 2) |
 | **Módulo 5** (Operaciones Avanzadas) | Proyectos 10-12 (Nivel 3) |
 | **Módulo 6** (Estadística y ML) | Proyectos 13-14 (Nivel 4) |
-| **Módulos 7-8** (Optimización + Dominios) | Proyectos 15-18 (Nivel 4 y 5) — el Proyecto 15 necesita, además de 6.3, el capítulo 8.3 |
+| **Módulos 7-8** (Optimización + Dominios) | Proyectos 15-18 (Nivel 4 y 5); el Proyecto 15 necesita, además de 6.3, el capítulo 8.3 |
 | Todo el libro (a tu elección) | Proyecto 19 (Capstone) |
 
 Cada capítulo de módulo (1 a 8) también cierra con un bloque **"🚀 Pon esto en práctica"** que
 te recuerda, en el momento exacto en que termina de ser relevante, qué proyectos ya puedes
-intentar — no necesitas volver aquí cada vez para saberlo.
+intentar, así que no necesitas volver aquí cada vez para saberlo.
 
 Intercalar proyectos con el contenido teórico, en vez de dejarlos todos para el final,
-refuerza el aprendizaje de cada módulo mientras aún está fresco — y hace que el libro se
+refuerza el aprendizaje de cada módulo mientras aún está fresco, y hace que el libro se
 sienta menos como un maratón de lectura y más como un proceso continuo de construcción. Los
 proyectos 1-18 siguen, además, la historia de una única empresa ficticia ("Grano de Datos")
-que crece junto con tus habilidades — verás el mismo negocio evolucionar de un cuaderno de
+que crece junto con tus habilidades: verás el mismo negocio evolucionar de un cuaderno de
 ventas a mano (Proyecto 2) a un pipeline de datos automatizado (Proyecto 16).
 
 ## Qué hacer si te atascas
 
-Es normal atascarse — pandas tiene una superficie amplia y algunos comportamientos genuinamente
+Es normal atascarse: pandas tiene una superficie amplia y algunos comportamientos genuinamente
 poco intuitivos (varios de ellos señalados explícitamente con ⚠️ a lo largo del libro). Si un
 concepto no queda claro:
 
 1. Vuelve a ejecutar el código de ejemplo tú mismo, línea por línea, en vez de solo leerlo.
 2. Revisa si el concepto se apoya en algo de un módulo anterior que valga la pena repasar
    (los capítulos suelen indicar explícitamente estas dependencias).
-3. Consulta la documentación oficial o Stack Overflow (ver [Recursos Recomendados](recursos.md))
-   — buscar el error exacto que obtuviste es frecuentemente más rápido que releer teoría.
+3. Consulta la documentación oficial o Stack Overflow (ver [Recursos Recomendados](recursos.md)).
+   Buscar el error exacto que obtuviste es frecuentemente más rápido que releer teoría.
 4. Sigue adelante y vuelve más tarde. Algunos conceptos (especialmente `MultiIndex` y
    `groupby` avanzado) se asientan mejor después de haberlos usado en un proyecto real, no
    solo en el ejercicio aislado donde se introdujeron.

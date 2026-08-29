@@ -5,6 +5,11 @@ numéricas en escalas comparables, categorías codificadas, y una separación ho
 de entrenamiento y de evaluación. Este capítulo cubre exactamente esa preparación, usando el
 dataset `clientes` presentado en la introducción del módulo.
 
+> 🎯 **Por qué te importa este capítulo:** un modelo con una fuga de datos (data leakage)
+> puede verse espectacular en pruebas y fallar por completo en producción. El orden en que
+> preparas los datos —dividir antes de transformar, no al revés— es lo que separa un modelo
+> confiable de uno que miente sobre su propio desempeño.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -28,7 +33,7 @@ clientes["churn"] = np.random.binomial(1, prob_churn)
 
 ### StandardScaler y MinMaxScaler
 
-Ya adelantaste la fórmula de normalización y estandarización en el Módulo 3 — aquí usamos las
+Ya adelantaste la fórmula de normalización y estandarización en el Módulo 3. Aquí usamos las
 herramientas dedicadas de scikit-learn, que además **recuerdan** los parámetros de escalado
 para aplicarlos consistentemente a datos nuevos:
 
@@ -51,7 +56,7 @@ datos_estandarizados_df = pd.DataFrame(datos_estandarizados, columns=columnas_nu
 
 > ⚠️ Por qué el escalado importa: algoritmos basados en distancia (KNN, SVM, K-Means) o en
 > gradiente (regresión logística, redes neuronales) son sensibles a la escala de las
-> variables — una columna en miles (`ingreso_mensual`) dominaría artificialmente sobre una
+> variables. Una columna en miles (`ingreso_mensual`) dominaría artificialmente sobre una
 > columna en decenas (`edad`) si no se escalan a un rango comparable. Los modelos basados en
 > árboles (que verás en 6.4) son una excepción notable: **no** requieren escalado, porque
 > dividen el espacio por umbrales, no por distancias.
@@ -59,7 +64,7 @@ datos_estandarizados_df = pd.DataFrame(datos_estandarizados, columns=columnas_nu
 ### Robust scaling
 
 `RobustScaler` usa la mediana y el rango intercuartílico (IQR) en vez de la media y la
-desviación estándar — es preferible cuando tus datos tienen outliers significativos (Módulo
+desviación estándar. Es preferible cuando tus datos tienen outliers significativos (Módulo
 3.1), porque la mediana y el IQR son mucho menos sensibles a valores extremos:
 
 ```python
@@ -96,7 +101,7 @@ evitando **multicolinealidad perfecta** entre las columnas dummy — relevante e
 para modelos lineales como la regresión.
 
 La versión de scikit-learn (`OneHotEncoder`) es preferible dentro de un `Pipeline` (que verás
-en 6.3), porque —al igual que los scalers— **recuerda** las categorías vistas en entrenamiento
+en 6.3), porque, al igual que los scalers, **recuerda** las categorías vistas en entrenamiento
 para aplicarlas consistentemente a datos nuevos:
 
 ```python
@@ -208,7 +213,7 @@ print(y_train.value_counts(normalize=True))
 print(y_test.value_counts(normalize=True))
 ```
 
-> ⚠️ **La regla de oro es que el conjunto de test nunca debe influir en el entrenamiento —
+> ⚠️ **La regla de oro es que el conjunto de test nunca debe influir en el entrenamiento,
 > ni siquiera indirectamente.** Un error muy común es calcular el `StandardScaler` (o
 > cualquier otra transformación) sobre el dataset **completo** antes de dividir, lo cual filtra
 > información del conjunto de test hacia el de entrenamiento ("data leakage"). El orden
@@ -225,7 +230,7 @@ print(y_test.value_counts(normalize=True))
 
 ## Cross-Validation
 
-Una sola división train/test depende de qué filas cayeron por azar en cada conjunto —
+Una sola división train/test depende de qué filas cayeron por azar en cada conjunto:
 **k-fold cross-validation** promedia el desempeño sobre `k` divisiones distintas, dando una
 estimación más robusta y menos dependiente de una partición particular:
 
@@ -275,18 +280,24 @@ scores_estratificados = cross_val_score(modelo, X, y, cv=skfold, scoring="accura
 
 ## Resumen
 
-- **Escalar** variables numéricas (`StandardScaler`, `MinMaxScaler`, `RobustScaler`) es
-  necesario para modelos basados en distancia o gradiente; los modelos de árboles no lo
-  requieren.
-- **One-hot encoding** para categorías nominales; **encoding ordinal** para categorías con
-  orden natural — nunca uses códigos numéricos arbitrarios para categorías sin orden.
-- El **desbalance de clases** requiere atención explícita (oversampling, undersampling,
-  estratificación) para evitar modelos sesgados hacia la clase mayoritaria.
-- **Divide antes de transformar**: ajusta (`fit`) cualquier preprocesamiento solo sobre el
-  conjunto de entrenamiento para evitar data leakage.
-- **Cross-validation** (idealmente estratificada) da una estimación de desempeño más robusta
-  que una sola división train/test.
+**Escalar** variables numéricas (`StandardScaler`, `MinMaxScaler`, `RobustScaler`) es necesario
+para modelos basados en distancia o gradiente; los modelos de árboles no lo requieren. Para
+categorías, la regla es simple: **one-hot encoding** cuando no hay un orden natural entre
+ellas, **encoding ordinal** cuando sí lo hay. Nunca uses códigos numéricos arbitrarios para
+categorías sin orden: el modelo interpretaría esa numeración como una relación matemática que
+no existe.
 
-Siguiente: [6.3 Integración con Scikit-learn](03-integracion-scikit-learn.md), donde
-formalizamos todo este proceso de preparación dentro de un `Pipeline` reproducible y seguro
-contra data leakage.
+El **desbalance de clases** también exige atención explícita. Sin oversampling, undersampling
+o estratificación, un modelo puede aprender a predecir siempre la clase mayoritaria y aun así
+mostrar un accuracy engañosamente alto.
+
+Pero la regla más importante de todo el capítulo es esta: **divide antes de transformar**.
+Ajusta (`fit`) cualquier preprocesamiento solo sobre el conjunto de entrenamiento; si dejas que
+el escalado o el encoding vean datos de evaluación durante el ajuste, estás filtrando
+información que el modelo no debería tener todavía. Y para medir el desempeño con más
+confianza que una sola división train/test, recurre a **cross-validation**, idealmente
+estratificada.
+
+Toda esta preparación —escalado, encoding, división de datos— se vuelve mucho más
+manejable cuando dejas de hacerla a mano y la encapsulas en un `Pipeline`. Eso es exactamente
+lo que veremos en [6.3 Integración con Scikit-learn](03-integracion-scikit-learn.md).

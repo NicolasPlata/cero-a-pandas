@@ -4,6 +4,11 @@ Este capítulo da el salto de la estadística **descriptiva** (Módulo 4: "¿có
 datos?") a la **inferencial**: "¿es esta diferencia que observo real, o podría deberse al
 azar?". Pandas prepara los datos; `scipy.stats` y `statsmodels` ejecutan los tests.
 
+> 🎯 **Por qué te importa este capítulo:** cualquiera puede calcular que dos promedios son
+> distintos. Lo que distingue a alguien que sabe de datos es poder responder si esa diferencia
+> es real o es ruido de muestreo, antes de recomendar gastar dinero o cambiar una estrategia
+> basándose en ella.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -172,12 +177,12 @@ x1            -3.0512      0.163    -18.720      0.000      -3.375      -2.728
 - **`coef`** (coeficiente): por cada unidad adicional de `precio`, `demanda` cambia en
   `-3.05` unidades, en promedio.
 - **`P>|t|`** (p-value del coeficiente): si es `< 0.05`, ese coeficiente es estadísticamente
-  distinto de cero — es decir, esa variable tiene una relación real con la variable
+  distinto de cero: es decir, esa variable tiene una relación real con la variable
   dependiente.
 - **`R-squared`**: qué proporción de la variabilidad de `demanda` explica el modelo (0.782 =
   78.2%). Más alto generalmente indica mejor ajuste, pero un R² muy alto en pocos datos puede
   ser señal de sobreajuste.
-- **`[0.025, 0.975]`**: intervalo de confianza del 95% para el coeficiente — el rango de
+- **`[0.025, 0.975]`**: intervalo de confianza del 95% para el coeficiente, el rango de
   valores plausibles para el verdadero efecto de `precio`.
 
 > ⚠️ Un coeficiente estadísticamente significativo (`p < 0.05`) no garantiza que la relación
@@ -246,14 +251,14 @@ contra la esperada es útil para entender la dirección de una asociación signi
 
 ## Resumen
 
-- El **t-test** compara medias de 2 grupos; el **ANOVA**, de 3 o más.
-- Un **p-value** pequeño sugiere que una diferencia observada es poco probable por azar — pero
-  no mide su importancia práctica, ni implica causalidad.
-- **Pearson/Spearman/Kendall** miden asociación entre variables numéricas; el
-  **chi-cuadrado** mide asociación entre variables categóricas.
-- **OLS** (`statsmodels`) da un resumen estadístico interpretable (coeficientes, p-values,
-  R², intervalos de confianza) — complementario al enfoque más predictivo de scikit-learn que
-  verás a continuación.
+El **t-test** compara medias de 2 grupos; el **ANOVA**, de 3 o más. Un **p-value** pequeño
+sugiere que una diferencia observada es poco probable por azar, pero no mide su importancia
+práctica ni implica causalidad — vale la pena tenerlo presente antes de sacar conclusiones.
 
-Siguiente: [6.2 Preparación para ML](02-preparacion-ml.md), donde pasamos de interpretar
-relaciones estadísticas a preparar datos específicamente para entrenar modelos predictivos.
+Para asociación entre variables, **Pearson/Spearman/Kendall** cubren las numéricas y el
+**chi-cuadrado** las categóricas. Y **OLS** (`statsmodels`) da un resumen estadístico
+interpretable —coeficientes, p-values, R², intervalos de confianza— que complementa el
+enfoque más predictivo de scikit-learn que viene a continuación.
+
+Pasamos ahora de interpretar relaciones estadísticas a preparar datos específicamente para
+entrenar modelos predictivos: [6.2 Preparación para ML](02-preparacion-ml.md).

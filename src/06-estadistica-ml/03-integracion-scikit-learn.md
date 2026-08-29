@@ -4,6 +4,11 @@ El capítulo anterior mostró cada paso de preparación por separado. Este capí
 un **`Pipeline`** — la forma correcta y profesional de encadenar preprocesamiento y modelo,
 que además resuelve automáticamente el riesgo de data leakage que advertimos antes.
 
+> 🎯 **Por qué te importa este capítulo:** un `Pipeline` no es solo comodidad de código. Es lo
+> que evita que, meses después de poner un modelo en producción, alguien descubra que el
+> preprocesamiento se aplicó distinto en entrenamiento y en predicción, y que los resultados
+> llevaban semanas siendo silenciosamente incorrectos.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -28,7 +33,7 @@ clientes["churn"] = np.random.binomial(1, prob_churn)
 ### Pipeline objects
 
 Un `Pipeline` encadena una secuencia de pasos (transformaciones, y finalmente un modelo) en un
-único objeto que se comporta como si fuera un solo estimador — llamas a `fit()` una vez, y
+único objeto que se comporta como si fuera un solo estimador: llamas a `fit()` una vez, y
 scikit-learn se encarga de ajustar y aplicar cada paso en el orden correcto:
 
 ```python
@@ -61,7 +66,7 @@ predicciones = pipeline.predict(X_test)   # aplica el scaler ya ajustado, luego 
 ### ColumnTransformer
 
 Nuestro dataset tiene columnas numéricas (que queremos escalar) y categóricas (que queremos
-codificar) — `ColumnTransformer` aplica una transformación distinta a cada subconjunto de
+codificar). `ColumnTransformer` aplica una transformación distinta a cada subconjunto de
 columnas, todo dentro de un mismo pipeline:
 
 ```python
@@ -89,7 +94,7 @@ print(f"Accuracy en test: {pipeline_completo.score(X_test, y_test):.3f}")
 ```
 
 `ColumnTransformer` es, en la práctica profesional, la forma estándar de construir pipelines
-de preprocesamiento sobre datos tabulares reales — casi siempre tienes una mezcla de tipos de
+de preprocesamiento sobre datos tabulares reales, porque casi siempre tienes una mezcla de tipos de
 columna que requieren tratamiento distinto.
 
 **Ejercicios: Pipelines**
@@ -155,7 +160,7 @@ print(columnas_elegidas)
 selector_f = SelectKBest(score_func=f_classif, k=3)
 ```
 
-`mutual_info_classif` mide **información mutua** — captura relaciones no necesariamente
+`mutual_info_classif` mide **información mutua**: captura relaciones no necesariamente
 lineales entre cada feature y la variable objetivo, a diferencia de `f_classif` (basado en
 ANOVA), más orientado a relaciones lineales.
 
@@ -192,7 +197,7 @@ importancias.sort_values(ascending=False).plot(kind="bar", title="Importancia de
 ### Métricas de clasificación
 
 `accuracy` (proporción de predicciones correctas) es la métrica más intuitiva, pero puede ser
-**engañosa con clases desbalanceadas** — un modelo que siempre predice "no churn" en un
+**engañosa con clases desbalanceadas**. Un modelo que siempre predice "no churn" en un
 dataset donde solo el 10% cancela tendría 90% de accuracy sin haber aprendido nada útil.
 
 ```python
@@ -216,7 +221,7 @@ print(classification_report(y_test, predicciones))   # las 4 métricas anteriore
 
 ### Confusion matrix
 
-La **matriz de confusión** desglosa exactamente qué tipos de error comete el modelo —
+La **matriz de confusión** desglosa exactamente qué tipos de error comete el modelo:
 esencial para entender **cómo** falla, no solo cuánto:
 
 ```python
@@ -269,16 +274,17 @@ Real: Churn              9                  11
 
 ## Resumen
 
-- **`Pipeline`** encadena preprocesamiento y modelo en un único objeto, y previene
-  estructuralmente el data leakage al garantizar que `fit()` solo ocurra sobre datos de
-  entrenamiento.
-- **`ColumnTransformer`** aplica transformaciones distintas a columnas numéricas y
-  categóricas dentro del mismo pipeline — el patrón estándar para datos tabulares reales.
-- El patrón **fit/transform**: `fit()` (o `fit_transform()`) solo en entrenamiento;
-  `transform()` únicamente en cualquier dato posterior (test, producción).
-- **Accuracy puede ser engañoso con clases desbalanceadas** — precision, recall, F1 y la
-  matriz de confusión dan una imagen más completa, y la métrica prioritaria debe elegirse
-  según el costo real de cada tipo de error en tu problema.
+**`Pipeline`** encadena preprocesamiento y modelo en un único objeto, y previene
+estructuralmente el data leakage al garantizar que `fit()` solo ocurra sobre datos de
+entrenamiento. Cuando esos datos mezclan columnas numéricas y categóricas (el caso normal en
+datos tabulares reales), **`ColumnTransformer`** es el patrón estándar para aplicarles
+transformaciones distintas dentro del mismo pipeline, siguiendo siempre la misma disciplina:
+`fit()` (o `fit_transform()`) solo en entrenamiento, `transform()` en cualquier dato posterior.
+
+En cuanto a evaluación, no te confíes del accuracy por sí solo: con clases desbalanceadas
+puede ser directamente engañoso. Precision, recall, F1 y la matriz de confusión dan una imagen
+mucho más completa, y cuál priorizar depende del costo real de cada tipo de error en tu
+problema específico.
 
 Siguiente: [6.4 Casos de Uso Supervisados](04-casos-supervisados.md), el último capítulo del
 módulo, donde aplicamos todo esto a modelos concretos de clasificación y regresión.

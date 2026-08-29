@@ -1,7 +1,7 @@
 # Checklist de Competencias por Módulo
 
 Esta página reúne, en un solo lugar, las competencias que deberías dominar en cada etapa del
-libro — útil como autoevaluación antes de avanzar, como repaso antes de una entrevista técnica,
+libro. Sirve como autoevaluación antes de avanzar, como repaso antes de una entrevista técnica,
 o simplemente para ver de un vistazo cuánto has cubierto hasta ahora.
 
 ## Nivel Principiante (Módulos 1-2)
@@ -38,7 +38,7 @@ o simplemente para ver de un vistazo cuánto has cubierto hasta ahora.
       sin data leakage, y cross-validation.
 - [ ] Construyo un `Pipeline` de scikit-learn con `ColumnTransformer`, entreno al menos tres
       tipos de modelos supervisados, y elijo entre ellos usando la métrica apropiada para el
-      problema — no solo accuracy por defecto.
+      problema, no solo accuracy por defecto.
 - [ ] Interpreto correctamente un test de hipótesis y un p-value, sin caer en los errores de
       interpretación más comunes.
 
@@ -48,7 +48,7 @@ o simplemente para ver de un vistazo cuánto has cubierto hasta ahora.
       antes de optimizar.
 - [ ] Reduzco el uso de memoria de un `DataFrame` eligiendo tipos de datos apropiados
       (downcast, `category`, sparse arrays).
-- [ ] Sé cuándo recurrir a Numba, Dask o paralelización — y, con la misma claridad, cuándo
+- [ ] Sé cuándo recurrir a Numba, Dask o paralelización, y, con la misma claridad, cuándo
       esas herramientas serían innecesarias.
 - [ ] Diseño pipelines ETL con validación de datos, logging estructurado y tests
       automatizados, listos para producción.
@@ -59,14 +59,13 @@ o simplemente para ver de un vistazo cuánto has cubierto hasta ahora.
 
 ## Cómo usar este checklist
 
-No se espera que marques cada casilla en tu primera lectura de cada módulo — muchas de estas
+No se espera que marques cada casilla en tu primera lectura de cada módulo. Muchas de estas
 competencias se consolidan genuinamente solo después de aplicarlas en un proyecto real, no en
 el ejercicio aislado donde se introdujeron por primera vez. Vuelve a este checklist:
 
-- **Antes de avanzar de nivel**, como una autoevaluación honesta de si el siguiente módulo te
-  va a resultar comprensible o si vale la pena repasar algo primero.
-- **Antes de una entrevista técnica**, como un mapa rápido de qué áreas repasar según el tipo
-  de rol al que postulas (un rol más analítico pondrá más peso en los niveles Principiante-
-  Intermedio; un rol de ingeniería de datos, en el nivel Experto).
-- **Después de completar el Módulo 9**, como una revisión final de todo el libro antes de
-  considerar tu portafolio de proyectos como terminado.
+Antes de avanzar de nivel, úsalo como una autoevaluación honesta de si el siguiente módulo te
+va a resultar comprensible o si vale la pena repasar algo primero. Antes de una entrevista
+técnica, funciona como un mapa rápido de qué áreas repasar según el tipo de rol al que
+postulas: un rol más analítico pondrá más peso en los niveles Principiante-Intermedio, uno de
+ingeniería de datos en el nivel Experto. Y una vez termines el Módulo 9, vuelve a él una última
+vez como revisión final antes de considerar tu portafolio de proyectos como terminado.

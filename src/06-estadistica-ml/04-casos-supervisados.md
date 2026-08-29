@@ -4,6 +4,12 @@ Este capítulo cierra el módulo con los algoritmos supervisados más comunes: t
 clasificación y tres para regresión, todos usados a través del mismo patrón `Pipeline` del
 capítulo anterior, para que puedas compararlos de forma justa.
 
+> 🎯 **Por qué te importa este capítulo:** no existe "el mejor algoritmo" en abstracto. Un
+> árbol de decisión interpretable puede ser la elección correcta cuando alguien te va a
+> preguntar por qué el modelo decidió lo que decidió; un random forest puede ganarle en
+> precisión pura pero sin darte esa explicación. Saber cuándo usar cada uno es tan importante
+> como saber entrenarlos.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -43,7 +49,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratif
 
 ### Regresión logística
 
-Pese a su nombre, la **regresión logística** es un modelo de **clasificación** — predice la
+Pese a su nombre, la **regresión logística** es un modelo de **clasificación**: predice la
 probabilidad de pertenecer a una clase, usando una función que transforma cualquier
 combinación lineal de features en un valor entre 0 y 1. Es simple, rápida, y sus coeficientes
 son interpretables (similar al OLS del capítulo 6.1).
@@ -71,7 +77,7 @@ probabilidades = pipeline_logistica.predict_proba(X_test)[:, 1]   # probabilidad
 ### Árbol de decisión
 
 Un **árbol de decisión** divide los datos recursivamente en base a preguntas sobre las
-features ("¿`meses_cliente` < 12?") — su principal ventaja es la **interpretabilidad**: puedes
+features ("¿`meses_cliente` < 12?"). Su principal ventaja es la **interpretabilidad**: puedes
 visualizar exactamente el camino de decisiones que lleva a cada predicción.
 
 ```python
@@ -98,7 +104,7 @@ plt.show()
 ### Random forest
 
 Un **random forest** entrena muchos árboles de decisión independientes (cada uno sobre una
-muestra aleatoria de datos y features) y promedia sus predicciones — el "ensemble" resultante
+muestra aleatoria de datos y features) y promedia sus predicciones. El "ensemble" resultante
 generalmente es mucho más robusto y preciso que un árbol individual, a costa de perder algo de
 interpretabilidad directa.
 
@@ -129,7 +135,7 @@ pipeline_rf.fit(X_train, y_train)
 ## Regresión
 
 Para esta sección, cambiamos de problema: en vez de predecir `churn` (categoría), predecimos
-`ingreso_mensual` (un valor numérico continuo) a partir del resto de variables — un problema
+`ingreso_mensual` (un valor numérico continuo) a partir del resto de variables: un problema
 de **regresión**, no de clasificación.
 
 ```python
@@ -141,7 +147,7 @@ X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(X_reg, y_reg, test_s
 ### Linear regression
 
 La regresión lineal simple de scikit-learn es el equivalente predictivo del OLS de
-`statsmodels` visto en 6.1 — mismos fundamentos matemáticos, pero orientada a predicción sobre
+`statsmodels` visto en 6.1, con los mismos fundamentos matemáticos, pero orientada a predicción sobre
 datos nuevos en vez de a un resumen estadístico detallado:
 
 ```python
@@ -180,7 +186,7 @@ pipeline_polinomial = Pipeline([
 pipeline_polinomial.fit(X_train_r, y_train_r)
 ```
 
-**Ridge** y **Lasso** son variantes regularizadas de la regresión lineal — agregan una
+**Ridge** y **Lasso** son variantes regularizadas de la regresión lineal: agregan una
 penalización a coeficientes grandes, lo cual reduce el sobreajuste, especialmente relevante
 cuando hay muchas features o features correlacionadas entre sí:
 
@@ -280,18 +286,17 @@ for nombre, pipe in modelos_clasificacion.items():
 
 ## Resumen
 
-- **Regresión logística**: rápida, interpretable, buen punto de partida para clasificación
-  binaria.
-- **Árbol de decisión**: muy interpretable, pero propenso a sobreajuste sin limitar su
-  profundidad.
-- **Random forest**: generalmente más preciso y robusto que un árbol individual, a costa de
-  interpretabilidad directa.
-- **Regresión lineal/polinomial/Ridge/Lasso**: de la relación lineal simple a variantes
-  regularizadas que controlan el sobreajuste y, en el caso de Lasso, seleccionan features
-  automáticamente.
-- **Nunca uses el conjunto de test para comparar modelos** — compara con cross-validation
-  sobre entrenamiento, y reserva el test para una única evaluación final del modelo ya
-  elegido.
+Para clasificación, tres opciones cubren la mayoría de casos: **regresión logística** cuando
+necesitas rapidez e interpretabilidad como punto de partida, **árbol de decisión** cuando la
+interpretabilidad es la prioridad (aunque hay que vigilar el sobreajuste limitando su
+profundidad), y **random forest** cuando la precisión importa más que poder explicar cada
+decisión individual. Para regresión, el espectro va de la simple relación lineal a las
+variantes regularizadas **Ridge** y **Lasso**, que controlan el sobreajuste y, en el caso de
+Lasso, seleccionan features automáticamente.
+
+Y una regla que aplica sin importar qué algoritmo elijas: nunca uses el conjunto de test para
+comparar modelos entre sí. Compara con cross-validation sobre el conjunto de entrenamiento, y
+reserva el test para una única evaluación final del modelo que ya elegiste.
 
 > 🚀 **Pon esto en práctica:** ya puedes intentar
 > [Proyecto 13: ¿La promoción funcionó?](../09-proyectos/nivel-4-ml/01-promocion-funciono.md)

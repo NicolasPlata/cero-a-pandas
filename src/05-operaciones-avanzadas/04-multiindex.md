@@ -5,6 +5,11 @@ Ya usaste `MultiIndex` de forma introductoria en el Módulo 2 y como resultado n
 construirlo explícitamente, cómo indexarlo y filtrarlo con precisión, y cómo reorganizarlo y
 agregarlo.
 
+> 🎯 **Por qué te importa este capítulo:** cualquier reporte con más de una dimensión
+> (región y producto, año y mes) termina necesitando un `MultiIndex` en algún punto. Sin
+> entenderlo bien, terminas peleando con `reset_index()` cada vez que algo no funciona como
+> esperabas.
+
 ```python
 import pandas as pd
 import numpy as np
@@ -184,16 +189,17 @@ ventas_multi.unstack("producto")   # convierte el nivel "producto" en columnas �
 
 ## Resumen
 
-- **`from_arrays()`**, **`from_tuples()`** y **`from_product()`** son las tres formas
-  principales de construir un `MultiIndex` explícitamente — `from_product()` genera todas las
-  combinaciones posibles entre niveles.
-- **`.loc`** con tuplas permite selección parcial o completa por nivel; **`pd.IndexSlice`**
-  da control total para slicing jerárquico complejo, pero requiere un índice **ordenado**.
-- **`swaplevel()`**, **`sort_index()`** y **`reorder_levels()`** reorganizan la estructura del
-  índice sin tocar los datos.
-- **`groupby(level=...)`** agrega manteniendo estructura jerárquica; **`unstack()`** aplana el
-  resultado en una tabla ancha — elige según si necesitas seguir operando jerárquicamente o
-  presentar el resultado.
+**`from_arrays()`**, **`from_tuples()`** y **`from_product()`** son las tres formas
+principales de construir un `MultiIndex` explícitamente; `from_product()` en particular genera
+todas las combinaciones posibles entre niveles. Para acceder a los datos, **`.loc`** con
+tuplas permite selección parcial o completa por nivel, y **`pd.IndexSlice`** da control total
+para slicing jerárquico complejo, aunque requiere un índice **ordenado**.
+
+Cuando necesites reorganizar sin tocar los datos, **`swaplevel()`**, **`sort_index()`** y
+**`reorder_levels()`** hacen ese trabajo. Y para agregar: **`groupby(level=...)`** mantiene la
+estructura jerárquica, mientras que **`unstack()`** aplana el resultado en una tabla ancha.
+¿Cuál usar? Depende de si necesitas seguir operando jerárquicamente o simplemente presentar el
+resultado.
 
 > 🚀 **Pon esto en práctica:** ya puedes intentar
 > [Proyecto 10: ¿Estamos creciendo?](../09-proyectos/nivel-3-avanzado/01-estamos-creciendo.md),

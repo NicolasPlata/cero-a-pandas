@@ -1,9 +1,15 @@
 # 8.4 ETL y Pipelines
 
-Este capítulo cierra el Módulo 8 —y prepara el terreno para los proyectos integradores del
-Módulo 9— con el tema más transversal del libro: cómo llevar todo lo aprendido a un **pipeline
+Este capítulo cierra el Módulo 8 (y prepara el terreno para los proyectos integradores del
+Módulo 9) con el tema más transversal del libro: cómo llevar todo lo aprendido a un **pipeline
 de producción**: confiable, monitoreado, y probado, no solo un notebook que funciona "en tu
 máquina".
+
+> 🎯 **Por qué te importa este capítulo:** la diferencia entre un análisis que hiciste una
+> vez y un sistema del que otras personas dependen todos los días es, casi siempre, todo lo
+> que cubre este capítulo: validación, logging, scheduling y tests. Un pipeline sin eso no
+> falla de forma ruidosa; falla en silencio, y alguien descubre el problema semanas después
+> leyendo un reporte incorrecto.
 
 ```python
 import pandas as pd
@@ -16,7 +22,7 @@ import logging
 ### Extract, Transform, Load
 
 **ETL** (Extract, Transform, Load) es el patrón arquitectónico más común para mover y preparar
-datos: extraer de una o más fuentes, transformar (limpiar, combinar, enriquecer — todo el
+datos: extraer de una o más fuentes, transformar (limpiar, combinar, enriquecer: todo el
 Módulo 3), y cargar el resultado a un destino final (una base de datos, un data warehouse, un
 archivo).
 
@@ -54,7 +60,7 @@ def pipeline_etl(ruta_csv, engine, tabla):
 
 ### Validación de datos
 
-Un pipeline robusto no asume que los datos de entrada son correctos — los **valida**
+Un pipeline robusto no asume que los datos de entrada son correctos. Los **valida**
 explícitamente, y falla de forma clara (o alerta) cuando no lo son, en vez de propagar
 silenciosamente datos corruptos hacia el destino final:
 
@@ -100,7 +106,7 @@ schema.validate(df_limpio)   # lanza SchemaError con detalle si algo no cumple
 ```
 
 > ⚠️ **Un pipeline sin validación de datos falla silenciosamente**, propagando problemas de
-> calidad río abajo hasta que alguien nota un reporte incorrecto — frecuentemente mucho
+> calidad río abajo hasta que alguien nota un reporte incorrecto, frecuentemente mucho
 > después de que el daño (decisiones tomadas sobre datos malos) ya ocurrió. Validar
 > explícitamente, y fallar rápido y ruidosamente cuando algo no cumple, es mucho más seguro
 > que confiar en que "los datos siempre vienen bien".
@@ -108,7 +114,7 @@ schema.validate(df_limpio)   # lanza SchemaError con detalle si algo no cumple
 **Ejercicios: Diseño ETL y validación**
 
 1. Extiende la función `validar()` de este capítulo para que también verifique que la columna
-   `fecha` no tenga valores futuros (posteriores a hoy) — un problema común de datos mal
+   `fecha` no tenga valores futuros (posteriores a hoy): un problema común de datos mal
    capturados.
 2. Si tienes `pandera` instalado, define un schema para el `DataFrame` de `clientes` del
    Módulo 6 (edad entre 18 y 100, ingreso mensual positivo, plan dentro de un conjunto
@@ -118,7 +124,7 @@ schema.validate(df_limpio)   # lanza SchemaError con detalle si algo no cumple
 
 ### Scheduling con APScheduler y cron
 
-Un pipeline ETL raramente se ejecuta una sola vez — típicamente necesita correr en un horario
+Un pipeline ETL raramente se ejecuta una sola vez. Típicamente necesita correr en un horario
 recurrente (diario, cada hora). `APScheduler` permite programar ejecuciones directamente desde
 Python:
 
@@ -131,7 +137,7 @@ def tarea_programada():
 
 scheduler = BlockingScheduler()
 scheduler.add_job(tarea_programada, "cron", hour=2, minute=0)   # todos los días a las 2:00 AM
-# scheduler.start()   # bloquea el proceso — normalmente se ejecuta como un servicio separado
+# scheduler.start()   # bloquea el proceso; normalmente se ejecuta como un servicio separado
 ```
 
 Para infraestructura de servidor tradicional, un **cron job** de sistema operativo es la
@@ -145,7 +151,7 @@ independiente del proceso de tu aplicación:
 
 > 💡 **APScheduler** es apropiado cuando el scheduling necesita vivir **dentro** de una
 > aplicación Python de larga duración (por ejemplo, junto a un servidor web); **cron** es más
-> simple y robusto cuando el pipeline es un script independiente — no dependas de que un
+> simple y robusto cuando el pipeline es un script independiente. No dependas de que un
 > proceso Python permanezca corriendo indefinidamente solo para disparar una tarea programada,
 > si el sistema operativo ya puede hacerlo de forma más confiable.
 
@@ -161,7 +167,7 @@ independiente del proceso de tu aplicación:
 
 ### Registros de ejecución
 
-Ya viste `logging` en el Módulo 7 para debugging — en un pipeline de producción, el logging
+Ya viste `logging` en el Módulo 7 para debugging. En un pipeline de producción, el logging
 se vuelve la única forma de saber qué pasó en una ejecución que nadie observó en tiempo real:
 
 ```python
@@ -202,7 +208,7 @@ tres preguntas esenciales: **¿corrió?**, **¿cuánto procesó?**, y **¿falló
 
 > 💡 Para pipelines críticos, el siguiente paso natural más allá de un archivo de log es un
 > sistema de **alertas** (enviar un mensaje a Slack/email si `logger.error()` se dispara) y un
-> **dashboard de monitoreo** (por ejemplo, con Grafana leyendo métricas de cada ejecución) —
+> **dashboard de monitoreo** (por ejemplo, con Grafana leyendo métricas de cada ejecución),
 > ambos fuera del alcance de pandas en sí, pero construidos naturalmente sobre la disciplina de
 > logging estructurado de esta sección.
 
@@ -258,7 +264,7 @@ pytest test_pipeline.py -v
 ### Data testing
 
 Más allá de probar el **código** (¿la función hace lo que debería?), el **data testing**
-prueba los **datos mismos** en cada ejecución — verificando propiedades que deberían cumplirse
+prueba los **datos mismos** en cada ejecución, verificando propiedades que deberían cumplirse
 siempre, independientemente de qué datos de entrada lleguen ese día:
 
 ```python
@@ -275,7 +281,7 @@ def test_datos_produccion_cumplen_expectativas(engine):
 > controlados, verificando que la **lógica** sea correcta; los **data tests** corren
 > periódicamente (frecuentemente como parte del propio pipeline programado) contra los
 > **datos reales de producción**, verificando que sigan cumpliendo las expectativas del
-> negocio — ambos son necesarios, y responden preguntas distintas.
+> negocio. Ambos son necesarios, y responden preguntas distintas.
 
 **Ejercicios: Testing**
 
@@ -302,17 +308,19 @@ def test_datos_produccion_cumplen_expectativas(engine):
 
 ## Resumen
 
-- El patrón **Extract-Transform-Load**, implementado como funciones puras separadas, hace un
-  pipeline testeable y modular.
-- La **validación de datos** (manual o con `pandera`) debe ser explícita — un pipeline sin
-  validación falla silenciosamente, propagando datos malos.
-- **APScheduler** para scheduling dentro de una aplicación Python; **cron** para scripts
-  independientes en un servidor.
-- El **logging estructurado** es la única forma de saber qué pasó en ejecuciones desatendidas
-  — responde si corrió, cuánto procesó, y por qué falló si falló.
-- **Unit tests** (con `pytest`) prueban que el código es correcto; **data tests** prueban que
-  los datos de producción siguen cumpliendo las expectativas del negocio — ambos son
-  necesarios en un pipeline profesional.
+El patrón **Extract-Transform-Load**, implementado como funciones puras separadas, hace un
+pipeline testeable y modular desde el diseño. Sobre esa base, la **validación de datos**
+(manual o con `pandera`) debe ser explícita: un pipeline sin validación no deja de funcionar,
+simplemente falla en silencio, propagando datos malos aguas abajo. Para ejecutarlo de forma
+recurrente, **APScheduler** funciona dentro de una aplicación Python, mientras que **cron** es
+la opción natural para scripts independientes en un servidor.
+
+Y para saber qué pasó realmente en una ejecución que nadie observó en vivo, el **logging
+estructurado** es la única fuente confiable: responde si corrió, cuánto procesó, y por qué
+falló si falló. Complementa eso con dos tipos de prueba distintos: **unit tests** (con
+`pytest`) confirman que el código es correcto, mientras que **data tests** confirman que los
+datos de producción siguen cumpliendo las expectativas del negocio. Un pipeline profesional
+necesita ambos.
 
 > 🚀 **Pon esto en práctica:** con este módulo quedan desbloqueados los últimos proyectos de
 > Grano de Datos:
@@ -325,5 +333,5 @@ def test_datos_produccion_cumplen_expectativas(engine):
 
 Con esto cierra el **Módulo 8: Casos Especiales y Dominios**, y con él, todo el contenido
 temático del libro. El **Módulo 9: Proyectos Integradores** te lleva a aplicar todo lo
-aprendido —de principio a fin, sin andamiaje paso a paso— en 19 proyectos progresivos,
+aprendido, de principio a fin y sin andamiaje paso a paso, en 19 proyectos progresivos,
 presentados como historias de usuario y backlog.
