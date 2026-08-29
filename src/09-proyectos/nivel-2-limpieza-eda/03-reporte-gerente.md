@@ -9,7 +9,7 @@ y [4.2 Agregación y Grouping](../../04-eda/02-agregacion-grouping.md). Se apoya
 
 Con las tres sucursales ya unificadas en un solo reporte (Proyecto 7), llegó un nuevo actor a
 la historia: el **gerente regional**, que supervisa las tres sucursales y necesita algo más
-que una tabla de ventas cruda — necesita métricas que le digan **dónde enfocar sus esfuerzos**
+que una tabla de ventas cruda: necesita métricas que le digan **dónde enfocar sus esfuerzos**
 el próximo trimestre.
 
 ## Historia de usuario

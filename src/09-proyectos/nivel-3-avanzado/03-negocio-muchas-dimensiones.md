@@ -7,7 +7,7 @@ y [5.4 MultiIndex y Datos Jerárquicos](../../05-operaciones-avanzadas/04-multii
 ## Contexto
 
 El gerente regional (del Proyecto 8) volvió con un nuevo pedido: ya no le sirve un reporte
-plano de "sucursal, producto, ingreso" — quiere poder "entrar y salir" de distintos niveles de
+plano de "sucursal, producto, ingreso": quiere poder "entrar y salir" de distintos niveles de
 detalle: ver el total por región, o bajar a una sucursal específica, o a un producto
 específico dentro de una sucursal, todo desde el mismo reporte. Además, el archivo histórico
 de ventas de los últimos 2 años es demasiado grande para abrirlo de una sola vez cómodamente.

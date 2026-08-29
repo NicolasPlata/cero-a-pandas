@@ -8,7 +8,7 @@
 El programa de fidelización de Grano de Datos (que empezó con los datos sucios del
 Proyecto 6) creció junto con el negocio, y ahora tiene decenas de miles de transacciones. Hay
 un script que calcula los puntos de cada compra según reglas de negocio con varias
-condiciones — y alguien lo escribió con un `apply(axis=1)` fila por fila. Ese script, que
+condiciones, y alguien lo escribió con un `apply(axis=1)` fila por fila. Ese script, que
 antes tardaba segundos, ahora tarda **casi una hora** en correr. Te lo pasan para que lo
 arregles.
 

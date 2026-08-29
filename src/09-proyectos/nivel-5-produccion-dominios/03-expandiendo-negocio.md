@@ -8,7 +8,7 @@ el desafío completo).
 
 ## Contexto
 
-El negocio va bien, y el dueño de Grano de Datos está pensando en el siguiente paso — pero no
+El negocio va bien, y el dueño de Grano de Datos está pensando en el siguiente paso, pero no
 está seguro de cuál. Dos ideas sobre la mesa: **abrir una cuarta sucursal** en un buen punto de
 la ciudad, o **invertir las ganancias acumuladas** del negocio en el mercado de valores en vez
 de dejarlas quietas. Te pide ayuda para explorar cualquiera de las dos con datos — tú eliges

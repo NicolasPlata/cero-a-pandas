@@ -9,7 +9,7 @@ apoyado en todo lo visto sobre limpieza (Módulo 3) y combinación de fuentes (P
 Grano de Datos ya tiene varios sistemas generando datos por separado: el punto de venta de
 cada sucursal, la base del programa de fidelización, y un catálogo de productos que el dueño
 sigue editando a mano en Excel cuando cambia un precio. Cada semana, alguien del equipo junta
-todo manualmente para armar los reportes — un proceso lento y propenso a errores. Te piden
+todo manualmente para armar los reportes: un proceso lento y propenso a errores. Te piden
 automatizarlo por completo.
 
 ## Historia de usuario

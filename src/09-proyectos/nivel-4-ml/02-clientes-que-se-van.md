@@ -10,7 +10,7 @@
 El programa de fidelización de Grano de Datos (la base que limpiaste en el Proyecto 6) ya
 tiene suficiente historia para notar algo preocupante: varios clientes que compraban
 regularmente hace meses simplemente dejaron de aparecer. El dueño no quiere descubrir que
-perdió un cliente cuando ya es demasiado tarde para recuperarlo — quiere anticiparse.
+perdió un cliente cuando ya es demasiado tarde para recuperarlo: quiere anticiparse.
 
 ## Historia de usuario
 

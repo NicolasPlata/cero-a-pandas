@@ -7,7 +7,7 @@ y [3.3 Reshape y Reorganización](../../03-manipulacion-datos/03-reshape-reorgan
 ## Contexto
 
 Grano de Datos creció: ya no es un solo local, son tres. Cada sucursal lleva su propio
-registro de ventas, y cada una lo hace un poco distinto — una sucursal nombró su columna de
+registro de ventas, y cada una lo hace un poco distinto: una sucursal nombró su columna de
 fecha `"fecha"`, otra `"dia_venta"`; una usa el formato `DD/MM/YYYY`, otra `YYYY-MM-DD`. El
 dueño quiere un solo reporte que junte las tres, sin tener que abrir tres archivos diferentes
 cada vez que quiere comparar su desempeño.

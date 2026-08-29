@@ -7,11 +7,11 @@ de Datos), apoyado en todo lo visto en el Módulo 3.
 ## Contexto
 
 Grano de Datos descansa un capítulo. Hasta ahora, cada proyecto te dio datos ya definidos por
-el libro, generados en el propio código — a partir de aquí trabajas con un dataset **real**,
+el libro, generados en el propio código. A partir de aquí trabajas con un dataset **real**,
 descargado tal cual de una fuente pública, sin ninguna preparación especial para este
 ejercicio. Es una versión más exigente y más abierta de lo que ya practicaste en los
 Proyectos 6-8: un análisis exploratorio completo, de principio a fin, sobre datos que nadie
-limpió por ti — el tipo de trabajo con el que te vas a encontrar constantemente en un rol real
+limpió por ti: el tipo de trabajo con el que te vas a encontrar constantemente en un rol real
 de datos.
 
 ## Historia de usuario

@@ -5,8 +5,8 @@
 **Duración estimada del nivel:** 6-12 horas (2-4 h por proyecto).
 
 El punto de partida de Grano de Datos: un solo local que lleva las cuentas a mano. Estos tres
-proyectos usan exclusivamente lo que aprendiste en el Módulo 1.1 — funciones, condicionales,
-estructuras de datos y manejo de errores — antes de que pandas entre en escena.
+proyectos usan exclusivamente lo que aprendiste en el Módulo 1.1 (funciones, condicionales,
+estructuras de datos y manejo de errores) antes de que pandas entre en escena.
 
 | Proyecto | De qué se trata |
 |----------|-------------------|
@@ -16,4 +16,4 @@ estructuras de datos y manejo de errores — antes de que pandas entre en escena
 
 Si es la primera vez que ves este módulo, empieza por el capítulo
 [Historias de Usuario y Backlog](../01-historias-de-usuario-backlog.md) antes que por
-cualquiera de estos tres proyectos — te da el vocabulario con el que están escritos.
+cualquiera de estos tres proyectos: te da el vocabulario con el que están escritos.

@@ -6,7 +6,7 @@
 
 El nivel más extenso del módulo. Grano de Datos ya tiene un programa de fidelización con datos
 sucios que limpiar, tres sucursales que unificar, y un gerente pidiendo reportes con
-métricas — hasta que, en el último proyecto, el negocio ficticio da paso a tu primer dataset
+métricas, hasta que, en el último proyecto, el negocio ficticio da paso a tu primer dataset
 público real.
 
 | Proyecto | De qué se trata |
@@ -16,7 +16,7 @@ público real.
 | [Proyecto 8: El reporte del gerente](03-reporte-gerente.md) | Feature engineering y `groupby()` con named aggregations. |
 | [Proyecto 9: Tu primer EDA con datos reales](04-primer-eda-real.md) | Análisis exploratorio completo sobre un dataset público real, incluido en el propio libro. |
 
-Los proyectos 6-8 se apoyan uno en el resultado del anterior — resuélvelos en orden si puedes.
+Los proyectos 6-8 se apoyan uno en el resultado del anterior; resuélvelos en orden si puedes.
 El Proyecto 9 es independiente y marca la transición hacia datos reales, no preparados
-especialmente para el ejercicio (aunque en este caso el libro ya te lo entrega — a partir del
+especialmente para el ejercicio (aunque en este caso el libro ya te lo entrega; a partir del
 Capstone del Módulo 9, la búsqueda del dataset también será tuya).

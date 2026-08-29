@@ -161,7 +161,7 @@ puntos).
 | Fase 4 — Auditoría de tono "IA" en Módulos 1-9 → `docs/auditoria-tono.md` | Alta | ⏳ Pendiente |
 | Fase 5 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 1-4 | Media | ✅ Hecho |
 | Fase 6 — Correcciones de tono + recuadro "🎯 Por qué te importa este capítulo" — Módulos 5-8 y páginas de cierre (`recursos.md`, `guia-ritmo.md`, `checklist-competencias.md`) | Media | ✅ Hecho |
-| Fase 7 — Correcciones de tono en Módulo 9 (prosa: Contexto, Palabras de cierre) | Media | ⏳ Pendiente |
+| Fase 7 — Correcciones de tono en Módulo 9 (prosa: Contexto, intros de nivel, Palabras de cierre) | Media | ✅ Hecho |
 | Fase 8 — Verificación final y cierre de la épica | Alta | ⏳ Pendiente |
 
 ---

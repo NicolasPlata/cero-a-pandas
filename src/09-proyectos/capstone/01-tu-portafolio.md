@@ -8,14 +8,14 @@ todos los anteriores — requiere que tú decidas qué necesitas.
 ## Contexto
 
 Grano de Datos descansa, definitivamente, en este último proyecto. No porque ya no tenga más
-que resolver — sino porque llegó el momento de que el proyecto sea completamente tuyo, sin un
+que resolver, sino porque llegó el momento de que el proyecto sea completamente tuyo, sin un
 negocio ficticio dictando el contexto. Este es el proyecto de cierre del libro, diseñado
 explícitamente para convertirse en una pieza de tu portafolio profesional: algo que puedas
 mostrar en una entrevista, compartir en LinkedIn, o presentar a un cliente potencial.
 
 ## Por qué este proyecto es distinto a los 18 anteriores
 
-Los proyectos 1-18 te dieron una historia de usuario ya escrita y un backlog ya priorizado —
+Los proyectos 1-18 te dieron una historia de usuario ya escrita y un backlog ya priorizado:
 ese andamiaje fue intencional, para que pudieras enfocarte en la técnica sin además tener que
 inventar el problema. Un portafolio profesional se distingue precisamente por las decisiones
 que tomaste **sin que nadie te las dictara**: qué pregunta valía la pena hacer, qué dataset
@@ -113,15 +113,15 @@ hace que tu capstone sea reproducible por otra persona (HU-6).
 
 ## Palabras de cierre
 
-Si completaste este proyecto —y idealmente varios de los 18 anteriores— ya no eres alguien
+Si completaste este proyecto (y idealmente varios de los 18 anteriores), ya no eres alguien
 que "está aprendiendo pandas". Eres alguien que **usa pandas** para resolver problemas reales,
 con criterio propio sobre qué técnica aplicar y por qué. Ese es exactamente el punto donde
 termina este libro y empieza tu propio trabajo con datos.
 
-Vuelve a los módulos anteriores como referencia cuantas veces lo necesites — ningún
+Vuelve a los módulos anteriores como referencia cuantas veces lo necesites. Ningún
 profesional recuerda de memoria la sintaxis exacta de cada método de pandas, y no hay nada de
 malo en consultarla. Lo que este libro te dio no fue memorización, sino la capacidad de
 reconocer **qué herramienta corresponde a qué problema**, y el hábito de traducir un pedido de
-negocio en historias de usuario y un backlog claro — esa capacidad no se olvida tan fácilmente.
+negocio en historias de usuario y un backlog claro: esa capacidad no se olvida tan fácilmente.
 
 ¡Éxito en tus próximos proyectos con datos!
