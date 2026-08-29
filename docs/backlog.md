@@ -92,7 +92,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Fase 9E — Nivel 3: Proyectos 10-12 (operaciones avanzadas) | Alta | ✅ Hecho |
 | Fase 9F — Nivel 4: Proyectos 13-15 (estadística y ML) | Alta | ✅ Hecho |
 | Fase 9G — Nivel 5: Proyectos 16-18 (optimización/ETL/dominios) | Alta | ✅ Hecho |
-| Fase 9H — Proyecto 19 (Capstone) + actualización de guía de ritmo y checklist | Alta | ⏳ Pendiente |
+| Fase 9H — Proyecto 19 (Capstone) + actualización de guía de ritmo y checklist | Alta | ✅ Hecho |
 | Fase 9I — Referencias cruzadas "🚀 Pon esto en práctica" en el cierre de Módulos 1-8 + verificación final de build/enlaces | Alta | ⏳ Pendiente |
 
 ## Épica 6: Higiene del repositorio
@@ -111,9 +111,8 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 
 ## Próximos pasos inmediatos
 
-1. Fase 9H: Proyecto 19 (Capstone) + actualización de guía de ritmo y checklist.
-2. Fase 9I: referencias cruzadas "🚀 Pon esto en práctica" en Módulos 1-8 + verificación final.
-3. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo).
+1. Fase 9I: referencias cruzadas "🚀 Pon esto en práctica" en Módulos 1-8 + verificación final.
+2. Habilitar GitHub Pages con origen "GitHub Actions" (acción manual del dueño del repo).
 
 ## Convención de commits de este proyecto
 
