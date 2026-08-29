@@ -1,7 +1,7 @@
 # Proyecto 2: El cuaderno de inventario
 
 **Nivel:** 🟢 Nivel 0 — Fundamentos de Python
-**Requisitos previos:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python.md)
+**Requisitos previos:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python/00-intro.md)
 — específicamente: listas, diccionarios, loops (`for`) y funciones. **No necesitas pandas
 para este proyecto** — todavía estás construyendo el músculo de Python puro.
 

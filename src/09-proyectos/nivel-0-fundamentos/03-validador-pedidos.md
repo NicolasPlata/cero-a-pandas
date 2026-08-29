@@ -1,7 +1,7 @@
 # Proyecto 3: El validador de pedidos
 
 **Nivel:** 🟢 Nivel 0 — Fundamentos de Python
-**Requisitos previos:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python.md)
+**Requisitos previos:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python/00-intro.md)
 — específicamente: manejo de errores (`try`/`except`/`raise`), funciones y estructuras de
 datos. **No necesitas pandas para este proyecto.**
 

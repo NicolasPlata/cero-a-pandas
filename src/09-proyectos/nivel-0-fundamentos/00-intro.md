@@ -1,6 +1,6 @@
 # 🟢 Nivel 0 — Fundamentos de Python
 
-**Requiere:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python.md).
+**Requiere:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python/00-intro.md).
 **No necesitas pandas todavía.**
 **Duración estimada del nivel:** 6-12 horas (2-4 h por proyecto).
 

@@ -5,7 +5,12 @@
 # Parte I: Cimientos
 
 - [Módulo 1: Cimientos](01-cimientos/00-intro.md)
-  - [1.1 Fundamentos de Python](01-cimientos/01-fundamentos-python.md)
+  - [1.1 Fundamentos de Python](01-cimientos/01-fundamentos-python/00-intro.md)
+    - [1.1.1 Sintaxis Básica](01-cimientos/01-fundamentos-python/01-sintaxis-basica.md)
+    - [1.1.2 Control de Flujo](01-cimientos/01-fundamentos-python/02-control-de-flujo.md)
+    - [1.1.3 Funciones](01-cimientos/01-fundamentos-python/03-funciones.md)
+    - [1.1.4 Estructuras de Datos](01-cimientos/01-fundamentos-python/04-estructuras-de-datos.md)
+    - [1.1.5 Manejo de Errores](01-cimientos/01-fundamentos-python/05-manejo-de-errores.md)
   - [1.2 Ecosistema Python para Datos](01-cimientos/02-ecosistema-datos.md)
 
 # Parte II: Introducción a Pandas

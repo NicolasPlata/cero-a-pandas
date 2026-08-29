@@ -43,6 +43,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 |----------|-----------|--------|
 | Módulo 1 — Cimientos (Python + ecosistema de datos) | Alta | ✅ Hecho |
 | Ampliación de 1.1 Fundamentos de Python: contenido nuevo (comentarios, primer programa, `input()`), explicaciones más profundas, ejercicios de calentamiento en cada sección | Alta | ✅ Hecho — pedido explícito tras feedback de que el capítulo era muy condensado para un usuario nuevo |
+| Subdivisión de 1.1 en 5 archivos (1.1.1-1.1.5) + página índice, por legibilidad | Media | ✅ Hecho — pedido explícito tras la ampliación anterior; mismo patrón de anidación que Niveles del Módulo 9 |
 | Módulo 2 — Introducción a Pandas | Alta | ✅ Hecho |
 | Módulo 3 — Manipulación de Datos | Alta | ✅ Hecho |
 | Módulo 4 — Análisis Exploratorio de Datos | Alta | ✅ Hecho |

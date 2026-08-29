@@ -1,7 +1,7 @@
 # Proyecto 1: La caja registradora
 
 **Nivel:** 🟢 Nivel 0 — Fundamentos de Python
-**Requisitos previos:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python.md)
+**Requisitos previos:** [1.1 Fundamentos de Python](../../01-cimientos/01-fundamentos-python/00-intro.md)
 — específicamente: variables y tipos, operadores, strings/f-strings, condicionales y
 funciones. **No necesitas pandas para este proyecto.**
 

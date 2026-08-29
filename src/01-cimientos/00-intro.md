@@ -13,10 +13,10 @@ que esas piezas nunca sean una sorpresa.
 
 Este módulo tiene dos capítulos:
 
-- **[1.1 Fundamentos de Python](01-fundamentos-python.md)** — sintaxis, control de flujo,
-  funciones, estructuras de datos nativas de Python y manejo de errores. Si nunca has
-  programado, empieza aquí con calma; si ya conoces Python, puedes hojearlo rápido y usarlo
-  como referencia.
+- **[1.1 Fundamentos de Python](01-fundamentos-python/00-intro.md)** — dividido en 5 capítulos
+  cortos: sintaxis básica, control de flujo, funciones, estructuras de datos nativas de Python
+  y manejo de errores. Si nunca has programado, empieza aquí con calma; si ya conoces Python,
+  puedes hojearlo rápido y usarlo como referencia.
 - **[1.2 Ecosistema Python para Datos](02-ecosistema-datos.md)** — NumPy (la base numérica
   sobre la que se construye pandas), gestión de entornos virtuales, Jupyter/IPython y
   visualización básica con Matplotlib.
