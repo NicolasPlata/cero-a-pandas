@@ -184,7 +184,12 @@ ventas["producto"] = ventas["producto"].str.strip().str.title()
 ### Expresiones regulares (regex)
 
 Los métodos `.str` aceptan expresiones regulares para patrones más complejos que un simple
-substring:
+substring. Una **expresión regular** (regex) es un mini-lenguaje para describir patrones de
+texto: `\d` significa "un dígito", `{3}` significa "exactamente 3 veces lo anterior", `^` y
+`$` anclan el patrón al inicio y al final del string respectivamente (para exigir una
+coincidencia exacta, no solo en algún punto), y `+` significa "una o más veces". Con eso ya
+puedes leer `r"^PROD-\d{3}$"` como: "empieza con `PROD-`, seguido de exactamente 3 dígitos, y
+nada más después".
 
 ```python
 codigos = pd.Series(["PROD-001", "PROD-042", "ITEM-7", "PROD-123"])
@@ -246,7 +251,11 @@ pd.to_datetime("05/01/2026", format="%d/%m/%Y")   # 5 de enero, no 1 de mayo
 
 ### El accessor .dt
 
-Igual que `.str` para texto, `.dt` expone componentes y operaciones de fecha vectorizadas:
+Una vez que una columna es de tipo `datetime64` (con `pd.to_datetime()`), cada valor deja de
+ser "solo una fecha" y gana componentes accesibles por separado: año, mes, día, día de la
+semana, etc. Igual que `.str` te daba acceso vectorizado a operaciones de texto, `.dt` te da
+acceso vectorizado a esos componentes de fecha — sin él, tendrías que extraerlos manualmente
+fecha por fecha con un loop:
 
 ```python
 ventas["fecha"].dt.year          # año de cada fecha
@@ -257,6 +266,10 @@ ventas["fecha"].dt.day_name()            # nombre del día ("Monday", "Tuesday",
 ventas["fecha"].dt.is_month_end            # booleano: ¿es el último día del mes?
 ventas["fecha"].dt.strftime("%d/%m/%Y")      # formatear de vuelta a string, formato custom
 ```
+
+Estos componentes son directamente útiles para crear columnas derivadas — por ejemplo, para
+responder "¿esta venta ocurrió en fin de semana?" a partir de `dayofweek` (donde `5` y `6`
+corresponden a sábado y domingo):
 
 ```python
 ventas["dia_semana"] = ventas["fecha"].dt.day_name()
@@ -292,6 +305,10 @@ calidad < "Alto"   # comparación respetando el orden definido: [True, False, Tr
 ```
 
 ### Operaciones
+
+Una vez que una columna es `category`, el accessor `.cat` (paralelo a `.str` y `.dt`) expone
+operaciones específicas sobre el conjunto de categorías en sí — no sobre los valores de cada
+fila, sino sobre el "catálogo" de opciones posibles que hay detrás:
 
 ```python
 ventas["producto"].cat.categories        # lista de categorías únicas

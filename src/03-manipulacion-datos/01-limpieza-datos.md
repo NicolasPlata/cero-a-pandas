@@ -255,6 +255,10 @@ datos_crudos["cantidad"].ge(0).all()            # ¿todas las cantidades son >= 
 
 ### Identificación y remoción
 
+`duplicated()` marca cada fila como `True` si es una repetición de una fila anterior (la
+primera ocurrencia siempre queda como `False`, solo las copias posteriores se marcan), y
+`drop_duplicates()` las elimina directamente:
+
 ```python
 datos_crudos.duplicated()                    # Series booleana: True en la segunda ocurrencia en adelante
 datos_crudos.duplicated().sum()                 # cuántas filas duplicadas hay

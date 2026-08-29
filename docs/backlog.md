@@ -133,7 +133,7 @@ hallazgos: 4 🔴, 14 🟡, en 8 archivos).
 | Fase 2 — Reescritura de 1.1.3 Funciones (3 🟡) | Alta | ✅ Hecho |
 | Fase 3 — Reescritura de 1.1.5 Manejo de Errores (1 🟡) | Alta | ✅ Hecho |
 | Fase 4 — Ediciones puntuales: 1.2 Arrays y shapes, 2.2 JSON, 2.1 Conceptos Fundamentales (1 🔴 + 3 🟡) | Media | ✅ Hecho |
-| Fase 5 — Ediciones puntuales: 3.2 Transformación (regex/.dt/Categoricals), 3.1 Duplicados, 5.4 Reorganización (1 🔴 + 4 🟡) | Media | ⏳ Pendiente |
+| Fase 5 — Ediciones puntuales: 3.2 Transformación (regex/.dt/Categoricals), 3.1 Duplicados, 5.4 Reorganización (1 🔴 + 4 🟡) | Media | ✅ Hecho |
 | Fase 6 — Verificación final (build, enlaces, formato) y cierre de la épica | Alta | ⏳ Pendiente |
 
 ---

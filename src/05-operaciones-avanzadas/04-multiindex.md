@@ -126,6 +126,10 @@ ventas_multi.loc[idx[:, "Café"], :]                     # todas las regiones, s
 
 ### Reorganización: swaplevel, sortlevel, reorder
 
+Estas operaciones son puramente estructurales — no cambian los datos en sí, solo cómo están
+organizados los niveles del índice y en qué orden se puede acceder a ellos, lo cual afecta
+directamente qué tipo de slicing jerárquico es válido después:
+
 ```python
 ventas_multi.swaplevel()                    # intercambia el orden de los niveles (producto pasa a ser externo)
 ventas_multi.sort_index()                     # ordena el índice — necesario antes de slicing jerárquico complejo
@@ -133,10 +137,6 @@ ventas_multi.sort_index(level="producto")       # ordena específicamente por un
 
 ventas_multi.reorder_levels(["producto", "region"])   # reordena niveles a un orden arbitrario, no solo swap
 ```
-
-Estas operaciones son puramente estructurales — no cambian los datos, solo cómo están
-organizados y en qué orden se puede acceder a ellos, lo cual afecta directamente qué tipo de
-slicing jerárquico es válido después.
 
 ### Agregación jerárquica
 
