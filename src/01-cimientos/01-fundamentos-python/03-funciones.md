@@ -9,7 +9,8 @@ más que diez líneas sueltas de aritmética).
 
 ## Definición y scope
 
-Una función se define con `def`, puede recibir parámetros y devolver un valor con `return`:
+Una función se define con `def`, puede recibir **parámetros** (los datos que necesita para
+trabajar) y **devolver** un valor con `return` (el resultado de su trabajo):
 
 ```python
 def calcular_precio_total(precio_unitario, cantidad):
@@ -18,6 +19,12 @@ def calcular_precio_total(precio_unitario, cantidad):
 total = calcular_precio_total(4.5, 3)
 print(total)  # 13.5
 ```
+
+Sigamos exactamente qué ocurre al ejecutar `calcular_precio_total(4.5, 3)`: Python "salta" a
+la definición de la función, asigna `precio_unitario = 4.5` y `cantidad = 3` (en el mismo
+orden en que los escribiste al llamarla), ejecuta el cuerpo de la función
+(`precio_unitario * cantidad`, que es `13.5`), y como encuentra un `return`, **entrega** ese
+valor de vuelta al punto donde se llamó la función — ahí es donde queda guardado en `total`.
 
 > ⚠️ **`return` no es lo mismo que `print()`**, una confusión muy común al empezar.
 > `print()` solo **muestra** algo en pantalla, sin que el programa pueda usarlo después.
@@ -39,29 +46,38 @@ print(resultado)                       # esto sí imprime "10" — el valor fue 
 ```
 
 Los **parámetros por defecto** permiten llamar a la función sin especificar todos los
-argumentos:
+argumentos — si no proporcionas un valor para ese parámetro, Python usa el que definiste como
+"por defecto":
 
 ```python
 def calcular_precio_total(precio_unitario, cantidad=1, descuento=0.0):
     subtotal = precio_unitario * cantidad
     return subtotal * (1 - descuento)
 
-calcular_precio_total(10)                    # 10.0
-calcular_precio_total(10, cantidad=5)         # 50.0
-calcular_precio_total(10, 5, descuento=0.1)   # 45.0
+calcular_precio_total(10)                    # 10.0 — usa cantidad=1 y descuento=0.0 por defecto
+calcular_precio_total(10, cantidad=5)         # 50.0 — especifica cantidad, descuento sigue en 0.0
+calcular_precio_total(10, 5, descuento=0.1)   # 45.0 — especifica los tres
 ```
 
-El **scope** (alcance) determina dónde es visible una variable. Una variable creada dentro de
-una función es **local**: no existe fuera de ella.
+### Scope: dónde "vive" cada variable
+
+El **scope** (alcance) determina en qué parte de tu programa una variable existe y es
+visible. Piensa en el cuerpo de una función como una habitación temporal: las variables que
+creas **dentro** de ella (su scope **local**) solo existen mientras la función se está
+ejecutando, y desaparecen apenas termina — son invisibles desde afuera, igual que no puedes
+ver lo que hay dentro de una habitación con la puerta cerrada:
 
 ```python
 def ejemplo():
-    x = 10   # x es local a la función
+    x = 10   # x es local a la función: solo existe DENTRO de ejemplo()
     return x
 
 ejemplo()
 print(x)  # NameError: name 'x' is not defined
 ```
+
+Aunque `ejemplo()` ya se ejecutó, `x` nunca "salió" de la función — por eso `print(x)` falla:
+esa `x` jamás existió fuera de ese scope local.
 
 > ⚠️ **Cuidado con modificar variables globales dentro de una función** sin la palabra clave
 > `global` — Python creará silenciosamente una variable local nueva en vez de modificar la
@@ -78,8 +94,11 @@ print(x)  # NameError: name 'x' is not defined
 
 ## Args y kwargs
 
-Cuando no sabes de antemano cuántos argumentos recibirá una función, `*args` (posicionales) y
-`**kwargs` (nombrados) permiten flexibilidad:
+A veces no sabes de antemano **cuántos** argumentos recibirá tu función — imagina una función
+que suma números: ¿debería aceptar exactamente 2? ¿3? ¿Qué pasa si alguien quiere sumar 10?
+Escribir una función distinta para cada cantidad posible de argumentos sería absurdo. Para
+esto existen `*args` (argumentos posicionales) y `**kwargs` (argumentos nombrados), que le
+dicen a Python "acepta **cualquier cantidad** de argumentos aquí, y empaquétalos para mí":
 
 ```python
 def sumar_todos(*args):
@@ -87,7 +106,16 @@ def sumar_todos(*args):
 
 sumar_todos(1, 2, 3)        # 6
 sumar_todos(1, 2, 3, 4, 5)  # 15
+```
 
+Al llamar `sumar_todos(1, 2, 3)`, Python toma los tres valores que le pasaste y los empaqueta
+automáticamente en una **tupla** llamada `args` (dentro de la función, `args` vale literalmente
+`(1, 2, 3)`) — por eso `sum(args)` funciona: `sum()` sabe sumar los elementos de una tupla.
+
+`**kwargs` hace lo mismo, pero para argumentos **nombrados**, empaquetándolos en un
+**diccionario** en vez de una tupla:
+
+```python
 def crear_registro(**kwargs):
     return kwargs
 
@@ -95,18 +123,22 @@ crear_registro(nombre="Ana", edad=28, ciudad="Bogotá")
 # {'nombre': 'Ana', 'edad': 28, 'ciudad': 'Bogotá'}
 ```
 
-Dentro de la función, `args` es una tupla y `kwargs` es un diccionario. Puedes combinarlos con
-parámetros normales, siempre en este orden: `def f(pos, *args, kw=default, **kwargs)`.
+Aquí, cada `clave=valor` que escribiste al llamar la función se convierte en una entrada del
+diccionario `kwargs` — literalmente el mismo diccionario que ya conoces del capítulo anterior.
+
+Puedes combinar `*args`/`**kwargs` con parámetros normales, siempre en este orden:
+`def f(pos, *args, kw=default, **kwargs)`.
 
 El **unpacking** (desempaquetado) es la operación inversa — expandir una lista o diccionario
-en argumentos individuales al llamar a una función:
+que ya tienes en argumentos individuales al llamar a una función, en vez de escribirlos uno
+por uno:
 
 ```python
 valores = [1, 2, 3]
-sumar_todos(*valores)   # equivalente a sumar_todos(1, 2, 3)
+sumar_todos(*valores)   # equivalente a escribir sumar_todos(1, 2, 3) a mano
 
 datos = {"nombre": "Luis", "edad": 30}
-crear_registro(**datos)  # equivalente a crear_registro(nombre="Luis", edad=30)
+crear_registro(**datos)  # equivalente a escribir crear_registro(nombre="Luis", edad=30) a mano
 ```
 
 Este patrón `**kwargs` es exactamente el mecanismo detrás de funciones de pandas como
@@ -124,36 +156,58 @@ completo.
 
 ## Lambdas y map/filter
 
-Una **lambda** es una función anónima de una sola expresión, útil cuando necesitas una función
-pequeña y desechable (por ejemplo, como argumento de otra función):
+Una **lambda** es, literalmente, una función — pero escrita de forma más compacta, sin nombre
+ni la palabra `def`, pensada para usos breves y desechables (típicamente, como argumento de
+otra función). Estas dos definiciones son equivalentes:
 
 ```python
-cuadrado = lambda x: x ** 2
-cuadrado(5)  # 25
+def cuadrado(x):
+    return x ** 2
 
-# Muy común como key de sorted()
+cuadrado_lambda = lambda x: x ** 2
+```
+
+`lambda x: x ** 2` se lee como "una función que recibe `x` y devuelve `x ** 2`" — no hace
+falta `def`, ni un nombre, ni `return` (el resultado de la expresión se devuelve
+automáticamente). Ambas formas se llaman exactamente igual: `cuadrado(5)` y
+`cuadrado_lambda(5)` devuelven `25`.
+
+Donde las lambdas brillan es cuando necesitas pasar una función pequeña como argumento de
+otra función, sin la ceremonia de definirla aparte con `def`. Un caso muy común: decirle a
+`sorted()` **según qué criterio** ordenar:
+
+```python
 palabras = ["banana", "kiwi", "manzana"]
 sorted(palabras, key=lambda palabra: len(palabra))
 # ['kiwi', 'banana', 'manzana']
 ```
 
-`map()` aplica una función a cada elemento de un iterable, y `filter()` selecciona elementos
-que cumplen una condición:
+Aquí, `key=lambda palabra: len(palabra)` le dice a `sorted()`: "para decidir el orden, no
+compares las palabras directamente — compara la **longitud** de cada una". `sorted()` aplica
+esa lambda a cada elemento antes de ordenar, en vez de comparar los strings tal cual.
+
+`map()` aplica una función a **cada elemento** de un iterable, devolviendo el resultado
+transformado elemento por elemento; `filter()` recorre un iterable y se queda **solo** con los
+elementos donde la función devuelve `True`:
 
 ```python
 numeros = [1, 2, 3, 4, 5]
 
 dobles = list(map(lambda n: n * 2, numeros))
-# [2, 4, 6, 8, 10]
+# map aplica "n * 2" a cada número: [2, 4, 6, 8, 10]
 
 pares = list(filter(lambda n: n % 2 == 0, numeros))
-# [2, 4]
+# filter conserva solo los números donde "n % 2 == 0" es True: [2, 4]
 ```
 
-En la práctica moderna de Python, las list comprehensions suelen preferirse sobre
-`map()`/`filter()` por legibilidad. Sin embargo, **las lambdas son omnipresentes en pandas**:
-`df["columna"].apply(lambda x: ...)` es uno de los patrones más comunes del libro a partir del
-Módulo 3, así que vale la pena sentirte cómodo con ellas desde ya.
+(El `list(...)` alrededor es necesario porque `map()` y `filter()` devuelven un objeto
+"perezoso" que se convierte a lista explícitamente para poder verlo o usarlo como tal.)
+
+En la práctica moderna de Python, las list comprehensions (que ya conoces del capítulo
+anterior) suelen preferirse sobre `map()`/`filter()` por legibilidad. Sin embargo, **las
+lambdas son omnipresentes en pandas**: `df["columna"].apply(lambda x: ...)` es uno de los
+patrones más comunes del libro a partir del Módulo 3, así que vale la pena sentirte cómodo con
+ellas desde ya.
 
 > 💡 Regla práctica: si tu lambda necesita más de una línea o se vuelve difícil de leer,
 > conviene convertirla en una función normal con `def` y un nombre descriptivo.
