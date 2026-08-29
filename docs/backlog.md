@@ -95,6 +95,7 @@ Cada épica agrupa varias historias relacionadas. Cada historia tiene una priori
 | Fase 9G — Nivel 5: Proyectos 16-18 (optimización/ETL/dominios) | Alta | ✅ Hecho |
 | Fase 9H — Proyecto 19 (Capstone) + actualización de guía de ritmo y checklist | Alta | ✅ Hecho |
 | Fase 9I — Referencias cruzadas "🚀 Pon esto en práctica" en el cierre de Módulos 1-8 + verificación final de build/enlaces | Alta | ✅ Hecho |
+| Páginas de intro por nivel (7), para que los encabezados de nivel en el panel de mdBook sean clicables en vez de solo agrupadores visuales | Media | ✅ Hecho — pedido explícito del usuario tras notar que 9.2-9.8 no eran clicables |
 
 ## Épica 6: Higiene del repositorio
 
