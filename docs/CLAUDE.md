@@ -35,7 +35,8 @@ como la fuente de verdad actual del contenido — es contexto histórico.
 │   ├── backlog.md               # Historias de usuario + estado de todo el trabajo del proyecto
 │   ├── ruta-aprendizaje-pandas.md   # EDT original (histórico)
 │   ├── plan-*.md                     # Planes de desarrollo/expansión/corrección (uno por hito grande)
-│   └── auditoria-explicaciones.md      # Auditoría de calidad de explicaciones (ver Épica 7 del backlog)
+│   ├── auditoria-explicaciones.md      # Auditoría de profundidad de explicaciones (Épica 7)
+│   └── auditoria-tono.md                # Auditoría de tono "sabor a IA" (Épica 8, Fase 4)
 ├── .github/workflows/deploy.yml   # CI: build + deploy a GitHub Pages en cada push a main
 ├── book.toml                # Config de mdBook
 └── book/                    # Output compilado — en .gitignore, no se versiona
@@ -144,6 +145,19 @@ de esperar una auditoría posterior.
 - **Módulo 8.2:** serie de precios `acciones` simulada (random walk con tendencia).
 - **Módulo 9:** universo narrativo unificado — ver sección dedicada abajo.
 
+### Datasets reales de terceros incluidos en `src/`
+
+Cuando un capítulo incluye una copia de un dataset real de un tercero (no generado
+sintéticamente), como el CSV de Kaggle usado en el Proyecto 9
+(`src/09-proyectos/nivel-2-limpieza-eda/data/sih_2026_problem_statements.csv`), el capítulo
+debe incluir siempre, junto a la descarga: el nombre del autor/publicador original con enlace
+a la fuente, una aclaración de que la copia se incluye con fines educativos, y una nota
+recomendando revisar la licencia original antes de reutilizar el dataset fuera del ejercicio.
+No asumas ni inventes una licencia que no puedas verificar — si no la puedes confirmar
+(páginas como Kaggle son dinámicas y no siempre accesibles por fetch simple), remite al lector
+a confirmarla él mismo en la fuente. Ver el ejemplo aplicado en la sección "Dataset" de
+`04-primer-eda-real.md`.
+
 ### Módulo 9 — formato distinto, léelo aparte
 
 `src/09-proyectos/` NO sigue la plantilla de capítulo de arriba. Es un conjunto de **19
@@ -208,6 +222,24 @@ hace falta todo este ritual — basta con el build/verificación y un commit dir
 estado (qué está hecho, en progreso, pendiente) y se actualiza en cada sesión. Léelo para
 saber en qué quedó el proyecto la última vez. Este archivo (`CLAUDE.md`) documenta el *cómo*
 y las convenciones; el backlog documenta el *qué* y el *cuándo*.
+
+## Datos personales del autor en "Sobre el autor" (`introduccion.md`)
+
+Esta sección contiene información biográfica real del usuario. Trátala con el mismo cuidado
+que cualquier dato personal:
+
+- **No incluyas el nombre de su empleador actual ni de empleadores anteriores**, aunque el
+  usuario los mencione en una fuente de origen (por ejemplo, un CV) — pidió explícitamente que
+  no se mencionaran los lugares donde trabajó. Sí puede describirse el tipo de rol o de datos
+  con los que trabaja (por ejemplo, "datos geoespaciales" para justificar la referencia a
+  GeoPandas), pero sin nombrar la organización.
+- **No agregues ni infieras datos personales** (teléfono, correo, ciudad de origen, empleador,
+  etc.) que el usuario no haya dado explícitamente para esta sección — confirma con él antes
+  de publicar cualquier dato biográfico nuevo, en vez de asumir a partir de otro documento.
+- Ver también el incidente documentado en la Épica 6 del backlog: un CV con datos personales
+  (nombre completo, teléfono, correo) se comiteó por error al repositorio público y tuvo que
+  purgarse del historial de git — evita `git add -A`/staging amplio cuando haya un archivo así
+  en el directorio de trabajo.
 
 ## Pendiente conocido (revisar en `docs/backlog.md` si sigue vigente)
 
